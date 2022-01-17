@@ -32,3 +32,47 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Project Tree Diagram
+
+- `$ npx create-next-app`
+  - enter your project name.
+
+<pre>
+D:.
+├─.next
+│  ├─cache
+│  │  ├─eslint
+│  │  ├─images
+│  │  │  └─TDJRueuYcYoug4QVLZYIJ3F6lQJH6M1bBN6HhcDQ4xM=
+│  │  └─webpack
+│  │      ├─client-development
+│  │      ├─client-production
+│  │      ├─server-development
+│  │      └─server-production
+│  ├─server
+│  │  ├─chunks
+│  │  └─pages
+│  │      └─api
+│  └─static
+│      ├─chunks
+│      │  └─pages
+│      ├─css
+│      └─jhletS84WVIwI8aBuRf5v
+├─node_modules
+│  ├─...
+│
+├─pages
+│  └─api
+├─styles
+├─next.config.js
+├─.eslintrc.json
+├─package.json
+└─package-lock.json
+</pre>
+
+#### pages
+
+Next.js は pages フォルダを参照し、アプリケーションのページをファイル名に基づいてルーティングします。
+例えば、pages/hoge.js というファイルがあった場合、localhost:3000/hoge にルーティングされることになります。
+プロジェクト作成初期は、`localhost:3000`にアクセスした際、index.js にルーティングされます。
