@@ -197,3 +197,30 @@ export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }
 ```
+
+#### プリレンダリングとデータフェッチ
+
+- [とても分かりやすいプリレンダリングとデータフェッチの説明](https://qiita.com/thesugar/items/01896c1faa8241e6b1bc#%E3%83%AC%E3%83%83%E3%82%B9%E3%83%B34-%E3%83%97%E3%83%AA%E3%83%AC%E3%83%B3%E3%83%80%E3%83%AA%E3%83%B3%E3%82%B0%E3%81%A8%E3%83%87%E3%83%BC%E3%82%BF%E3%83%95%E3%82%A7%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0)
+  - そもそも、Next.js では全てのページをプリレンダリングします。
+  - プリレンダリングとは、`$ yarn build`時に、ページごとに、HTML と、そのページを構築するための最小限の JavaScript との関連付けを行うことです。
+  - 実際にページが読み込まれ、JavaScript コードが実行されるプロセスはハイドレーションと言います。
+  - この際、ブラウザに外部データを取得して表示することをフェッチと言います。
+- `getStaticProps`を使った、データ有りの SSG
+  - `getStaticProps`は、本番環境用のビルド、`$ yarn build`時に実行されます。
+  - `$ yarn dev`時は、毎回のリクエストごとに実行されます。
+  - 関数の流れとしては、データを取得し、props としてページに渡します。
+  - もっと砕けて言うと、「このページにはいくつか外部データが有るので、ビルド時にこのページをプリレンダリングする際は、その依存関係を解決して欲しい」と Next に伝える関数です。
+
+```js
+export default function Home(props) { ... }
+
+export async function getStaticProps() {
+    // ファイルシステムやDB などから外部データを取得する
+    const data = ...
+
+    // `props` キーに対応する値が `Home` コンポーネントに渡される
+    return {
+        props: ...
+    }
+}
+```
