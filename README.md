@@ -76,3 +76,19 @@ D:.
 Next.js は pages フォルダを参照し、アプリケーションのページをファイル名に基づいてルーティングします。
 例えば、pages/hoge.js というファイルがあった場合、localhost:3000/hoge にルーティングされることになります。
 プロジェクト作成初期は、`localhost:3000`にアクセスした際、index.js にルーティングされます。
+
+#### public
+
+画像などの静的ファイルを配置します。
+public に配置したファイルに対しては、プロジェクトルートとみなされ、ルート参照が可能。
+
+```html
+<head>
+  <title>Create Next App</title>
+  <link rel="icon" href="/favicon.ico" />
+</head>
+```
+
+#### styles
+
+CSS 等のスタイルシートの配置。
