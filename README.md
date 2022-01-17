@@ -106,3 +106,31 @@ export default function FirstPost() {
   return <h1>First Post</h1>;
 }
 ```
+
+#### Link コンポーネントによる遷移
+
+- クライアントサイドでリンクを張り、ページ遷移を行う際は Link コンポーネントを利用します。
+
+  - <Link>という<a>タグをラップしたリアクトコンポーネントです。
+
+- index.js に追記
+
+```js
+/* 追記部分 */
+import Link from "next/link";
+
+...
+
+<h1 className={styles.title}>
+  Welcome to <a href="https://nextjs.org">Next.js!</a>
+</h1>
+
+/* 追記部分 */
+<h1 className={styles.title}>
+  <Link href="/sandbox/sandbox-page">
+    <a>Move to Sandbox</a>
+  </Link>
+</h1>
+
+...
+```
