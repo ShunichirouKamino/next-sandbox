@@ -92,3 +92,17 @@ public に配置したファイルに対しては、プロジェクトルート�
 #### styles
 
 CSS 等のスタイルシートの配置。
+
+## Tutorial
+
+#### ページ遷移を理解する
+
+- `pages`配下に、`sandbox`ディレクトリを作り`sandbox-pages.js`を配置する。
+  - コンポーネント名称は任意、`default`のエクスポートが必須。
+- この状態で、`localhost:3000/sandbox/sandbox-page`にアクセスすると、ページが表示される。
+
+```js
+export default function FirstPost() {
+  return <h1>First Post</h1>;
+}
+```
