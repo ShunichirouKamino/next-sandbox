@@ -205,11 +205,15 @@ export default function App({ Component, pageProps }) {
   - プリレンダリングとは、`$ yarn build`時に、ページごとに、HTML と、そのページを構築するための最小限の JavaScript との関連付けを行うことです。
   - 実際にページが読み込まれ、JavaScript コードが実行されるプロセスはハイドレーションと言います。
   - この際、ブラウザに外部データを取得して表示することをフェッチと言います。
-- `getStaticProps`を使った、データ有りの SSG
-  - `getStaticProps`は、本番環境用のビルド、`$ yarn build`時に実行されます。
-  - `$ yarn dev`時は、毎回のリクエストごとに実行されます。
-  - 関数の流れとしては、データを取得し、props としてページに渡します。
-  - もっと砕けて言うと、「このページにはいくつか外部データが有るので、ビルド時にこのページをプリレンダリングする際は、その依存関係を解決して欲しい」と Next に伝える関数です。
+
+##### `getStaticProps`を使った、データ有りの SSG
+
+- `getStaticProps`は、本番環境用のビルド、`$ yarn build`時に実行されます。
+- `$ yarn dev`時は、毎回のリクエストごとに実行されます。
+- 関数の流れとしては、データを取得し、props としてページに渡します。
+- もっと砕けて言うと、「このページにはいくつか外部データが有るので、ビルド時にこのページをプリレンダリングする際は、その依存関係を解決して欲しい」と Next に伝える関数です。
+- getStaticProps の export は、pages からのみ行えます。page ではないファイルから export することはできません。
+- リクエスト時に毎回データをプリレンダリングする必要が有る場合は、SSR にて実現ができます。
 
 ```js
 export default function Home(props) { ... }
@@ -222,5 +226,17 @@ export async function getStaticProps() {
     return {
         props: ...
     }
+}
+```
+
+##### `getServerSideProps`を使った、データ有りの SSG
+
+```js
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      // コンポーネントに渡すための props
+    },
+  };
 }
 ```
