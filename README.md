@@ -134,3 +134,51 @@ import Link from "next/link";
 
 ...
 ```
+
+#### Layout の反映
+
+- `components`配下に`layout.module.css`を配置します。
+
+```css
+.container {
+  max-width: 36rem;
+  padding: 0 1rem;
+  margin: 3rem auto 6rem;
+}
+```
+
+- `components`配下に`layout.js`を配置します。
+
+```js
+import styles from "./layout.module.css";
+
+function Layout({ children }) {
+  return <div className={styles.container}>{children}</div>;
+}
+
+export default Layout;
+```
+
+- sandbox-page.js の一番外の components に対して、Layout を反映する。
+
+```js
+import Link from "next/link";
+import Head from "next/head";
+import Layout from "../../components/layout";
+
+export default function FirstPost() {
+  return (
+    <Layout>
+      <Head>
+        <title>First Post</title>
+      </Head>
+      <h1>First Post</h1>
+      <h2>
+        <Link href="/">
+          <a>Back to home</a>
+        </Link>
+      </h2>
+    </Layout>
+  );
+}
+```
