@@ -182,3 +182,18 @@ export default function FirstPost() {
   );
 }
 ```
+
+#### グローバルな管理
+
+- `_app.js`は、全てのページに共通するトップレベルコンポーネント
+  - グローバルに管理したい store
+  - 全ページに適用したい style
+- root プロジェクトに配置した`styles`ディレクトリに`global.css`を配置し、以下のように`_app.js`にインポートすることで、全ページで適用したいスタイリングを定義することが可能。
+
+```js
+import "../styles/global.css";
+
+export default function App({ Component, pageProps }) {
+  return <Component {...pageProps} />;
+}
+```
