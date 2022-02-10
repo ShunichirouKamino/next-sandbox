@@ -26,7 +26,7 @@ export function getSortedPostsData() {
   });
   // 投稿を日付でソートする
   return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
+    if (a.id < b.id) {
       return 1;
     } else {
       return -1;
@@ -52,21 +52,8 @@ export function getSortedPostsData() {
  * ]
  * @returns file名をidとした配列
  */
-export function getAllPostIds() {
+export const getAllPostIds = () => {
   const fileNames = fs.readdirSync(postsDirectory);
-
-  以下のような配列を返します: [
-    {
-      params: {
-        id: "ssg-ssr",
-      },
-    },
-    {
-      params: {
-        id: "pre-rendering",
-      },
-    },
-  ];
   return fileNames.map((fileName) => {
     return {
       params: {
@@ -74,9 +61,9 @@ export function getAllPostIds() {
       },
     };
   });
-}
+};
 
-export function getPostData(id) {
+export const getPostData = (id: string) => {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
@@ -88,4 +75,4 @@ export function getPostData(id) {
     id,
     ...matterResult.data,
   };
-}
+};
