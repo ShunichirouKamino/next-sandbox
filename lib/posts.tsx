@@ -4,10 +4,14 @@ import matter from "gray-matter";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-export function getSortedPostsData() {
+export type idList = {
+  id: string;
+}[];
+
+export const getSortedPostsData = (): idList => {
   // /posts　配下のファイル名を取得する
   const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames.map((fileName) => {
+  const allPostsData: idList = fileNames.map((fileName) => {
     // id を取得するためにファイル名から ".md" を削除する
     const id = fileName.replace(/\.md$/, "");
 
@@ -17,7 +21,6 @@ export function getSortedPostsData() {
 
     // 投稿のメタデータ部分を解析するために gray-matter を使う
     const matterResult = matter(fileContents);
-
     // データを id と合わせる
     return {
       id,
@@ -32,7 +35,7 @@ export function getSortedPostsData() {
       return -1;
     }
   });
-}
+};
 
 /**
  * Next.js動的ルーティングのpathsに与える配列は、

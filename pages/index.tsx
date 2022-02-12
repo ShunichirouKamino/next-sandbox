@@ -1,10 +1,13 @@
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData } from "../lib/posts";
-import { GetStaticProps } from "next";
+import { getSortedPostsData, idList } from "../lib/posts";
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 
-export default function Home(allPostsData: GetStaticProps) {
+type Props = InferGetStaticPropsType<typeof getAllPostProps>;
+
+const Home: NextPage<Props> = (props: idList): JSX.Element => {
+  const blogList = Array.from(props);
   return (
     <Layout home>
       <Head>
@@ -20,20 +23,18 @@ export default function Home(allPostsData: GetStaticProps) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {blogList.map(({ id /*date, title*/ }) => (
             <li className={utilStyles.listItem} key={id}>
-              {title}
               <br />
               {id}
               <br />
-              {date}
             </li>
           ))}
         </ul>
       </section>
     </Layout>
   );
-}
+};
 
 export const getAllPostProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData();
@@ -43,3 +44,5 @@ export const getAllPostProps: GetStaticProps = async () => {
     },
   };
 };
+
+export default Home;
