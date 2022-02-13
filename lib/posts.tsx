@@ -1,8 +1,10 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import remark from "remark";
 import html from "remark-html";
+import { remark } from "remark";
+
+// const remark = require("/remark/index");
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -101,7 +103,9 @@ export const getPostData = async (blogId: string): Promise<blog> => {
   const processedContent = await remark()
     .use(html)
     .process(matterResult.content);
+  const contentHtml = processedContent.toString();
 
+  console.log(contentHtml);
   // データを id と組み合わせる
   return {
     blogId,

@@ -46,9 +46,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
  * @returns postに表示するブログ記事リスト
  */
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  console.log(params);
-  const postData = getPostData(params.blogId as string);
-  console.log(postData);
+  const postData = await getPostData(params.blogId as string);
   return {
     props: {
       postData,
