@@ -4,6 +4,7 @@ import {
   InferGetStaticPropsType,
   NextPage,
 } from "next";
+import Head from "next/head";
 import Layout from "../../components/layout";
 import { getAllPostIds, getPostData } from "../../lib/posts";
 
@@ -18,6 +19,9 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
 const Post: NextPage<Props> = ({ postData }: Props): JSX.Element => {
   return (
     <Layout home>
+      <Head>
+        <title>{postData.title}</title>
+      </Head>
       {postData.title}
       <br />
       {postData.blogId}
