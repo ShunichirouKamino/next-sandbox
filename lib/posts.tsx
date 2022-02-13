@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import remark from "remark";
+import html from "remark-html";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
@@ -81,14 +83,24 @@ export const getAllPostIds = (): idList => {
   });
 };
 
-export const getPostData = (blogId: string): blog => {
+/**
+ * ブログのIdを一件受け取り、本文を返却します.
+ *
+ * @param blogId ブログId
+ * @returns ブログ本文
+ */
+export const getPostData = async (blogId: string): Promise<blog> => {
   const fullPath = path.join(postsDirectory, `${blogId}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   // 投稿のメタデータ部分を解析するために gray-matter を使う
   const matterResult = matter(fileContents);
-  const date = matterResult.data["date"];
-  const title = matterResult.data["title"];
+  const date: string = matterResult.data["date"];
+  const title: string = matterResult.data["title"];
+
+  const processedContent = await remark()
+    .use(html)
+    .process(matterResult.content);
 
   // データを id と組み合わせる
   return {
