@@ -18,6 +18,7 @@ export type blog = {
   blogId: string;
   title: string;
   date: string;
+  content: string;
 };
 
 export type idList = {
@@ -108,8 +109,9 @@ export const getPostData = async (blogId: string): Promise<blog> => {
   console.log(contentHtml);
   // データを id と組み合わせる
   return {
-    blogId,
-    date,
-    title,
+    blogId: blogId,
+    date: date,
+    title: title,
+    content: contentHtml,
   };
 };

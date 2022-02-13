@@ -23,6 +23,8 @@ const Post: NextPage<Props> = ({ postData }: Props): JSX.Element => {
       {postData.blogId}
       <br />
       {postData.date}
+      <br />
+      <div dangerouslySetInnerHTML={{ __html: postData.content }} />
     </Layout>
   );
 };
