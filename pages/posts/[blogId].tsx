@@ -9,7 +9,13 @@ import { getAllPostIds, getPostData } from "../../lib/posts";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-export const Post: NextPage<Props> = ({ postData }: Props): JSX.Element => {
+/**
+ * ブログPostページ表示用SSGファンクション
+ *
+ * @param postData ブログ記事
+ * @returns ブログPostページの{@link JSX.Element}
+ */
+const Post: NextPage<Props> = ({ postData }: Props): JSX.Element => {
   return (
     <Layout home>
       {postData.title}

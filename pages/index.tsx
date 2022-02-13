@@ -9,7 +9,7 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
 /**
  * Homeページ表示用SSGファンクション
  *
- * @param props ブログ記事リスト
+ * @param allPostsData ブログ記事リスト
  * @returns Homeページの{@link JSX.Element}
  */
 const Home: NextPage<Props> = ({ allPostsData }: Props): JSX.Element => {
