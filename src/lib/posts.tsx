@@ -6,7 +6,7 @@ import { remark } from "remark";
 
 // const remark = require("/remark/index");
 
-const postsDirectory = path.join(process.cwd(), "posts");
+const postsDirectory = path.join(process.cwd(), "src/posts");
 
 export type blogList = {
   blogId: string;

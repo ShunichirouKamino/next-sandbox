@@ -258,3 +258,4 @@ tailwindcss を利用する。
 
 - `$ yarn add tailwindcss`
 - `$ npx tailwindcss init -p`
+- `$ yarn add -D eslint-plugin-tailwindcss`
