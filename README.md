@@ -251,3 +251,10 @@ export async function getServerSideProps(context) {
 `プリレンダリングとデータフェッチ`は、ページの内容が外部データに依存する場合ですが、動的ルーティングはページのパスが外部データに依存する場合の実現方法です。
 
 - Next.js では、`[`で始まり`]`で終わるファイルは動的なページとして認識されます。
+
+#### CSS
+
+tailwindcss を利用する。
+
+- `$ yarn add tailwindcss`
+- `$ npx tailwindcss init -p`
