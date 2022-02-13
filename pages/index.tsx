@@ -4,10 +4,17 @@ import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData, idList } from "../lib/posts";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 
-type Props = InferGetStaticPropsType<typeof getAllPostProps>;
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
+/**
+ * Homeページ表示用SSGファンクション
+ *
+ * @param props ブログ記事リスト
+ * @returns Homeページの{@link JSX.Element}
+ */
 const Home: NextPage<Props> = (props: idList): JSX.Element => {
   const blogList = Array.from(props);
+  console.log(props);
   return (
     <Layout home>
       <Head>
@@ -36,7 +43,12 @@ const Home: NextPage<Props> = (props: idList): JSX.Element => {
   );
 };
 
-export const getAllPostProps: GetStaticProps = async () => {
+/**
+ * {@linkcode Home}ページSSGへの値取得用のファンクション
+ *
+ * @returns homeに表示するブログ記事リスト
+ */
+export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData();
   return {
     props: {

@@ -9,6 +9,7 @@ export type idList = {
 }[];
 
 export const getSortedPostsData = (): idList => {
+  console.log("here");
   // /posts　配下のファイル名を取得する
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData: idList = fileNames.map((fileName) => {
