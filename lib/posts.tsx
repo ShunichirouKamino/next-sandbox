@@ -4,18 +4,28 @@ import matter from "gray-matter";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-export type idList = {
-  id: string;
+export type blogList = {
+  blogId: string;
   title: string;
   date: string;
 }[];
 
-export const getSortedPostsData = (): idList => {
+export type blog = {
+  blogId: string;
+  title: string;
+  date: string;
+};
+
+export type idList = {
+  params: { blogId: string };
+}[];
+
+export const getSortedPostsData = (): blogList => {
   // /posts　配下のファイル名を取得する
   const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData: idList = fileNames.map((fileName) => {
+  const allPostsData: blogList = fileNames.map((fileName) => {
     // id を取得するためにファイル名から ".md" を削除する
-    const id = fileName.replace(/\.md$/, "");
+    const blogId = fileName.replace(/\.md$/, "");
 
     // マークダウンファイルを文字列として読み取る
     const fullPath = path.join(postsDirectory, fileName);
@@ -27,14 +37,14 @@ export const getSortedPostsData = (): idList => {
     const date: string = matterResult.data["date"];
     // データを id と合わせる
     return {
-      id,
+      blogId,
       title,
       date,
     };
   });
   // 投稿を日付でソートする
   return allPostsData.sort((a, b) => {
-    if (a.id < b.id) {
+    if (a.blogId < b.blogId) {
       return 1;
     } else {
       return -1;
@@ -49,38 +59,41 @@ export const getSortedPostsData = (): idList => {
  * [
  *   {
  *     params: {
- *       id: 'ssg-ssr'
+ *       blogId: 'ssg-ssr'
  *     }
  *   },
  *   {
  *     params: {
- *       id: 'pre-rendering'
+ *       blogId: 'pre-rendering'
  *     }
  *   }
  * ]
  * @returns file名をidとした配列
  */
-export const getAllPostIds = () => {
+export const getAllPostIds = (): idList => {
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames.map((fileName) => {
     return {
       params: {
-        id: fileName.replace(/\.md$/, ""),
+        blogId: fileName.replace(/\.md$/, ""),
       },
     };
   });
 };
 
-export const getPostData = (id: string) => {
-  const fullPath = path.join(postsDirectory, `${id}.md`);
+export const getPostData = (blogId: string): blog => {
+  const fullPath = path.join(postsDirectory, `${blogId}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
 
   // 投稿のメタデータ部分を解析するために gray-matter を使う
   const matterResult = matter(fileContents);
+  const date = matterResult.data["date"];
+  const title = matterResult.data["title"];
 
   // データを id と組み合わせる
   return {
-    id,
-    ...matterResult.data,
+    blogId,
+    date,
+    title,
   };
 };

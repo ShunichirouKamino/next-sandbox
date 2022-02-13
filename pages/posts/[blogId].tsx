@@ -1,24 +1,53 @@
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  InferGetStaticPropsType,
+  NextPage,
+} from "next";
 import Layout from "../../components/layout";
-import { getAllPostIds } from "../../lib/posts";
+import { getAllPostIds, getPostData } from "../../lib/posts";
 
-export const Post = () => {
-  return <Layout home={undefined}>...</Layout>;
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
+
+export const Post: NextPage<Props> = ({ postData }: Props): JSX.Element => {
+  return (
+    <Layout home>
+      {postData.title}
+      <br />
+      {postData.blogId}
+      <br />
+      {postData.date}
+    </Layout>
+  );
 };
 
 /**
- * {@linkcode Post}投稿記事Post
+ * {@linkcode Post}ページSSGへのパス取得用のファンクション
  *
- * @returns
+ * @returns postページの動的パス
  */
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds();
   return {
     paths,
     fallback: false,
   };
 };
-export const getStaticProps = async ({ params }) => {
-  // params.id を使用して、ブログの投稿に必要なデータを取得する
+
+/**
+ * {@linkcode Post}ページSSGへの値取得用のファンクション
+ *
+ * @returns postに表示するブログ記事リスト
+ */
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  console.log(params);
+  const postData = getPostData(params.blogId as string);
+  console.log(postData);
+  return {
+    props: {
+      postData,
+    },
+  };
 };
 
 export default Post;

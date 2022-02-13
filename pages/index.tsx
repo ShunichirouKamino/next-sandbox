@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData, idList } from "../lib/posts";
+import { getSortedPostsData } from "../lib/posts";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
@@ -28,11 +28,11 @@ const Home: NextPage<Props> = ({ allPostsData }: Props): JSX.Element => {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
+          {allPostsData.map(({ blogId, date, title }) => (
+            <li className={utilStyles.listItem} key={blogId}>
               {title}
               <br />
-              {id}
+              {blogId}
               <br />
               {date}
             </li>
