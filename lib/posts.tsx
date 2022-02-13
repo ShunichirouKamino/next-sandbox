@@ -6,10 +6,11 @@ const postsDirectory = path.join(process.cwd(), "posts");
 
 export type idList = {
   id: string;
+  title: string;
+  date: string;
 }[];
 
 export const getSortedPostsData = (): idList => {
-  console.log("here");
   // /posts　配下のファイル名を取得する
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData: idList = fileNames.map((fileName) => {
@@ -22,10 +23,13 @@ export const getSortedPostsData = (): idList => {
 
     // 投稿のメタデータ部分を解析するために gray-matter を使う
     const matterResult = matter(fileContents);
+    const title: string = matterResult.data["title"];
+    const date: string = matterResult.data["date"];
     // データを id と合わせる
     return {
       id,
-      ...matterResult.data,
+      title,
+      date,
     };
   });
   // 投稿を日付でソートする

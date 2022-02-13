@@ -12,9 +12,7 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
  * @param props ブログ記事リスト
  * @returns Homeページの{@link JSX.Element}
  */
-const Home: NextPage<Props> = (props: idList): JSX.Element => {
-  const blogList = Array.from(props);
-  console.log(props);
+const Home: NextPage<Props> = ({ allPostsData }: Props): JSX.Element => {
   return (
     <Layout home>
       <Head>
@@ -30,11 +28,13 @@ const Home: NextPage<Props> = (props: idList): JSX.Element => {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {blogList.map(({ id /*date, title*/ }) => (
+          {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
+              {title}
               <br />
               {id}
               <br />
+              {date}
             </li>
           ))}
         </ul>
