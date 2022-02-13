@@ -3,10 +3,10 @@ import Head from "next/head";
 import Link from "next/link";
 import utilStyles from "../styles/utils.module.css";
 
-const name = "Shunichiro";
-export const siteTitle = "Next.js Sample Website";
+const name: string = "Shunichiro";
+export const siteTitle: string = "Next.js Sample Website";
 
-function Layout({ children, home }) {
+const Layout = ({ children, home }): JSX.Element => {
   return (
     <div className={styles.container}>
       <Head>
@@ -63,6 +63,6 @@ function Layout({ children, home }) {
       )}
     </div>
   );
-}
+};
 
 export default Layout;
