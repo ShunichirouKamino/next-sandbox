@@ -7,6 +7,7 @@ import {
 import Head from "next/head";
 import Layout from "../../components/layout";
 import Date from "../../components/date";
+import utilStyles from "../../styles/utils.module.css";
 
 import { getAllPostIds, getPostData } from "../../lib/posts";
 
@@ -24,13 +25,13 @@ const Post: NextPage<Props> = ({ postData }: Props): JSX.Element => {
       <Head>
         <title>{postData.title}</title>
       </Head>
-      {postData.title}
-      <br />
-      <Date dateString={postData.date} />
-      <br />
-      {postData.date}
-      <br />
-      <div dangerouslySetInnerHTML={{ __html: postData.content }} />
+      <article>
+        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+        <div className={utilStyles.lightText}>
+          <Date dateString={postData.date} />
+        </div>
+        <div dangerouslySetInnerHTML={{ __html: postData.content }} />
+      </article>
     </Layout>
   );
 };

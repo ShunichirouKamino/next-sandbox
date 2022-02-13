@@ -106,7 +106,6 @@ export const getPostData = async (blogId: string): Promise<blog> => {
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
 
-  console.log(contentHtml);
   // データを id と組み合わせる
   return {
     blogId: blogId,
