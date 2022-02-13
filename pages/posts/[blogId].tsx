@@ -6,6 +6,8 @@ import {
 } from "next";
 import Head from "next/head";
 import Layout from "../../components/layout";
+import Date from "../../components/date";
+
 import { getAllPostIds, getPostData } from "../../lib/posts";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
@@ -24,7 +26,7 @@ const Post: NextPage<Props> = ({ postData }: Props): JSX.Element => {
       </Head>
       {postData.title}
       <br />
-      {postData.blogId}
+      <Date dateString={postData.date} />
       <br />
       {postData.date}
       <br />
