@@ -5,7 +5,8 @@ type Props = {
 };
 
 const SimpleText: React.FC<Props> = ({ text, align, size = "text-base" }) => {
-  return <div className={`${align} ${size}`}>{text}</div>;
+  const padding = "p-3";
+  return <div className={`${align} ${size} ${padding}`}>{text}</div>;
 };
 
 export default SimpleText;
