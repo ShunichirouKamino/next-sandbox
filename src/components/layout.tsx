@@ -2,6 +2,7 @@ import styles from "../styles/layout.module.css";
 import Head from "next/head";
 import Link from "next/link";
 import utilStyles from "../styles/utils.module.css";
+import TwitterButton from "./icons/Twitter";
 
 const name: string = "Shunichiro";
 export const siteTitle: string = "Next.js Sample Website";
@@ -32,14 +33,15 @@ const Layout = ({ children, home }): JSX.Element => {
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
               alt={name}
             />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <h1 className="font-bold">{name}</h1>
+            <TwitterButton />
           </>
         ) : (
           <>
             <Link href="/">
               <a>
                 <img
-                  src="/images/profile.jpg"
+                  src="/images/profile.png"
                   className={`${styles.headerImage} ${utilStyles.borderCircle}`}
                   alt={name}
                 />

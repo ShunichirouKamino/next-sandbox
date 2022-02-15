@@ -256,6 +256,6 @@ export async function getServerSideProps(context) {
 
 tailwindcss を利用する。
 
-- `$ yarn add tailwindcss`
+- `$ yarn add tailwindcss postcss autoprefixer`
 - `$ npx tailwindcss init -p`
 - `$ yarn add -D eslint-plugin-tailwindcss`

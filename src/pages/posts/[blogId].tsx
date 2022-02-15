@@ -21,7 +21,7 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
  */
 const Post: NextPage<Props> = ({ postData }: Props): JSX.Element => {
   return (
-    <Layout home>
+    <Layout home={undefined}>
       <Head>
         <title>{postData.title}</title>
       </Head>

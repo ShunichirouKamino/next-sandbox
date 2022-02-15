@@ -5,6 +5,7 @@ import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import TwitterButton from "../components/icons/Twitter";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
