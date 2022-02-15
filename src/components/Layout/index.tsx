@@ -5,6 +5,7 @@ import SetupLink from "../icons/SetupLink";
 import AddressLink from "../icons/AddressLink";
 import Frame from "../Frame";
 import ImageContainer from "../ImageContainer";
+import SimpleText from "../SimpleText";
 
 const name: string = "Shunichiro";
 export const siteTitle: string = "Ma-jan totalization";
@@ -60,9 +61,7 @@ const Layout = ({ children, home }): JSX.Element => {
             <Frame>
               <ImageContainer alt={"no-images"} anker={"/"}></ImageContainer>
               <h2>
-                <Link href="/">
-                  <a>{name}</a>
-                </Link>
+                <SimpleText text={name} align="text-center"></SimpleText>
               </h2>
             </Frame>
           </>
