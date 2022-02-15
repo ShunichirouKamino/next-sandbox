@@ -1,6 +1,6 @@
 type Props = {};
 
-const Frame: React.FC<Props> = (children): JSX.Element => {
+const Frame: React.FC<Props> = ({ children }): JSX.Element => {
   return (
     <>
       {/* ヘッダーを固定する */}

@@ -1,17 +1,17 @@
-import styles from "../styles/layout.module.css";
 import Head from "next/head";
 import Link from "next/link";
-import utilStyles from "../styles/utils.module.css";
 import TwitterLink from "../icons/TwitterLink";
 import SetupLink from "../icons/SetupLink";
 import AddressLink from "../icons/AddressLink";
+import Frame from "../Frame";
+import ImageContainer from "../ImageContainer";
 
 const name: string = "Shunichiro";
 export const siteTitle: string = "Ma-jan totalization";
 
 const Layout = ({ children, home }): JSX.Element => {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -37,13 +37,7 @@ const Layout = ({ children, home }): JSX.Element => {
                 </a>
               </Link>
             </section>
-            <div className="flex justify-center">
-              <img
-                src="/images/profile.png"
-                className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-                alt={name}
-              />
-            </div>
+            <ImageContainer alt={"no-images"}></ImageContainer>
             <div className="flex justify-center">
               <h1 className="font-bold">{name}</h1>
             </div>
@@ -63,26 +57,20 @@ const Layout = ({ children, home }): JSX.Element => {
           </>
         ) : (
           <>
-            <Link href="/">
-              <a>
-                <img
-                  src="/images/profile.png"
-                  className={`${styles.headerImage} ${utilStyles.borderCircle}`}
-                  alt={name}
-                />
-              </a>
-            </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>{name}</a>
-              </Link>
-            </h2>
+            <Frame>
+              <ImageContainer alt={"no-images"} anker={"/"}></ImageContainer>
+              <h2>
+                <Link href="/">
+                  <a>{name}</a>
+                </Link>
+              </h2>
+            </Frame>
           </>
         )}
       </header>
       <main>{children}</main>
       {!home && (
-        <div className={styles.backToHome}>
+        <div>
           <Link href="/">
             <a>← Back to home</a>
           </Link>
