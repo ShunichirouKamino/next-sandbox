@@ -4,9 +4,10 @@ import Link from "next/link";
 import utilStyles from "../styles/utils.module.css";
 import TwitterLink from "./icons/TwitterLink";
 import SetupLink from "./icons/SetupLink";
+import AddressLink from "./icons/AddressLink";
 
 const name: string = "Shunichiro";
-export const siteTitle: string = "Next.js Sample Website";
+export const siteTitle: string = "Ma-jan totalization";
 
 const Layout = ({ children, home }): JSX.Element => {
   return (
@@ -26,21 +27,37 @@ const Layout = ({ children, home }): JSX.Element => {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
+      <header>
         {home ? (
           <>
-            <img
-              src="/images/profile.png"
-              className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-              alt={name}
-            />
-            <h1 className="font-bold">{name}</h1>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="">
-                <TwitterLink link="https://twitter.com/syun_blue" />
-              </div>
-              <div>
-                <SetupLink link="https://twitter.com/syun_blue" />
+            <section className="text-right">
+              <Link href={"/api/hello"}>
+                <a className="no-underline hover:underline text-lg border-2 border-black p-2">
+                  edit profile
+                </a>
+              </Link>
+            </section>
+            <div className="flex justify-center">
+              <img
+                src="/images/profile.png"
+                className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
+                alt={name}
+              />
+            </div>
+            <div className="flex justify-center">
+              <h1 className="font-bold">{name}</h1>
+            </div>
+            <div className="flex justify-center">
+              <div className="grid grid-cols-3 gap-2 pt-2 pb-2">
+                <div className="">
+                  <TwitterLink link="https://twitter.com/syun_blue" />
+                </div>
+                <div>
+                  <AddressLink link="/" />
+                </div>
+                <div>
+                  <SetupLink link="/" />
+                </div>
               </div>
             </div>
           </>
