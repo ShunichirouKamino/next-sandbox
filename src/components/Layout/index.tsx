@@ -2,9 +2,9 @@ import styles from "../styles/layout.module.css";
 import Head from "next/head";
 import Link from "next/link";
 import utilStyles from "../styles/utils.module.css";
-import TwitterLink from "./icons/TwitterLink";
-import SetupLink from "./icons/SetupLink";
-import AddressLink from "./icons/AddressLink";
+import TwitterLink from "../icons/TwitterLink";
+import SetupLink from "../icons/SetupLink";
+import AddressLink from "../icons/AddressLink";
 
 const name: string = "Shunichiro";
 export const siteTitle: string = "Ma-jan totalization";

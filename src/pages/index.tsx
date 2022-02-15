@@ -1,12 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
-import Layout, { siteTitle } from "../components/layout";
-import Date from "../components/date";
+import Layout, { siteTitle } from "../components/Layout";
+import Date from "../components/Date";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
-import TwitterButton from "../components/icons/TwitterLink";
-import Frame from "../components/frame";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
