@@ -5,7 +5,7 @@ import Date from "../components/date";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
-import TwitterButton from "../components/icons/Twitter";
+import TwitterButton from "../components/icons/TwitterLink";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -21,7 +21,7 @@ const Home: NextPage<Props> = ({ allPostsData }: Props): JSX.Element => {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
+      <section className="flex justify-center">
         <p>Ma-jan totalization app!!</p>
         <p>
           <Link href={"/api/hello"}>

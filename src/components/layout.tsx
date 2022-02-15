@@ -2,7 +2,8 @@ import styles from "../styles/layout.module.css";
 import Head from "next/head";
 import Link from "next/link";
 import utilStyles from "../styles/utils.module.css";
-import TwitterButton from "./icons/Twitter";
+import TwitterLink from "./icons/TwitterLink";
+import SetupLink from "./icons/SetupLink";
 
 const name: string = "Shunichiro";
 export const siteTitle: string = "Next.js Sample Website";
@@ -34,7 +35,14 @@ const Layout = ({ children, home }): JSX.Element => {
               alt={name}
             />
             <h1 className="font-bold">{name}</h1>
-            <TwitterButton />
+            <div className="grid grid-cols-2 gap-2">
+              <div className="">
+                <TwitterLink link="https://twitter.com/syun_blue" />
+              </div>
+              <div>
+                <SetupLink link="https://twitter.com/syun_blue" />
+              </div>
+            </div>
           </>
         ) : (
           <>
