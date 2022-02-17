@@ -3,19 +3,20 @@ import Link from "next/link";
 type Props = {
   alt?: string;
   anker?: string;
+  size?: "h-12" | "h-24" | "h-32" | "h-48";
 };
 
 const ImageContainer: React.FC<Props> = ({
   alt = "no-image",
   anker = undefined,
+  size = "h-24",
 }): JSX.Element => {
-  console.log(anker);
   return (
     <>
       {!anker ? (
         <div>
           <img
-            className="object-contain h-48 w-full"
+            className={`${size}` + " object-contain h-48 w-full"}
             src="/images/profile.png"
             alt={alt}
           />
