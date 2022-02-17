@@ -1,3 +1,4 @@
+import SearchLink from "../icons/SearchLink";
 import ImageContainer from "../ImageContainer";
 
 type Props = {};
@@ -12,20 +13,7 @@ const Header: React.FC<Props> = () => {
             placeholder="search"
             className="bg-gray-100 outline-none w-full"
           />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 cursor-pointer text-gray-500"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
+          <SearchLink link={""}></SearchLink>
         </div>
         <div className="flex items-center">
           <div className="px-5">
