@@ -4,6 +4,7 @@ import Layout, { siteTitle } from "../components/Layout";
 import Date from "../components/Date";
 import { getSortedPostsData } from "../lib/posts";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import TopPage from "../components/TopPage";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -15,27 +16,30 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
  */
 const Home: NextPage<Props> = ({ allPostsData }: Props): JSX.Element => {
   return (
-    <Layout home>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
-      <section>
-        <h2>Blog</h2>
-        <ul>
-          {allPostsData.map(({ blogId, date, title }) => (
-            <li key={blogId}>
-              <Link href={`/posts/${blogId}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </Layout>
+    <>
+      <TopPage text={""}></TopPage>
+    </>
+    // <Layout home>
+    //   <Head>
+    //     <title>{siteTitle}</title>
+    //   </Head>
+    //   <section>
+    //     <h2>Blog</h2>
+    //     <ul>
+    //       {allPostsData.map(({ blogId, date, title }) => (
+    //         <li key={blogId}>
+    //           <Link href={`/posts/${blogId}`}>
+    //             <a>{title}</a>
+    //           </Link>
+    //           <br />
+    //           <small>
+    //             <Date dateString={date} />
+    //           </small>
+    //         </li>
+    //       ))}
+    //     </ul>
+    //   </section>
+    // </Layout>
   );
 };
 
