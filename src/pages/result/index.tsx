@@ -10,7 +10,6 @@ import { getData } from "../../lib/csvData";
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 const Result: NextPage<Props> = ({ resultData }: Props): JSX.Element => {
-  console.log(resultData.members);
   return <Head>{resultData.members}</Head>;
 };
 

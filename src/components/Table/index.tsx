@@ -16,7 +16,6 @@ export type TableProps<R> = {
 export type styles = {};
 
 function Table<R>({ columns, rawdata }: TableProps<R>): JSX.Element {
-  console.log(rawdata[0][`${columns[0].label.toLowerCase()}`]);
   return (
     <>
       <div className="p-10">

@@ -1,10 +1,7 @@
-import { getSortedPostsData } from "../lib/posts";
-import { GetServerSideProps, NextPage } from "next";
-import TopPage from "../components/TopPage";
-import Table from "../components/Table";
-import Header from "../components/Header";
-import SideBar from "../components/SideBar";
-import Body from "../components/TopPage/Body/Body";
+import { GetStaticProps } from "next";
+import ResultPage from "../components/ReesultPage";
+import TopPage from "../components/ReesultPage";
+import { getData } from "../lib/csvData";
 
 /**
  * Homeページ表示用SSGファンクション
@@ -12,10 +9,15 @@ import Body from "../components/TopPage/Body/Body";
  * @param allPostsData ブログ記事リスト
  * @returns Homeページの{@link JSX.Element}
  */
-const Home = (): JSX.Element => {
+const Home = ({ result }): JSX.Element => {
   return (
     <>
-      <TopPage text={""}></TopPage>
+      <ResultPage
+        resultData={{
+          columns: result.members,
+          rawdata: result.results,
+        }}
+      ></ResultPage>
     </>
     // <Layout home>
     //   <Head>
@@ -39,6 +41,20 @@ const Home = (): JSX.Element => {
     //   </section>
     // </Layout>
   );
+};
+
+/**
+ * {@linkcode Home}ページSSGへの値取得用のファンクション
+ *
+ * @returns homeに表示するブログ記事リスト
+ */
+export const getStaticProps: GetStaticProps = async () => {
+  const result = getData();
+  return {
+    props: {
+      result,
+    },
+  };
 };
 
 export default Home;

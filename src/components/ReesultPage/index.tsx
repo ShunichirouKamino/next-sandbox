@@ -1,14 +1,27 @@
+import { getData } from "../../lib/csvData";
 import Header from "../Header";
 import ImageContainer from "../ImageContainer";
 import SideBar from "../SideBar";
-import Table, { Column } from "../Table";
+import SimpleText from "../SimpleText";
+import Table, { Column, TableProps } from "../Table";
 import Body from "./Body/Body";
 
-export type TopPageProps = {
-  text: string;
+type Result = {
+  userA;
+  userB;
+  userC;
+  userD;
+  userE;
+  userF;
 };
 
-const TopPage: React.FC<TopPageProps> = ({ text }) => {
+export type ResultPageProps = {
+  resultData: TableProps<Result>;
+};
+
+const ResultPage: React.FC<ResultPageProps> = ({ resultData }) => {
+  console.log(resultData.columns);
+  console.log(resultData.rawdata);
   const columns = [
     { label: "Name", size: "w-1/3" },
     { label: "Email", size: "w-1/3" },
@@ -19,8 +32,6 @@ const TopPage: React.FC<TopPageProps> = ({ text }) => {
         "text-blue-400 hover:text-[#1e3da3] hover:font-medium cursor-pointer",
     },
   ];
-
-  const styles = [];
 
   const rawData = [
     { name: "Shunichirou", email: "mail1@gmail.com", action: "Delete" },
@@ -34,6 +45,12 @@ const TopPage: React.FC<TopPageProps> = ({ text }) => {
         <SideBar></SideBar>
         <main className=" min-h-screen w-full">
           <Header></Header>
+          <SimpleText
+            text="Result"
+            align="text-left"
+            style="font-bold"
+            size="text-2xl"
+          ></SimpleText>
           <Table columns={columns} rawdata={rawData}></Table>
           <Body></Body>
         </main>
@@ -42,4 +59,4 @@ const TopPage: React.FC<TopPageProps> = ({ text }) => {
   );
 };
 
-export default TopPage;
+export default ResultPage;
