@@ -1,5 +1,7 @@
 export type Column<R> = {
   label: string;
+  size?: string;
+
   // style?: React.CSSProperties;
   // align?: "right" | "center" | "left";
   // required?: boolean;
@@ -15,35 +17,63 @@ export type TableProps<R> = {
 function Table<R>({ columns, rawdata }: TableProps<R>): JSX.Element {
   return (
     <>
-      <table className="table-fixed">
-        <thead>
-          <tr>
-            <th className="w-1/2 px-4 py-2">Title</th>
-            <th className="w-1/4 px-4 py-2">Author</th>
-            <th className="w-1/4 px-4 py-2">Views</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="border px-4 py-2">Intro to CSS</td>
-            <td className="border px-4 py-2">Adam</td>
-            <td className="border px-4 py-2">858</td>
-          </tr>
-          <tr className="bg-gray-100">
-            <td className="border px-4 py-2">
-              A Long and Winding Tour of the History of UI Frameworks and Tools
-              and the Impact on Design
-            </td>
-            <td className="border px-4 py-2">Adam</td>
-            <td className="border px-4 py-2">112</td>
-          </tr>
-          <tr>
-            <td className="border px-4 py-2">Intro to JavaScript</td>
-            <td className="border px-4 py-2">Chris</td>
-            <td className="border px-4 py-2">1,280</td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="p-10">
+        <table className="frex w-full table-auto rounded-lg sm:shadow-lg">
+          <thead className="text-white">
+            <tr className="bg-[#1e3da3]">
+              <th className="p-3 text-left w-1/3">Name</th>
+              <th className="p-3 text-left w-1/3">Email</th>
+              <th className="p-3 text-left w-1/3">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="flex-1 sm:flex-none">
+            <tr className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+              <td className="border-grey-light border hover:bg-gray-100 p-3">
+                John Covv
+              </td>
+              <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
+                contato@johncovv.com
+              </td>
+              <td className="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-[#1e3da3] hover:font-medium cursor-pointer">
+                Delete
+              </td>
+            </tr>
+            <tr className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+              <td className="border-grey-light border hover:bg-gray-100 p-3">
+                Michael Jackson
+              </td>
+              <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
+                m_jackson@mail.com
+              </td>
+              <td className="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-[#1e3da3] hover:font-medium cursor-pointer">
+                Delete
+              </td>
+            </tr>
+            <tr className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+              <td className="border-grey-light border hover:bg-gray-100 p-3">
+                Julia
+              </td>
+              <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
+                julia@mail.com
+              </td>
+              <td className="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-[#1e3da3] hover:font-medium cursor-pointer">
+                Delete
+              </td>
+            </tr>
+            <tr className="flex flex-col flex-no wrap sm:table-row mb-2 sm:mb-0">
+              <td className="border-grey-light border hover:bg-gray-100 p-3">
+                Martin Madrazo
+              </td>
+              <td className="border-grey-light border hover:bg-gray-100 p-3 truncate">
+                martin.madrazo@mail.com
+              </td>
+              <td className="border-grey-light border hover:bg-gray-100 p-3 text-red-400 hover:text-[#1e3da3] hover:font-medium cursor-pointer">
+                Delete
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

@@ -7,7 +7,7 @@ const SideBarList: React.FC<SideBarListProps> = () => {
     <>
       <ul>
         <SideBarElement></SideBarElement>
-        <button className="w-full mt-10 bg-[#EC5252] rounded-full py-1.5 text-white">
+        <button className="w-full mt-10 bg-[#1e3da3] rounded-full py-1.5 text-white">
           Learn
         </button>
       </ul>

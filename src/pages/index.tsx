@@ -2,6 +2,9 @@ import { getSortedPostsData } from "../lib/posts";
 import { GetServerSideProps, NextPage } from "next";
 import TopPage from "../components/TopPage";
 import Table from "../components/Table";
+import Header from "../components/Header";
+import SideBar from "../components/SideBar";
+import Body from "../components/TopPage/Body/Body";
 
 /**
  * Homeページ表示用SSGファンクション
@@ -13,7 +16,6 @@ const Home = (): JSX.Element => {
   return (
     <>
       <TopPage text={""}></TopPage>
-      <Table columns={[]}></Table>
     </>
     // <Layout home>
     //   <Head>
