@@ -3,9 +3,9 @@ import path from "path";
 
 const csvDataDirectory = path.join(process.cwd(), "/src/data/");
 
-export type resultType = {
-  members: string[];
-  results: string[][];
+export type DataType = {
+  header: string[];
+  row: string[][];
 };
 
 /**
@@ -13,16 +13,16 @@ export type resultType = {
  *
  * @returns CSV読み込み後の二次元配列
  */
-export const getData = (): resultType => {
+export const getData = (): DataType => {
   const fileName = csvDataDirectory + "majan.csv";
   console.log("file input dir: " + fileName);
   const data = fs.readFileSync(fileName, "utf8");
   const records = parseCSV(data);
-  const members = records.slice(0, 1).flat();
-  const results = records.slice(1);
+  const header = records.slice(0, 1).flat();
+  const row = records.slice(1);
   return {
-    members,
-    results,
+    header,
+    row,
   };
 };
 

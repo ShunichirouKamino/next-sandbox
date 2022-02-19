@@ -1,6 +1,5 @@
 import { GetStaticProps } from "next";
 import ResultPage from "../components/ReesultPage";
-import TopPage from "../components/ReesultPage";
 import { getData } from "../lib/csvData";
 
 /**
@@ -12,7 +11,7 @@ import { getData } from "../lib/csvData";
 const Home = ({ data }): JSX.Element => {
   return (
     <>
-      <ResultPage members={data.members} results={data.results}></ResultPage>
+      <ResultPage members={data.header} results={data.row}></ResultPage>
     </>
     // <Layout home>
     //   <Head>

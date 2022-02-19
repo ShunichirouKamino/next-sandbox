@@ -43,7 +43,9 @@ const ResultPage: React.FC<ResultPageProps> = ({ members, results }) => {
             style="font-bold"
             size="text-2xl"
           ></SimpleText>
-          <Table columns={columns} rawdata={rawData}></Table>
+          <section className="frex">
+            <Table columns={columns} rawdata={rawData}></Table>
+          </section>
           <Body></Body>
         </main>
       </div>

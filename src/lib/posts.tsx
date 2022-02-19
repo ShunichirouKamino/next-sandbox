@@ -4,8 +4,6 @@ import matter from "gray-matter";
 import html from "remark-html";
 import { remark } from "remark";
 
-// const remark = require("/remark/index");
-
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
 export type blogList = {
