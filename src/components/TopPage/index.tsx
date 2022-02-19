@@ -10,10 +10,17 @@ export type TopPageProps = {
 
 const TopPage: React.FC<TopPageProps> = ({ text }) => {
   const columns = [
-    { label: "Name", size: "1/3" },
-    { label: "Email", size: "1/3" },
-    { label: "Action", size: "1/3" },
+    { label: "Name", size: "w-1/3" },
+    { label: "Email", size: "w-1/3" },
+    {
+      label: "Action",
+      size: "w-1/3",
+      bodyStyle:
+        "text-blue-400 hover:text-[#1e3da3] hover:font-medium cursor-pointer",
+    },
   ];
+
+  const styles = [];
 
   const rawData = [
     { name: "Shunichirou", email: "mail1@gmail.com", action: "Delete" },

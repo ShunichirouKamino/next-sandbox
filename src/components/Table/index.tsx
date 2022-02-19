@@ -1,8 +1,7 @@
 export type Column<R> = {
   label: string;
   size?: string;
-
-  // style?: React.CSSProperties;
+  bodyStyle?: string;
   // align?: "right" | "center" | "left";
   // required?: boolean;
   // render: (row: R, index: number, all: R[]) => React.ReactNode;
@@ -14,6 +13,8 @@ export type TableProps<R> = {
   rawdata?: R[];
 };
 
+export type styles = {};
+
 function Table<R>({ columns, rawdata }: TableProps<R>): JSX.Element {
   console.log(rawdata[0][`${columns[0].label.toLowerCase()}`]);
   return (
@@ -22,7 +23,7 @@ function Table<R>({ columns, rawdata }: TableProps<R>): JSX.Element {
         <table className="frex w-full table-auto rounded-lg sm:shadow-lg">
           <thead className="text-white">
             <tr className="bg-[#1e3da3]">
-              {columns.map((col, index) => (
+              {columns.map((col) => (
                 <th className={`${col.size}` + " p-3 text-left"}>
                   {col.label}
                 </th>
@@ -32,32 +33,28 @@ function Table<R>({ columns, rawdata }: TableProps<R>): JSX.Element {
           <tbody>
             {rawdata.map((rawdata) => (
               <tr>
-                {columns.map((col) => (
-                  <td className="border hover:bg-gray-100 p-3">
-                    {rawdata[`${col.label.toLowerCase()}`]}
-                  </td>
-                ))}
+                {columns.map((col) =>
+                  col.bodyStyle ? (
+                    <td
+                      className={
+                        `${col.size} ${col.bodyStyle}` +
+                        " border hover:bg-gray-100 p-3"
+                      }
+                    >
+                      {rawdata[`${col.label.toLowerCase()}`]}
+                    </td>
+                  ) : (
+                    <td
+                      className={
+                        `${col.size}` + " border hover:bg-gray-100 p-3"
+                      }
+                    >
+                      {rawdata[`${col.label.toLowerCase()}`]}
+                    </td>
+                  )
+                )}
               </tr>
             ))}
-
-            {/* <tr>
-              <td className="border hover:bg-gray-100 p-3">John Covv</td>
-              <td className="border hover:bg-gray-100 p-3">
-                contato@johncovv.com
-              </td>
-              <td className="border hover:bg-gray-100 p-3 text-red-400 hover:text-[#1e3da3] hover:font-medium cursor-pointer">
-                Delete
-              </td>
-            </tr>
-            <tr>
-              <td className="border hover:bg-gray-100 p-3">Michael Jackson</td>
-              <td className="border hover:bg-gray-100 p-3">
-                m_jackson@mail.com
-              </td>
-              <td className="border hover:bg-gray-100 p-3 text-red-400 hover:text-[#1e3da3] hover:font-medium cursor-pointer">
-                Delete
-              </td>
-            </tr> */}
           </tbody>
         </table>
       </div>
