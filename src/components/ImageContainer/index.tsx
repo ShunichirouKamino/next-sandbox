@@ -16,7 +16,7 @@ const ImageContainer: React.FC<Props> = ({
       {!anker ? (
         <div>
           <img
-            className={`${size}` + " object-contain h-48 w-full"}
+            className={`${size}` + " object-contain w-full"}
             src="/images/profile.png"
             alt={alt}
           />
@@ -26,7 +26,7 @@ const ImageContainer: React.FC<Props> = ({
           <a className="bg-center">
             <div>
               <img
-                className="object-contain h-48 w-full"
+                className={`${size}` + "object-contain  w-full"}
                 src="/images/profile.png"
                 alt={alt}
               />
