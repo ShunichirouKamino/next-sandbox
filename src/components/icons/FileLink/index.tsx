@@ -1,11 +1,11 @@
 import { File } from "@ubie/ubie-icons";
 import Link from "next/link";
 
-type Props = {
+export type FileLinkProps = {
   link: string;
 };
 
-const FileLink: React.FC<Props> = (props): JSX.Element => {
+const FileLink: React.FC<FileLinkProps> = (props): JSX.Element => {
   return (
     <div className="cursor-pointer">
       <Link href={props.link}>

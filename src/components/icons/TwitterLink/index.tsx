@@ -1,11 +1,11 @@
 import { Twitter } from "@ubie/ubie-icons";
 import Link from "next/link";
 
-type Props = {
+export type TwitterLinkProps = {
   link: string;
 };
 
-const TwitterLink: React.FC<Props> = (props): JSX.Element => {
+const TwitterLink: React.FC<TwitterLinkProps> = (props): JSX.Element => {
   return (
     <div className="cursor-pointer">
       <Link href={props.link}>

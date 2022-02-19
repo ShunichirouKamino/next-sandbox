@@ -1,8 +1,8 @@
 import SideBarElement from "../SideBarElement/SideBarElement";
 
-type Props = {};
+export type SideBarListProps = {};
 
-const SideBarList: React.FC<Props> = () => {
+const SideBarList: React.FC<SideBarListProps> = () => {
   return (
     <>
       <ul>

@@ -1,12 +1,12 @@
 import { Account } from "@ubie/ubie-icons";
 import Link from "next/link";
 
-type Props = {
+export type AccountLinkProps = {
   link: string;
 };
 
 //https://github.com/ubie-oss/ubie-icons/blob/main/assets/account.svg
-const AccountLink: React.FC<Props> = (props): JSX.Element => {
+const AccountLink: React.FC<AccountLinkProps> = (props): JSX.Element => {
   return (
     <div className="cursor-pointer">
       <Link href={props.link}>

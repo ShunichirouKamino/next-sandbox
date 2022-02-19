@@ -5,9 +5,9 @@ import HomeLink from "../../icons/HomeLink";
 import HumanLink from "../../icons/HumanLink";
 import SetupLink from "../../icons/SetupLink";
 
-type Props = {};
+export type SideBarElementProps = {};
 
-const SideBarElement: React.FC<Props> = () => {
+const SideBarElement: React.FC<SideBarElementProps> = () => {
   return (
     <>
       <li className="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150">

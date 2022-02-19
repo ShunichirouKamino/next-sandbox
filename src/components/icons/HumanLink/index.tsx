@@ -1,12 +1,12 @@
 import { GenderHuman } from "@ubie/ubie-icons";
 import Link from "next/link";
 
-type Props = {
+export type HumanLinkProps = {
   link: string;
 };
 
 //https://github.com/ubie-oss/ubie-icons/blob/main/assets/gender-human.svg
-const Human: React.FC<Props> = (props): JSX.Element => {
+const HumanLink: React.FC<HumanLinkProps> = (props): JSX.Element => {
   return (
     <div className="cursor-pointer">
       <Link href={props.link}>
@@ -16,4 +16,4 @@ const Human: React.FC<Props> = (props): JSX.Element => {
   );
 };
 
-export default Human;
+export default HumanLink;

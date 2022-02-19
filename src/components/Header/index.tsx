@@ -2,9 +2,9 @@ import SearchLink from "../icons/SearchLink";
 import ImageContainer from "../ImageContainer";
 import SearchBox from "../SearchBox";
 
-type Props = {};
+export type HeaderProps = {};
 
-const Header: React.FC<Props> = () => {
+const Header: React.FC<HeaderProps> = () => {
   return (
     <>
       <nav className="flex justify-between items-center px-10 bg-white py-6">

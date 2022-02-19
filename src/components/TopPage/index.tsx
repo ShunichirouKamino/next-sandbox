@@ -2,11 +2,11 @@ import Header from "../Header";
 import ImageContainer from "../ImageContainer";
 import SideBar from "../SideBar";
 
-type Props = {
+export type TopPageProps = {
   text: string;
 };
 
-const TopPage: React.FC<Props> = ({ text }) => {
+const TopPage: React.FC<TopPageProps> = ({ text }) => {
   return (
     <>
       <div className="flex">

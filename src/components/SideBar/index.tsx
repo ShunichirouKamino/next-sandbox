@@ -1,8 +1,8 @@
 import SideBarList from "./SideBarList/SideBarList";
 
-type Props = {};
+export type SideBarProps = {};
 
-const SideBar: React.FC<Props> = () => {
+const SideBar: React.FC<SideBarProps> = () => {
   return (
     <>
       <div className="flex w-2/5 md:w-1/4 h-screen bg-white">

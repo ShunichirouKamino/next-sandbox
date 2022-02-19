@@ -1,12 +1,12 @@
 import Link from "next/link";
 
-type Props = {
+export type ImageContainerProps = {
   alt?: string;
   anker?: string;
   size?: "h-12" | "h-24" | "h-32" | "h-48";
 };
 
-const ImageContainer: React.FC<Props> = ({
+const ImageContainer: React.FC<ImageContainerProps> = ({
   alt = "no-image",
   anker = undefined,
   size = "h-24",
