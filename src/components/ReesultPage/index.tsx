@@ -6,7 +6,7 @@ import Body from "./Body/Body";
 
 export type ResultPageProps = {
   members: string[];
-  results: string[][];
+  results: number[][];
 };
 
 const ResultPage: React.FC<ResultPageProps> = ({ members, results }) => {
@@ -20,14 +20,14 @@ const ResultPage: React.FC<ResultPageProps> = ({ members, results }) => {
     return { label: c, size: "w-1/6" };
   });
 
-  const rawData = results.map((raw) => {
+  const rawData = results.map((row) => {
     return {
-      A: raw[0],
-      B: raw[1],
-      C: raw[2],
-      D: raw[3],
-      E: raw[4],
-      Shunichiro: raw[5],
+      A: row[0],
+      B: row[1],
+      C: row[2],
+      D: row[3],
+      E: row[4],
+      Shunichiro: row[5],
     };
   });
 

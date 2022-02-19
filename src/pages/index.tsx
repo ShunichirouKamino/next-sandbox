@@ -1,5 +1,6 @@
 import { GetStaticProps } from "next";
 import ResultPage from "../components/ReesultPage";
+import { getRankTimes } from "../lib/calc";
 import { getData } from "../lib/csvData";
 
 /**
@@ -9,6 +10,9 @@ import { getData } from "../lib/csvData";
  * @returns Homeページの{@link JSX.Element}
  */
 const Home = ({ data }): JSX.Element => {
+  const members = data.header;
+  const results = data.row;
+  getRankTimes(results, members, 2);
   return (
     <>
       <ResultPage members={data.header} results={data.row}></ResultPage>
