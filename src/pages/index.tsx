@@ -9,15 +9,10 @@ import { getData } from "../lib/csvData";
  * @param allPostsData ブログ記事リスト
  * @returns Homeページの{@link JSX.Element}
  */
-const Home = ({ result }): JSX.Element => {
+const Home = ({ data }): JSX.Element => {
   return (
     <>
-      <ResultPage
-        resultData={{
-          columns: result.members,
-          rawdata: result.results,
-        }}
-      ></ResultPage>
+      <ResultPage members={data.members} results={data.results}></ResultPage>
     </>
     // <Layout home>
     //   <Head>
@@ -49,10 +44,10 @@ const Home = ({ result }): JSX.Element => {
  * @returns homeに表示するブログ記事リスト
  */
 export const getStaticProps: GetStaticProps = async () => {
-  const result = getData();
+  const data = getData();
   return {
     props: {
-      result,
+      data,
     },
   };
 };

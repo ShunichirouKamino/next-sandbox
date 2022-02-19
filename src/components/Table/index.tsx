@@ -13,8 +13,6 @@ export type TableProps<R> = {
   rawdata?: R[];
 };
 
-export type styles = {};
-
 function Table<R>({ columns, rawdata }: TableProps<R>): JSX.Element {
   return (
     <>
@@ -40,7 +38,7 @@ function Table<R>({ columns, rawdata }: TableProps<R>): JSX.Element {
                         " border hover:bg-gray-100 p-3"
                       }
                     >
-                      {rawdata[`${col.label.toLowerCase()}`]}
+                      {rawdata[`${col.label}`]}
                     </td>
                   ) : (
                     <td
@@ -48,7 +46,7 @@ function Table<R>({ columns, rawdata }: TableProps<R>): JSX.Element {
                         `${col.size}` + " border hover:bg-gray-100 p-3"
                       }
                     >
-                      {rawdata[`${col.label.toLowerCase()}`]}
+                      {rawdata[`${col.label}`]}
                     </td>
                   )
                 )}

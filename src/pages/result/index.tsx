@@ -1,9 +1,4 @@
-import {
-  GetStaticPaths,
-  GetStaticProps,
-  InferGetStaticPropsType,
-  NextPage,
-} from "next";
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Head from "next/head";
 import { getData } from "../../lib/csvData";
 
@@ -20,6 +15,7 @@ const Result: NextPage<Props> = ({ resultData }: Props): JSX.Element => {
  */
 export const getStaticProps: GetStaticProps = async () => {
   const resultData = await getData();
+
   return {
     props: {
       resultData,
