@@ -1,12 +1,7 @@
-import Head from "next/head";
-import Link from "next/link";
-import Layout, { siteTitle } from "../components/Layout";
-import Date from "../components/Date";
 import { getSortedPostsData } from "../lib/posts";
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import TopPage from "../components/TopPage";
-
-type Props = InferGetStaticPropsType<typeof getStaticProps>;
+import Table from "../components/Table";
 
 /**
  * Homeページ表示用SSGファンクション
@@ -14,10 +9,11 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
  * @param allPostsData ブログ記事リスト
  * @returns Homeページの{@link JSX.Element}
  */
-const Home: NextPage<Props> = ({ allPostsData }: Props): JSX.Element => {
+const Home = (): JSX.Element => {
   return (
     <>
       <TopPage text={""}></TopPage>
+      <Table columns={[]}></Table>
     </>
     // <Layout home>
     //   <Head>
@@ -41,20 +37,6 @@ const Home: NextPage<Props> = ({ allPostsData }: Props): JSX.Element => {
     //   </section>
     // </Layout>
   );
-};
-
-/**
- * {@linkcode Home}ページSSGへの値取得用のファンクション
- *
- * @returns homeに表示するブログ記事リスト
- */
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData();
-  return {
-    props: {
-      allPostsData,
-    },
-  };
 };
 
 export default Home;
