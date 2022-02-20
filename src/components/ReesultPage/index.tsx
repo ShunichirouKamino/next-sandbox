@@ -15,9 +15,10 @@ const ResultPage: React.FC<ResultPageProps> = ({ members, results }) => {
    * bodyStyle:
    *       "text-blue-400 hover:text-[#1e3da3] hover:font-medium cursor-pointer",
    */
+  const size: number = members.length;
   const columns: Column<any>[] = members.map((m) => {
     const c: string = m;
-    return { label: c, size: "w-1/6" };
+    return { label: c, size: "w-1/" + size };
   });
 
   const rowdata: RowDataType[][] = results.map((row) => {
