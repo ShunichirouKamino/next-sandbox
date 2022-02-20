@@ -1,7 +1,7 @@
 import Header from "../Header";
 import SideBar from "../SideBar";
 import SimpleText from "../SimpleText";
-import Table, { TableProps } from "../Table";
+import Table, { Column, RowDataType, TableProps } from "../Table";
 import Body from "./Body/Body";
 
 export type ResultPageProps = {
@@ -15,20 +15,18 @@ const ResultPage: React.FC<ResultPageProps> = ({ members, results }) => {
    * bodyStyle:
    *       "text-blue-400 hover:text-[#1e3da3] hover:font-medium cursor-pointer",
    */
-  const columns = members.map((m) => {
+  const columns: Column<any>[] = members.map((m) => {
     const c: string = m;
     return { label: c, size: "w-1/6" };
   });
 
-  const rawData = results.map((row) => {
-    return {
-      A: row[0],
-      B: row[1],
-      C: row[2],
-      D: row[3],
-      E: row[4],
-      Shunichiro: row[5],
-    };
+  const rowdata: RowDataType[][] = results.map((row) => {
+    return members.map((m, index) => {
+      return {
+        label: m,
+        data: String(row[index]),
+      };
+    });
   });
 
   return (
@@ -44,7 +42,7 @@ const ResultPage: React.FC<ResultPageProps> = ({ members, results }) => {
             size="text-2xl"
           ></SimpleText>
           <section className="frex">
-            <Table columns={columns} rawdata={rawData}></Table>
+            <Table columns={columns} rowdata={rowdata}></Table>
           </section>
           <Body></Body>
         </main>

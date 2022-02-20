@@ -8,12 +8,17 @@ export type Column<R> = {
   // comparator?: (left: R, right: R) => number;
 };
 
-export type TableProps<R> = {
-  columns: Column<R>[];
-  rawdata?: R[];
+export type RowDataType = {
+  label: string;
+  data: string;
 };
 
-function Table<R>({ columns, rawdata }: TableProps<R>): JSX.Element {
+export type TableProps<R> = {
+  columns: Column<R>[];
+  rowdata?: RowDataType[][];
+};
+
+function Table<R>({ columns, rowdata }: TableProps<R>): JSX.Element {
   return (
     <>
       <div className="p-10">
@@ -28,7 +33,7 @@ function Table<R>({ columns, rawdata }: TableProps<R>): JSX.Element {
             </tr>
           </thead>
           <tbody>
-            {rawdata.map((rawdata) => (
+            {rowdata.map((row) => (
               <tr>
                 {columns.map((col) =>
                   col.bodyStyle ? (
@@ -38,7 +43,7 @@ function Table<R>({ columns, rawdata }: TableProps<R>): JSX.Element {
                         " border hover:bg-gray-100 p-3"
                       }
                     >
-                      {rawdata[`${col.label}`]}
+                      {row.find((r) => r.label === col.label).data}
                     </td>
                   ) : (
                     <td
@@ -46,7 +51,7 @@ function Table<R>({ columns, rawdata }: TableProps<R>): JSX.Element {
                         `${col.size}` + " border hover:bg-gray-100 p-3"
                       }
                     >
-                      {rawdata[`${col.label}`]}
+                      {row.find((r) => r.label === col.label).data}
                     </td>
                   )
                 )}
