@@ -1,7 +1,10 @@
 import { GetStaticProps } from "next";
 import AnalysisPage from "../components/AnalysisPage";
+import Header from "../components/Header";
 import ResultPage from "../components/ReesultPage";
-import { getRank, getRankTimes, MemberRankType } from "../lib/calc";
+import Body from "../components/ReesultPage/Body/Body";
+import SideBar from "../components/SideBar";
+import { getRankTimes, MemberRankType } from "../lib/calc";
 import { getData } from "../lib/csvData";
 
 /**
@@ -23,11 +26,18 @@ const Home = ({ data }): JSX.Element => {
 
   return (
     <>
-      <AnalysisPage
-        results={[[first, second, third, fourth]]}
-        member={member}
-      ></AnalysisPage>
-      <ResultPage members={data.header} results={data.row}></ResultPage>
+      <div className="flex">
+        <SideBar></SideBar>
+        <main className=" min-h-screen w-full">
+          <Header></Header>
+          <AnalysisPage
+            results={[[first, second, third, fourth]]}
+            member={member}
+          ></AnalysisPage>
+          <ResultPage members={data.header} results={data.row}></ResultPage>
+          <Body></Body>
+        </main>
+      </div>
     </>
     // <Layout home>
     //   <Head>

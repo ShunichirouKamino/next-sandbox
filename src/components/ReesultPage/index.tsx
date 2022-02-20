@@ -32,22 +32,15 @@ const ResultPage: React.FC<ResultPageProps> = ({ members, results }) => {
 
   return (
     <>
-      <div className="flex">
-        <SideBar></SideBar>
-        <main className=" min-h-screen w-full">
-          <Header></Header>
-          <SimpleText
-            text="Result"
-            align="text-left"
-            style="font-bold"
-            size="text-2xl"
-          ></SimpleText>
-          <section className="frex">
-            <Table columns={columns} rowdata={rowdata}></Table>
-          </section>
-          <Body></Body>
-        </main>
-      </div>
+      <SimpleText
+        text="Result"
+        align="text-left"
+        style="font-bold"
+        size="text-2xl"
+      ></SimpleText>
+      <section className="frex">
+        <Table columns={columns} rowdata={rowdata}></Table>
+      </section>
     </>
   );
 };

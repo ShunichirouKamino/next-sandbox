@@ -30,21 +30,15 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ results, member }) => {
 
   return (
     <>
-      <div className="flex">
-        <SideBar></SideBar>
-        <main className=" min-h-screen w-full">
-          <Header></Header>
-          <SimpleText
-            text={member}
-            align="text-left"
-            style="font-bold"
-            size="text-2xl"
-          ></SimpleText>
-          <section className="frex">
-            <Table columns={columns} rowdata={rowdata}></Table>
-          </section>
-        </main>
-      </div>
+      <SimpleText
+        text={member}
+        align="text-left"
+        style="font-bold"
+        size="text-2xl"
+      ></SimpleText>
+      <section className="frex">
+        <Table columns={columns} rowdata={rowdata}></Table>
+      </section>
     </>
   );
 };
