@@ -18,6 +18,32 @@ export type MembersRankType = {
 };
 
 /**
+ * 複数局におけるそれぞれの順位の回数を返却します.
+ *
+ * @param member 対象参加者
+ * @param members 参加者の一覧
+ * @param results 一局の結果
+ * @returns {@link MembersRankType}
+ */
+export const getRankTimes = (
+  member: string,
+  members: string[],
+  results: number[][]
+): MembersRankType => {
+  const sortedResults = sortResult(results, members);
+  const rankList = sortedResults.map((sortedResult) => {
+    return sortedResult.findIndex((result) => result.member === member);
+  });
+  return {
+    member: member,
+    first: rankList.filter((r) => r === 0).length,
+    second: rankList.filter((r) => r === 1).length,
+    third: rankList.filter((r) => r === 2).length,
+    fourth: rankList.filter((r) => r === 3).length,
+  };
+};
+
+/**
  * 一局における1人の順位を返却します.
  *
  * @param member 対象参加者
