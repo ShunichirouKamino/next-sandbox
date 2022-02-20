@@ -1,6 +1,7 @@
 import { GetStaticProps } from "next";
+import AnalysisPage from "../components/AnalysisPage";
 import ResultPage from "../components/ReesultPage";
-import { getRank, getRankTimes } from "../lib/calc";
+import { getRank, getRankTimes, MemberRankType } from "../lib/calc";
 import { getData } from "../lib/csvData";
 
 /**
@@ -12,10 +13,20 @@ import { getData } from "../lib/csvData";
 const Home = ({ data }): JSX.Element => {
   const members: string[] = data.header;
   const results: number[][] = data.row;
-  const a = getRankTimes(members[0] as string, members, results);
-  console.log(a);
+
+  const membersRank: MemberRankType[] = members.map((m) => {
+    return getRankTimes(m, members, results);
+  });
+  console.log(membersRank);
+  const { first, second, third, fourth } = membersRank[5];
+  const { member } = membersRank[5];
+
   return (
     <>
+      <AnalysisPage
+        results={[[first, second, third, fourth]]}
+        member={member}
+      ></AnalysisPage>
       <ResultPage members={data.header} results={data.row}></ResultPage>
     </>
     // <Layout home>

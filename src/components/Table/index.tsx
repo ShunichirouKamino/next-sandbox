@@ -1,4 +1,4 @@
-export type Column<R> = {
+export type Column = {
   label: string;
   size?: string;
   bodyStyle?: string;
@@ -13,12 +13,12 @@ export type RowDataType = {
   data: string;
 };
 
-export type TableProps<R> = {
-  columns: Column<R>[];
+export type TableProps = {
+  columns: Column[];
   rowdata?: RowDataType[][];
 };
 
-function Table<R>({ columns, rowdata }: TableProps<R>): JSX.Element {
+function Table({ columns, rowdata }: TableProps): JSX.Element {
   return (
     <>
       <div className="p-10">

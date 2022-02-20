@@ -9,7 +9,7 @@ export type ResultType = {
 /**
  * 対局複数回に対する個人の各順位取得回数です.
  */
-export type MembersRankType = {
+export type MemberRankType = {
   member: string;
   first: number;
   second: number;
@@ -29,7 +29,7 @@ export const getRankTimes = (
   member: string,
   members: string[],
   results: number[][]
-): MembersRankType => {
+): MemberRankType => {
   const sortedResults = sortResult(results, members);
   const rankList = sortedResults.map((sortedResult) => {
     return sortedResult.findIndex((result) => result.member === member);

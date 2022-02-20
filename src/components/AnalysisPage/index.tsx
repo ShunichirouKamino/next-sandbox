@@ -2,33 +2,31 @@ import Header from "../Header";
 import SideBar from "../SideBar";
 import SimpleText from "../SimpleText";
 import Table, { Column, RowDataType } from "../Table";
-import Body from "./Body/Body";
 
-export type ResultPageProps = {
-  members: string[];
+export type AnalysisPageProps = {
   results: number[][];
+  member: string;
 };
 
-const ResultPage: React.FC<ResultPageProps> = ({ members, results }) => {
-  /**
-   * style sample
-   * bodyStyle:
-   *       "text-blue-400 hover:text-[#1e3da3] hover:font-medium cursor-pointer",
-   */
-  const size: number = members.length;
-  const columns: Column[] = members.map((m) => {
-    const c: string = m;
-    return { label: c, size: "w-1/" + size };
-  });
+const AnalysisPage: React.FC<AnalysisPageProps> = ({ results, member }) => {
+  const size = "w-1/4";
+  const columns: Column[] = [
+    { label: "first", size: size },
+    { label: "second", size: size },
+    { label: "third", size: size },
+    { label: "fourth", size: size },
+  ];
 
   const rowdata: RowDataType[][] = results.map((row) => {
-    return members.map((m, index) => {
+    return columns.map((c, index) => {
       return {
-        label: m,
+        label: String(c.label),
         data: String(row[index]),
       };
     });
   });
+
+  console.log(rowdata);
 
   return (
     <>
@@ -37,7 +35,7 @@ const ResultPage: React.FC<ResultPageProps> = ({ members, results }) => {
         <main className=" min-h-screen w-full">
           <Header></Header>
           <SimpleText
-            text="Result"
+            text={member}
             align="text-left"
             style="font-bold"
             size="text-2xl"
@@ -45,11 +43,10 @@ const ResultPage: React.FC<ResultPageProps> = ({ members, results }) => {
           <section className="frex">
             <Table columns={columns} rowdata={rowdata}></Table>
           </section>
-          <Body></Body>
         </main>
       </div>
     </>
   );
 };
 
-export default ResultPage;
+export default AnalysisPage;
