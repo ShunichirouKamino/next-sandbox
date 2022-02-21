@@ -1,14 +1,13 @@
-import Header from "../Header";
-import SideBar from "../SideBar";
+import { useState } from "react";
+import { MemberRankType } from "../../lib/calc";
 import SimpleText from "../SimpleText";
 import Table, { Column, RowDataType } from "../Table";
 
 export type AnalysisPageProps = {
-  results: number[][];
-  member: string;
+  memberRankType: MemberRankType[];
 };
 
-const AnalysisPage: React.FC<AnalysisPageProps> = ({ results, member }) => {
+const AnalysisPage: React.FC<AnalysisPageProps> = ({ memberRankType }) => {
   const size = "w-1/4";
   const columns: Column[] = [
     { label: "first", size: size },
@@ -16,28 +15,32 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ results, member }) => {
     { label: "third", size: size },
     { label: "fourth", size: size },
   ];
+  const { first, second, third, fourth } = memberRankType[0];
+  const { member } = memberRankType[0];
 
-  const rowdata: RowDataType[][] = results.map((row) => {
-    return columns.map((c, index) => {
-      return {
-        label: String(c.label),
-        data: String(row[index]),
-      };
-    });
+  const initRowData = [first, second, third, fourth];
+  const [toRowdata, setRowdata] = useState(initRowData);
+  const [toMember, setMember] = useState(member);
+
+  const initRowdata: RowDataType[] = columns.map((c, index) => {
+    return {
+      label: String(c.label),
+      data: String(toRowdata[index]),
+    };
   });
 
-  console.log(rowdata);
+  console.log(initRowdata);
 
   return (
     <>
       <SimpleText
-        text={member}
+        text={toMember}
         align="text-left"
         style="font-bold"
         size="text-2xl"
       ></SimpleText>
       <section className="frex">
-        <Table columns={columns} rowdata={rowdata}></Table>
+        <Table columns={columns} rowdata={[initRowdata]}></Table>
       </section>
     </>
   );

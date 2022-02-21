@@ -17,12 +17,9 @@ const Home = ({ data }): JSX.Element => {
   const members: string[] = data.header;
   const results: number[][] = data.row;
 
-  const membersRank: MemberRankType[] = members.map((m) => {
+  const membersRanks: MemberRankType[] = members.map((m) => {
     return getRankTimes(m, members, results);
   });
-  console.log(membersRank);
-  const { first, second, third, fourth } = membersRank[5];
-  const { member } = membersRank[5];
 
   return (
     <>
@@ -30,10 +27,7 @@ const Home = ({ data }): JSX.Element => {
         <SideBar></SideBar>
         <main className=" min-h-screen w-full">
           <Header></Header>
-          <AnalysisPage
-            results={[[first, second, third, fourth]]}
-            member={member}
-          ></AnalysisPage>
+          <AnalysisPage memberRankType={membersRanks}></AnalysisPage>
           <ResultPage members={data.header} results={data.row}></ResultPage>
           <Body></Body>
         </main>
