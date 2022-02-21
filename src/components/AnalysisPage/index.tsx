@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MemberRankType } from "../../lib/calc";
+import SelectBox from "../SelectBox";
 import SimpleText from "../SimpleText";
 import Table, { Column, RowDataType } from "../Table";
 
@@ -17,9 +18,11 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ memberRankType }) => {
   ];
   const { first, second, third, fourth } = memberRankType[0];
   const { member } = memberRankType[0];
+  const members = memberRankType.map((m) => {
+    return m.member;
+  });
 
-  const initRowData = [first, second, third, fourth];
-  const [toRowdata, setRowdata] = useState(initRowData);
+  const [toRowdata, setRowdata] = useState([first, second, third, fourth]);
   const [toMember, setMember] = useState(member);
 
   const initRowdata: RowDataType[] = columns.map((c, index) => {
@@ -29,10 +32,18 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ memberRankType }) => {
     };
   });
 
-  console.log(initRowdata);
+  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (c) => {
+    const member = c.target.value;
+    const { first, second, third, fourth } = memberRankType.find(
+      (m) => m.member === member
+    );
+    setMember(member);
+    setRowdata([first, second, third, fourth]);
+  };
 
   return (
     <>
+      <SelectBox elements={members} handleChange={handleChange}></SelectBox>
       <SimpleText
         text={toMember}
         align="text-left"
