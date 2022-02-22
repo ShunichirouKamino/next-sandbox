@@ -12,7 +12,7 @@ const getTimes = (rankSet: RankSet): number => {
   return rankSet.first + rankSet.second + rankSet.third + rankSet.fourth;
 };
 
-const getQuinella = (rankPersentSet: RankPercentSet): number => {
+const getWinPer = (rankPersentSet: RankPercentSet): number => {
   return (
     Math.round(
       (Number(rankPersentSet.first) + Number(rankPersentSet.second)) * 10
@@ -94,7 +94,7 @@ const RankResultPage: React.FC<RankResultPageProps> = ({ memberRankType }) => {
           </section>
           <section className="w-1/3">
             <SimpleText
-              text={"Quinella : " + getQuinella(toRankPercentSet) + "%"}
+              text={"WinPer : " + getWinPer(toRankPercentSet) + "%"}
               align="text-left"
               style="font-bold"
               size="text-2xl"
