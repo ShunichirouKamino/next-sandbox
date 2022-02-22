@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MemberRankType } from "../../lib/calc";
+import { MemberRankType } from "../../types/result";
 import SelectBox from "../SelectBox";
 import SimpleText from "../SimpleText";
 import Table, { Column, RowDataType } from "../Table";
@@ -16,7 +16,7 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ memberRankType }) => {
     { label: "third", size: size },
     { label: "fourth", size: size },
   ];
-  const { first, second, third, fourth } = memberRankType[0];
+  const { first, second, third, fourth } = memberRankType[0].rankSet;
   const { member } = memberRankType[0];
   const members = memberRankType.map((m) => {
     return m.member;
@@ -36,7 +36,7 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ memberRankType }) => {
     const member = c.target.value;
     const { first, second, third, fourth } = memberRankType.find(
       (m) => m.member === member
-    );
+    ).rankSet;
     setMember(member);
     setRowdata([first, second, third, fourth]);
   };

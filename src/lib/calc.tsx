@@ -1,21 +1,4 @@
-/**
- * 対局一回に対する結果です.
- */
-export type ResultType = {
-  member: string;
-  result: number;
-};
-
-/**
- * 対局複数回に対する個人の各順位取得回数です.
- */
-export type MemberRankType = {
-  member: string;
-  first: number;
-  second: number;
-  third: number;
-  fourth: number;
-};
+import { MemberRankType, ResultType } from "../types/result";
 
 /**
  * 複数局におけるそれぞれの順位の回数を返却します.
@@ -36,10 +19,12 @@ export const getRankTimes = (
   });
   return {
     member: member,
-    first: rankList.filter((r) => r === 0).length,
-    second: rankList.filter((r) => r === 1).length,
-    third: rankList.filter((r) => r === 2).length,
-    fourth: rankList.filter((r) => r === 3).length,
+    rankSet: {
+      first: rankList.filter((r) => r === 0).length,
+      second: rankList.filter((r) => r === 1).length,
+      third: rankList.filter((r) => r === 2).length,
+      fourth: rankList.filter((r) => r === 3).length,
+    },
   };
 };
 

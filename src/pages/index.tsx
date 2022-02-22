@@ -4,8 +4,9 @@ import Header from "../components/Header";
 import ResultPage from "../components/ReesultPage";
 import Body from "../components/ReesultPage/Body/Body";
 import SideBar from "../components/SideBar";
-import { getRankTimes, MemberRankType } from "../lib/calc";
+import { getRankTimes } from "../lib/calc";
 import { getData } from "../lib/csvData";
+import { MemberRankType } from "../types/result";
 
 /**
  * Homeページ表示用SSGファンクション
@@ -25,7 +26,7 @@ const Home = ({ data }): JSX.Element => {
     <>
       <div className="flex">
         <SideBar></SideBar>
-        <main className=" min-h-screen w-full">
+        <main className="w-full">
           <Header></Header>
           <AnalysisPage memberRankType={membersRanks}></AnalysisPage>
           <ResultPage members={data.header} results={data.row}></ResultPage>
