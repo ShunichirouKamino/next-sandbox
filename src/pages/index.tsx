@@ -1,5 +1,5 @@
 import { GetStaticProps } from "next";
-import AnalysisPage from "../components/AnalysisPage";
+import RankResultPage from "../components/RankResultPage";
 import Header from "../components/Header";
 import ResultPage from "../components/ReesultPage";
 import Body from "../components/ReesultPage/Body/Body";
@@ -34,7 +34,7 @@ const Home = ({ data }): JSX.Element => {
         <SideBar></SideBar>
         <main className="w-full">
           <Header></Header>
-          <AnalysisPage memberRankType={membersRanks}></AnalysisPage>
+          <RankResultPage memberRankType={membersRanks}></RankResultPage>
           <ResultPage members={data.header} results={data.row}></ResultPage>
           <Body></Body>
         </main>

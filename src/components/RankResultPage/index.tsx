@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { MemberRankType, RankSet } from "../../types/result";
+import { MemberRankType, RankPercentSet, RankSet } from "../../types/result";
 import SelectBox from "../SelectBox";
 import SimpleText from "../SimpleText";
 import Table, { Column, RowDataType } from "../Table";
 
-export type AnalysisPageProps = {
+export type RankResultPageProps = {
   memberRankType: MemberRankType[];
 };
 
@@ -12,7 +12,15 @@ const getTimes = (rankSet: RankSet): number => {
   return rankSet.first + rankSet.second + rankSet.third + rankSet.fourth;
 };
 
-const AnalysisPage: React.FC<AnalysisPageProps> = ({ memberRankType }) => {
+const getQuinella = (rankPersentSet: RankPercentSet): number => {
+  return (
+    Math.round(
+      (Number(rankPersentSet.first) + Number(rankPersentSet.second)) * 10
+    ) / 10
+  );
+};
+
+const RankResultPage: React.FC<RankResultPageProps> = ({ memberRankType }) => {
   const size = "w-1/4";
   const columns: Column[] = [
     { label: "first", size: size },
@@ -67,18 +75,26 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ memberRankType }) => {
     <>
       <SelectBox elements={members} handleChange={handleChange}></SelectBox>
       <div className="flex flex-wrap w-auto">
-        <div className="flex w-1/2">
-          <section className="w-1/2">
+        <div className="flex w-2/3">
+          <section className="w-1/3">
             <SimpleText
-              text={"Member: " + toMember}
+              text={"Member : " + toMember}
               align="text-left"
               style="font-bold"
               size="text-2xl"
             ></SimpleText>
           </section>
-          <section className="w-1/2">
+          <section className="w-1/3">
             <SimpleText
-              text={"Times: " + toTimes}
+              text={"Times : " + toTimes}
+              align="text-left"
+              style="font-bold"
+              size="text-2xl"
+            ></SimpleText>
+          </section>
+          <section className="w-1/3">
+            <SimpleText
+              text={"Quinella : " + getQuinella(toRankPercentSet) + "%"}
               align="text-left"
               style="font-bold"
               size="text-2xl"
@@ -86,22 +102,14 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ memberRankType }) => {
           </section>
         </div>
       </div>
-      <div className="flex flex-wrap w-auto">
-        <section className="w-2/3">
-          <Table
-            columns={columns}
-            rowdata={[rankRowdata, rankPercentRowdata]}
-          ></Table>
-        </section>
-        <section className="w-1/3">
-          <Table
-            columns={columns}
-            rowdata={[rankRowdata, rankPercentRowdata]}
-          ></Table>
-        </section>
+      <div className="w-auto">
+        <Table
+          columns={columns}
+          rowdata={[rankRowdata, rankPercentRowdata]}
+        ></Table>
       </div>
     </>
   );
 };
 
-export default AnalysisPage;
+export default RankResultPage;
