@@ -16,29 +16,27 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ memberRankType }) => {
     { label: "third", size: size },
     { label: "fourth", size: size },
   ];
-  const { first, second, third, fourth } = memberRankType[0].rankSet;
+  const { rankSet } = memberRankType[0];
   const { member } = memberRankType[0];
   const members = memberRankType.map((m) => {
     return m.member;
   });
 
-  const [toRowdata, setRowdata] = useState([first, second, third, fourth]);
+  const [toRowdata, setRowdata] = useState(rankSet);
   const [toMember, setMember] = useState(member);
 
-  const initRowdata: RowDataType[] = columns.map((c, index) => {
+  const initRowdata: RowDataType[] = columns.map((c) => {
     return {
       label: String(c.label),
-      data: String(toRowdata[index]),
+      data: String(toRowdata[c.label]),
     };
   });
 
   const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (c) => {
     const member = c.target.value;
-    const { first, second, third, fourth } = memberRankType.find(
-      (m) => m.member === member
-    ).rankSet;
+    const { rankSet } = memberRankType.find((m) => m.member === member);
     setMember(member);
-    setRowdata([first, second, third, fourth]);
+    setRowdata(rankSet);
   };
 
   return (

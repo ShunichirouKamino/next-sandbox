@@ -15,7 +15,7 @@ export type MemberRankType = {
 };
 
 /**
- * 複数対局に対する
+ * 複数対局に対する各順位の回数です。
  */
 export type RankSet = {
     first: number;
@@ -24,6 +24,9 @@ export type RankSet = {
     fourth: number;
 };
 
+/**
+ * 複数対局に対する各順位の割合です。
+ */
 export type RankPersentSet = {
     first: number;
     second: number;

@@ -1,11 +1,13 @@
 import { MemberRankType, ResultType } from "../types/result";
 
+export const getRankPercent = (memberRankType: MemberRankType) => {};
+
 /**
  * 複数局におけるそれぞれの順位の回数を返却します.
  *
  * @param member 対象参加者
  * @param members 参加者の一覧
- * @param results 一局の結果
+ * @param results 複数対戦の結果
  * @returns {@link MembersRankType}
  */
 export const getRankTimes = (
