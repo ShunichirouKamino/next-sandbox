@@ -17,16 +17,19 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ memberRankType }) => {
     { label: "fourth", size: size },
   ];
 
+  // init data
   const { rankSet, rankPercentSet, member } = memberRankType[0];
-  const members = memberRankType.map((m) => {
-    return m.member;
-  });
 
   const [toRankSet, setRankSet] = useState(rankSet);
   const [toRankPercentSet, setRankPercentSet] = useState(rankPercentSet);
   const [toMember, setMember] = useState(member);
 
-  // handle changing select box
+  // for select box
+  const members = memberRankType.map((m) => {
+    return m.member;
+  });
+
+  // handle select box changing
   const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (c) => {
     const member = c.target.value;
     const { rankSet, rankPercentSet } = memberRankType.find(
@@ -57,7 +60,7 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ memberRankType }) => {
     <>
       <SelectBox elements={members} handleChange={handleChange}></SelectBox>
       <SimpleText
-        text={toMember}
+        text={"Analysis: " + toMember}
         align="text-left"
         style="font-bold"
         size="text-2xl"
