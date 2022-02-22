@@ -2,7 +2,6 @@ import { GetStaticProps } from "next";
 import RankResultPage from "../components/RankResultPage";
 import Header from "../components/Header";
 import ResultPage from "../components/ResultPage";
-import Body from "../components/ResultPage/Body/Body";
 import SideBar from "../components/SideBar";
 import { getRankPercent, getRankTimes } from "../lib/calc";
 import { getData } from "../lib/csvData";
@@ -36,7 +35,6 @@ const Home = ({ data }): JSX.Element => {
           <Header></Header>
           <RankResultPage memberRankType={membersRanks}></RankResultPage>
           <ResultPage members={data.header} results={data.row}></ResultPage>
-          <Body></Body>
         </main>
       </div>
     </>

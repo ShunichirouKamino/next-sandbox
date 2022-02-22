@@ -73,7 +73,9 @@ const RankResultPage: React.FC<RankResultPageProps> = ({ memberRankType }) => {
 
   return (
     <>
-      <SelectBox elements={members} handleChange={handleChange}></SelectBox>
+      <div className="w-1/2">
+        <SelectBox elements={members} handleChange={handleChange}></SelectBox>
+      </div>
       <div className="flex flex-wrap w-auto">
         <div className="flex w-2/3">
           <section className="w-1/3">
