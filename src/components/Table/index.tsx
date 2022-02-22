@@ -21,8 +21,8 @@ export type TableProps = {
 function Table({ columns, rowdata }: TableProps): JSX.Element {
   return (
     <>
-      <div className="p-10">
-        <table className="frex w-full table-auto rounded-lg sm:shadow-lg">
+      <div className="p-5">
+        <table className="w-full table-auto rounded-lg sm:shadow-lg">
           <thead className="text-white">
             <tr className="bg-[#1e3da3]">
               {columns.map((col) => (

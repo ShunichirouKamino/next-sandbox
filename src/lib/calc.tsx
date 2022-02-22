@@ -17,10 +17,10 @@ export const getRankPercent = (
   const resultLength =
     rankTimes.first + rankTimes.second + rankTimes.third + rankTimes.fourth;
   return {
-    first: Math.round((rankTimes.first / resultLength) * 10000) / 100,
-    second: Math.round((rankTimes.second / resultLength) * 10000) / 100,
-    third: Math.round((rankTimes.third / resultLength) * 10000) / 100,
-    fourth: Math.round((rankTimes.fourth / resultLength) * 10000) / 100,
+    first: Math.round((rankTimes.first / resultLength) * 1000) / 10,
+    second: Math.round((rankTimes.second / resultLength) * 1000) / 10,
+    third: Math.round((rankTimes.third / resultLength) * 1000) / 10,
+    fourth: Math.round((rankTimes.fourth / resultLength) * 1000) / 10,
   };
 };
 

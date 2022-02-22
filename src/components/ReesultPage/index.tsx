@@ -35,9 +35,9 @@ const ResultPage: React.FC<ResultPageProps> = ({ members, results }) => {
         style="font-bold"
         size="text-2xl"
       ></SimpleText>
-      <section className="frex">
+      <div className="w-auto">
         <Table columns={columns} rowdata={rowdata}></Table>
-      </section>
+      </div>
     </>
   );
 };
