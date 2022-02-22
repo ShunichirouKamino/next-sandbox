@@ -19,8 +19,8 @@ const SideBarElement: React.FC<SideBarElementProps> = () => {
         <Link href="/result">Result</Link>
       </li>
       <li className="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150 font-semibold">
-        <FileLink link="/result" />
-        <Link href="/result">Data Entry</Link>
+        <FileLink link="/dataEntry" />
+        <Link href="/dataEntry">Data Entry</Link>
       </li>
       <li className="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150 font-semibold">
         <AccountLink link="/result" />

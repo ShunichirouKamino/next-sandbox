@@ -1,15 +1,13 @@
 import { GetStaticProps } from "next";
 import Header from "../components/Header";
-import Body from "../components/ResultPage/Body/Body";
+import Body from "../components/ResultTable/Body/Body";
 import SideBar from "../components/SideBar";
-import { getRankPercent, getRankTimes } from "../lib/calc";
 import { getData } from "../lib/csvData";
-import { MemberRankType } from "../types/result";
 
 /**
  * Homeページ表示用SSGファンクション
  *
- * @param allPostsData ブログ記事リスト
+ * @param data 未使用
  * @returns Homeページの{@link JSX.Element}
  */
 const Home = ({ data }): JSX.Element => {

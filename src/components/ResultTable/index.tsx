@@ -1,12 +1,12 @@
 import SimpleText from "../SimpleText";
 import Table, { Column, RowDataType } from "../Table";
 
-export type ResultPageProps = {
+export type ResultTableProps = {
   members: string[];
   results: number[][];
 };
 
-const ResultPage: React.FC<ResultPageProps> = ({ members, results }) => {
+const ResultTable: React.FC<ResultTableProps> = ({ members, results }) => {
   /**
    * style sample
    * bodyStyle:
@@ -42,4 +42,4 @@ const ResultPage: React.FC<ResultPageProps> = ({ members, results }) => {
   );
 };
 
-export default ResultPage;
+export default ResultTable;

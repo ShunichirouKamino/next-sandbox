@@ -1,19 +1,19 @@
 import { GetStaticProps } from "next";
-import RankResultPage from "../components/RankResultPage";
+import RankResultPage from "../components/RankResultTable";
 import Header from "../components/Header";
-import ResultPage from "../components/ResultPage";
 import SideBar from "../components/SideBar";
 import { getRankPercent, getRankTimes } from "../lib/calc";
 import { getData } from "../lib/csvData";
 import { MemberRankType } from "../types/result";
+import ResultTable from "../components/ResultTable";
 
 /**
- * Homeページ表示用SSGファンクション
+ * ResultPage表示用SSGファンクション
  *
- * @param allPostsData ブログ記事リスト
- * @returns Homeページの{@link JSX.Element}
+ * @param data 対局データ
+ * @returns ResultPageの{@link JSX.Element}
  */
-const Home = ({ data }): JSX.Element => {
+const ResultPage = ({ data }): JSX.Element => {
   const members: string[] = data.header;
   const results: number[][] = data.row;
 
@@ -34,7 +34,7 @@ const Home = ({ data }): JSX.Element => {
         <main className="w-full">
           <Header></Header>
           <RankResultPage memberRankType={membersRanks}></RankResultPage>
-          <ResultPage members={data.header} results={data.row}></ResultPage>
+          <ResultTable members={data.header} results={data.row}></ResultTable>
         </main>
       </div>
     </>
@@ -55,4 +55,4 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default Home;
+export default ResultPage;

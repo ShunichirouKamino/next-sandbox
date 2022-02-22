@@ -4,7 +4,7 @@ import SelectBox from "../SelectBox";
 import SimpleText from "../SimpleText";
 import Table, { Column, RowDataType } from "../Table";
 
-export type RankResultPageProps = {
+export type RankResultTableProps = {
   memberRankType: MemberRankType[];
 };
 
@@ -20,7 +20,9 @@ const getWinPer = (rankPersentSet: RankPercentSet): number => {
   );
 };
 
-const RankResultPage: React.FC<RankResultPageProps> = ({ memberRankType }) => {
+const RankResultTable: React.FC<RankResultTableProps> = ({
+  memberRankType,
+}) => {
   const size = "w-1/4";
   const columns: Column[] = [
     { label: "first", size: size },
@@ -114,4 +116,4 @@ const RankResultPage: React.FC<RankResultPageProps> = ({ memberRankType }) => {
   );
 };
 
-export default RankResultPage;
+export default RankResultTable;
