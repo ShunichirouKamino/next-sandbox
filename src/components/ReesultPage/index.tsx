@@ -1,8 +1,5 @@
-import Header from "../Header";
-import SideBar from "../SideBar";
 import SimpleText from "../SimpleText";
 import Table, { Column, RowDataType } from "../Table";
-import Body from "./Body/Body";
 
 export type ResultPageProps = {
   members: string[];
