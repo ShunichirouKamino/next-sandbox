@@ -16,28 +16,42 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ memberRankType }) => {
     { label: "third", size: size },
     { label: "fourth", size: size },
   ];
-  const { rankSet } = memberRankType[0];
-  const { member } = memberRankType[0];
+
+  const { rankSet, rankPercentSet, member } = memberRankType[0];
   const members = memberRankType.map((m) => {
     return m.member;
   });
 
-  const [toRowdata, setRowdata] = useState(rankSet);
+  const [toRankSet, setRankSet] = useState(rankSet);
+  const [toRankPercentSet, setRankPercentSet] = useState(rankPercentSet);
   const [toMember, setMember] = useState(member);
 
-  const initRowdata: RowDataType[] = columns.map((c) => {
+  // handle changing select box
+  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (c) => {
+    const member = c.target.value;
+    const { rankSet, rankPercentSet } = memberRankType.find(
+      (m) => m.member === member
+    );
+    setMember(member);
+    setRankSet(rankSet);
+    setRankPercentSet(rankPercentSet);
+  };
+
+  // convert for table layout
+  const rankRowdata: RowDataType[] = columns.map((c) => {
     return {
       label: String(c.label),
-      data: String(toRowdata[c.label]),
+      data: String(toRankSet[c.label] + " times"),
     };
   });
 
-  const handleChange: React.ChangeEventHandler<HTMLSelectElement> = (c) => {
-    const member = c.target.value;
-    const { rankSet } = memberRankType.find((m) => m.member === member);
-    setMember(member);
-    setRowdata(rankSet);
-  };
+  // convert for table layout
+  const rankPercentRowdata: RowDataType[] = columns.map((c) => {
+    return {
+      label: String(c.label),
+      data: String(toRankPercentSet[c.label] + " %"),
+    };
+  });
 
   return (
     <>
@@ -49,7 +63,10 @@ const AnalysisPage: React.FC<AnalysisPageProps> = ({ memberRankType }) => {
         size="text-2xl"
       ></SimpleText>
       <section className="frex">
-        <Table columns={columns} rowdata={[initRowdata]}></Table>
+        <Table
+          columns={columns}
+          rowdata={[rankRowdata, rankPercentRowdata]}
+        ></Table>
       </section>
     </>
   );

@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import ResultPage from "../components/ReesultPage";
 import Body from "../components/ReesultPage/Body/Body";
 import SideBar from "../components/SideBar";
-import { getRankTimes } from "../lib/calc";
+import { getRankPercent, getRankTimes } from "../lib/calc";
 import { getData } from "../lib/csvData";
 import { MemberRankType } from "../types/result";
 
@@ -19,7 +19,13 @@ const Home = ({ data }): JSX.Element => {
   const results: number[][] = data.row;
 
   const membersRanks: MemberRankType[] = members.map((m) => {
-    return getRankTimes(m, members, results);
+    const rankTimes = getRankTimes(m, members, results);
+    const rankPersent = getRankPercent(m, members, results);
+    return {
+      member: m,
+      rankSet: rankTimes,
+      rankPercentSet: rankPersent,
+    };
   });
 
   return (

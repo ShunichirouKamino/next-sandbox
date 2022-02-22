@@ -12,6 +12,7 @@ export type ResultType = {
 export type MemberRankType = {
     member: string;
     rankSet: RankSet;
+    rankPercentSet: RankPercentSet;
 };
 
 /**
@@ -27,7 +28,7 @@ export type RankSet = {
 /**
  * 複数対局に対する各順位の割合です。
  */
-export type RankPersentSet = {
+export type RankPercentSet = {
     first: number;
     second: number;
     third: number;
