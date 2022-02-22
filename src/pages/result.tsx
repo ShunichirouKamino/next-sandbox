@@ -1,5 +1,7 @@
 import { GetStaticProps } from "next";
+import RankResultPage from "../components/RankResultPage";
 import Header from "../components/Header";
+import ResultPage from "../components/ResultPage";
 import Body from "../components/ResultPage/Body/Body";
 import SideBar from "../components/SideBar";
 import { getRankPercent, getRankTimes } from "../lib/calc";
@@ -13,37 +15,31 @@ import { MemberRankType } from "../types/result";
  * @returns Homeページの{@link JSX.Element}
  */
 const Home = ({ data }): JSX.Element => {
+  const members: string[] = data.header;
+  const results: number[][] = data.row;
+
+  const membersRanks: MemberRankType[] = members.map((m) => {
+    const rankTimes = getRankTimes(m, members, results);
+    const rankPersent = getRankPercent(m, members, results);
+    return {
+      member: m,
+      rankSet: rankTimes,
+      rankPercentSet: rankPersent,
+    };
+  });
+
   return (
     <>
       <div className="flex">
         <SideBar></SideBar>
         <main className="w-full">
           <Header></Header>
+          <RankResultPage memberRankType={membersRanks}></RankResultPage>
+          <ResultPage members={data.header} results={data.row}></ResultPage>
           <Body></Body>
         </main>
       </div>
     </>
-    // <Layout home>
-    //   <Head>
-    //     <title>{siteTitle}</title>
-    //   </Head>
-    //   <section>
-    //     <h2>Blog</h2>
-    //     <ul>
-    //       {allPostsData.map(({ blogId, date, title }) => (
-    //         <li key={blogId}>
-    //           <Link href={`/posts/${blogId}`}>
-    //             <a>{title}</a>
-    //           </Link>
-    //           <br />
-    //           <small>
-    //             <Date dateString={date} />
-    //           </small>
-    //         </li>
-    //       ))}
-    //     </ul>
-    //   </section>
-    // </Layout>
   );
 };
 

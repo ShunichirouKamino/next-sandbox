@@ -1,8 +1,8 @@
+import Link from "next/link";
 import AccountLink from "../../icons/AccountLink";
 import DisplayLink from "../../icons/DisplayLink";
 import FileLink from "../../icons/FileLink";
 import HomeLink from "../../icons/HomeLink";
-import HumanLink from "../../icons/HumanLink";
 import SetupLink from "../../icons/SetupLink";
 
 export type SideBarElementProps = {};
@@ -10,25 +10,25 @@ export type SideBarElementProps = {};
 const SideBarElement: React.FC<SideBarElementProps> = () => {
   return (
     <>
-      <li className="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150">
-        <HomeLink link={""} />
-        <span className="font-semibold">Home</span>
+      <li className="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150 font-semibold">
+        <HomeLink link="/" />
+        <Link href="/">Home</Link>
       </li>
-      <li className="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150">
-        <DisplayLink link={""} />
-        <span className="font-semibold">Result</span>
+      <li className="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150 font-semibold">
+        <DisplayLink link="/result" />
+        <Link href="/result">Result</Link>
       </li>
-      <li className="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150">
-        <FileLink link={""} />
-        <span className="font-semibold">Data Entry</span>
+      <li className="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150 font-semibold">
+        <FileLink link="/result" />
+        <Link href="/result">Data Entry</Link>
       </li>
-      <li className="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150">
-        <AccountLink link={""} />
-        <span className="font-semibold">Profile</span>
+      <li className="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150 font-semibold">
+        <AccountLink link="/result" />
+        <Link href="/result">Profile</Link>
       </li>
-      <li className="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150">
-        <SetupLink link={""} />
-        <span className="font-semibold">Setting</span>
+      <li className="flex space-x-2 mt-10 cursor-pointer hover:text-[#EC5252] duration-150 font-semibold">
+        <SetupLink link="/result" />
+        <Link href="/result">Setting</Link>
       </li>
     </>
   );
