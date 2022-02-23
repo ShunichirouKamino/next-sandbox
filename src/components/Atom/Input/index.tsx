@@ -6,18 +6,22 @@ export type InputBaseProps = {
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   direction: number;
   index: number;
+  handleValue?: (...e: any) => void;
 };
 
-// TODO bind以外の複数データの受け渡し方法あるか？
+// TODO handleValueを別出しした上位コンポーネント作る
 const InputBase: React.FC<InputBaseProps> = ({
   placeholder = "",
   type = "text",
   size = "h-12 w-96",
   value,
-  handleChange,
   direction,
   index,
+  handleValue,
 }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    handleValue(direction, index, Number(e.target.value));
+  };
   return (
     <>
       <div className="py-2 px-2">

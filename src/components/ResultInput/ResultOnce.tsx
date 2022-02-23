@@ -7,7 +7,7 @@ export type ResultOnceProps = {
   onClickMinus: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   inputRecord: InputRecordType;
   index: number;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleValue?: (...e: any) => void;
 };
 
 export type InputRecordType = {
@@ -21,7 +21,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
   onClickMinus,
   inputRecord,
   index,
-  handleChange,
+  handleValue,
 }): JSX.Element => {
   return (
     <>
@@ -38,9 +38,9 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               value={String(inputRecord.resultOnce[0])}
               type={"number"}
               size={"h-12 w-full"}
-              handleChange={handleChange}
               direction={0}
               index={index}
+              handleValue={handleValue}
             ></InputBase>
           </div>
           <div className="w-1/4">
@@ -48,9 +48,9 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               value={String(inputRecord.resultOnce[1])}
               type={"number"}
               size={"h-12 w-full"}
-              handleChange={handleChange}
               direction={1}
               index={index}
+              handleValue={handleValue}
             ></InputBase>
           </div>
           <div className="w-1/4">
@@ -58,9 +58,9 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               value={String(inputRecord.resultOnce[2])}
               type={"number"}
               size={"h-12 w-full"}
-              handleChange={handleChange}
               direction={2}
               index={index}
+              handleValue={handleValue}
             ></InputBase>
           </div>
           <div className="w-1/4">
@@ -68,9 +68,9 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               value={String(inputRecord.resultOnce[3])}
               type={"number"}
               size={"h-12 w-full"}
-              handleChange={handleChange}
               direction={3}
               index={index}
+              handleValue={handleValue}
             ></InputBase>
           </div>
         </div>

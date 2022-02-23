@@ -32,28 +32,25 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
     const addTimes = Number(e.currentTarget.getAttribute("data-num")) + 1;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+  const handleValue = (
+    direction: number,
+    index: number,
+    value: number
+  ): void => {
+    const resultOnce = [0, 0, 0, 0];
+    resultOnce[direction] = value;
+    const addInputRecord: InputRecordType = {
+      resultOnce: resultOnce,
+      deleted: false,
+      times: index,
+    };
+    inputState.splice(index, 1, addInputRecord);
+    const newInputState = [...inputState];
+    //console.log(newInputState);
+    setInputState(newInputState);
   };
 
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const data = String(e).split("#");
-  //   const index = Number(data[2]);
-  //   const direction = Number(data[1]);
-  //   const value = Number(data[0]);
-  //   console.log(data);
-  //   const resultOnce = [0, 0, 0, 0].splice(direction, 1, value);
-  //   const addInputRecord: InputRecordType = {
-  //     resultOnce: resultOnce,
-  //     deleted: false,
-  //     times: index,
-  //   };
-  //   console.log("add:" + addInputRecord.resultOnce);
-  //   inputState.splice(index, 1, addInputRecord);
-  //   const newInputState = [...inputState];
-  //   console.log(newInputState);
-  //   setInputState(newInputState);
-  // };
+  console.log(inputState);
 
   return (
     <>
@@ -62,9 +59,9 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
           <ResultOnce
             onClickPlus={onClickPlus}
             onClickMinus={onClickMinus}
-            inputRecord={initInputRecord}
+            inputRecord={inputState[index]}
             index={index}
-            handleChange={handleChange}
+            handleValue={handleValue}
           ></ResultOnce>
         );
       })}
