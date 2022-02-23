@@ -42,9 +42,9 @@ const ResultPage = ({ data }): JSX.Element => {
 };
 
 /**
- * {@linkcode Home}ページSSGへの値取得用のファンクション
+ * {@linkcode ResultPage}ページSSGへの値取得用のファンクション
  *
- * @returns homeに表示するブログ記事リスト
+ * @returns 対局結果
  */
 export const getStaticProps: GetStaticProps = async () => {
   const data = getData();

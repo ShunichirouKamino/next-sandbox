@@ -3,6 +3,8 @@ import Header from "../components/Header";
 import InputBase from "../components/Atom/Input/input";
 import SideBar from "../components/SideBar";
 import { getData } from "../lib/csvData";
+import ResultInput from "../components/ResultInput/input";
+import PlusButton from "../components/Atom/icons/PlusButton";
 
 /**
  * DataEntryPage表示用SSGファンクション
@@ -17,18 +19,12 @@ const DataEntryPage = ({ data }): JSX.Element => {
         <SideBar></SideBar>
         <main className="w-full">
           <Header></Header>
-          <div className="flex w-full">
-            <div className="w-1/4">
-              <InputBase type={"number"} size={"h-12 w-full"}></InputBase>
+          <div className="flex items-center">
+            <div className="w-1/7">
+              <PlusButton onClick={undefined}></PlusButton>
             </div>
-            <div className="w-1/4">
-              <InputBase type={"number"} size={"h-12 w-full"}></InputBase>
-            </div>
-            <div className="w-1/4">
-              <InputBase type={"number"} size={"h-12 w-full"}></InputBase>
-            </div>
-            <div className="w-1/4">
-              <InputBase type={"number"} size={"h-12 w-full"}></InputBase>
+            <div className="w-full">
+              <ResultInput></ResultInput>
             </div>
           </div>
         </main>
@@ -38,9 +34,9 @@ const DataEntryPage = ({ data }): JSX.Element => {
 };
 
 /**
- * {@linkcode Home}ページSSGへの値取得用のファンクション
+ * {@linkcode Home}データエントリSSGへの値取得用のファンクション
  *
- * @returns homeに表示するブログ記事リスト
+ * @returns 未使用
  */
 export const getStaticProps: GetStaticProps = async () => {
   const data = getData();
