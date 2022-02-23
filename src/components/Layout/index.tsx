@@ -1,11 +1,11 @@
 import Head from "next/head";
 import Link from "next/link";
-import TwitterLink from "../icons/TwitterLink";
-import SetupLink from "../icons/SetupLink";
-import AddressLink from "../icons/AddressLink";
+import TwitterLink from "../Atom/icons/TwitterLink";
+import SetupLink from "../Atom/icons/SetupLink";
+import AddressLink from "../Atom/icons/AddressLink";
 import Frame from "../Frame";
 import ImageContainer from "../ImageContainer";
-import SimpleText from "../SimpleText";
+import SimpleText from "../Atom/SimpleText";
 
 const name: string = "Shunichiro";
 export const siteTitle: string = "Ma-jan totalization";

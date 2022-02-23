@@ -6,10 +6,10 @@ import {
 } from "next";
 import Head from "next/head";
 import Layout from "../../components/Layout";
-import Date from "../../components/Date";
+import Date from "../../components/Atom/Date";
 
 import { getAllPostIds, getPostData } from "../../lib/posts";
-import SimpleText from "../../components/SimpleText";
+import SimpleText from "../../components/Atom/SimpleText";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 

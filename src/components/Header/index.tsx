@@ -1,6 +1,6 @@
 import ImageContainer from "../ImageContainer";
-import SearchBox from "../SearchBox";
-import SimpleText from "../SimpleText";
+import SearchBox from "../Atom/SearchBox";
+import SimpleText from "../Atom/SimpleText";
 
 export type HeaderProps = {};
 

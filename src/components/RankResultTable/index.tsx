@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MemberRankType, RankPercentSet, RankSet } from "../../types/result";
-import SelectBox from "../SelectBox";
-import SimpleText from "../SimpleText";
+import SelectBox from "../Atom/SelectBox";
+import SimpleText from "../Atom/SimpleText";
 import Table, { Column, RowDataType } from "../Table";
 
 export type RankResultTableProps = {

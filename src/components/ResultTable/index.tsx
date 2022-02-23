@@ -1,4 +1,4 @@
-import SimpleText from "../SimpleText";
+import SimpleText from "../Atom/SimpleText";
 import Table, { Column, RowDataType } from "../Table";
 
 export type ResultTableProps = {

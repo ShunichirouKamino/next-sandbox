@@ -1,9 +1,9 @@
 import Link from "next/link";
-import AccountLink from "../../icons/AccountLink";
-import DisplayLink from "../../icons/DisplayLink";
-import FileLink from "../../icons/FileLink";
-import HomeLink from "../../icons/HomeLink";
-import SetupLink from "../../icons/SetupLink";
+import AccountLink from "../../Atom/icons/AccountLink";
+import DisplayLink from "../../Atom/icons/DisplayLink";
+import FileLink from "../../Atom/icons/FileLink";
+import HomeLink from "../../Atom/icons/HomeLink";
+import SetupLink from "../../Atom/icons/SetupLink";
 
 export type SideBarElementProps = {};
 
