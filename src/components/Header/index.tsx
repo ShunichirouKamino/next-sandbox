@@ -1,4 +1,3 @@
-import SearchLink from "../icons/SearchLink";
 import ImageContainer from "../ImageContainer";
 import SearchBox from "../SearchBox";
 import SimpleText from "../SimpleText";
