@@ -37,16 +37,8 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
     index: number,
     value: number
   ): void => {
-    const resultOnce = [0, 0, 0, 0];
-    resultOnce[direction] = value;
-    const addInputRecord: InputRecordType = {
-      resultOnce: resultOnce,
-      deleted: false,
-      times: index,
-    };
-    inputState.splice(index, 1, addInputRecord);
+    inputState[index].resultOnce[direction] = value;
     const newInputState = [...inputState];
-    //console.log(newInputState);
     setInputState(newInputState);
   };
 
