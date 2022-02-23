@@ -1,10 +1,8 @@
 import { GetStaticProps } from "next";
 import Header from "../components/Header";
-import InputBase from "../components/Atom/Input/input";
 import SideBar from "../components/SideBar";
 import { getData } from "../lib/csvData";
-import ResultInput from "../components/ResultInput/input";
-import PlusButton from "../components/Atom/icons/PlusButton";
+import ResultInput from "../components/ResultInput";
 
 /**
  * DataEntryPage表示用SSGファンクション
@@ -19,13 +17,8 @@ const DataEntryPage = ({ data }): JSX.Element => {
         <SideBar></SideBar>
         <main className="w-full">
           <Header></Header>
-          <div className="flex items-center">
-            <div className="w-1/7">
-              <PlusButton onClick={undefined}></PlusButton>
-            </div>
-            <div className="w-full">
-              <ResultInput></ResultInput>
-            </div>
+          <div className="w-full">
+            <ResultInput></ResultInput>
           </div>
         </main>
       </div>
