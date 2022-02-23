@@ -11,10 +11,7 @@ export type ResultOnceProps = {
 };
 
 export type InputRecordType = {
-  east: number;
-  south: number;
-  west: number;
-  north: number;
+  resultOnce: number[];
   deleted: boolean;
   times: number;
 };
@@ -38,34 +35,42 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
         <div className="flex w-full">
           <div className="w-1/4">
             <InputBase
-              value={String(inputRecord.east)}
+              value={String(inputRecord.resultOnce[0])}
               type={"number"}
               size={"h-12 w-full"}
               handleChange={handleChange}
+              direction={0}
+              index={index}
             ></InputBase>
           </div>
           <div className="w-1/4">
             <InputBase
-              value={String(inputRecord.south)}
+              value={String(inputRecord.resultOnce[1])}
               type={"number"}
               size={"h-12 w-full"}
               handleChange={handleChange}
+              direction={1}
+              index={index}
             ></InputBase>
           </div>
           <div className="w-1/4">
             <InputBase
-              value={String(inputRecord.west)}
+              value={String(inputRecord.resultOnce[2])}
               type={"number"}
               size={"h-12 w-full"}
               handleChange={handleChange}
+              direction={2}
+              index={index}
             ></InputBase>
           </div>
           <div className="w-1/4">
             <InputBase
-              value={String(inputRecord.north)}
+              value={String(inputRecord.resultOnce[3])}
               type={"number"}
               size={"h-12 w-full"}
               handleChange={handleChange}
+              direction={3}
+              index={index}
             ></InputBase>
           </div>
         </div>

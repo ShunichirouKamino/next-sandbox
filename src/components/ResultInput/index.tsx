@@ -5,10 +5,7 @@ export type ResultInputProps = {};
 
 const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
   const initInputRecord: InputRecordType = {
-    east: 0,
-    south: 0,
-    west: 0,
-    north: 0,
+    resultOnce: [0, 0, 0, 0],
     deleted: false,
     times: 0,
   };
@@ -19,16 +16,12 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
     e.preventDefault();
     const addTimes = Number(e.currentTarget.getAttribute("data-num")) + 1;
     const addInputRecord: InputRecordType = {
-      east: 0,
-      south: 0,
-      west: 0,
-      north: 0,
+      resultOnce: [0, 0, 0, 0],
       deleted: false,
       times: addTimes,
     };
     inputState.splice(addTimes, 0, addInputRecord);
     const newInputState = [...inputState];
-    console.log(newInputState);
     setInputState(newInputState);
   };
 
@@ -40,9 +33,27 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    console.log(value);
+    console.log(e.target.value);
   };
+
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const data = String(e).split("#");
+  //   const index = Number(data[2]);
+  //   const direction = Number(data[1]);
+  //   const value = Number(data[0]);
+  //   console.log(data);
+  //   const resultOnce = [0, 0, 0, 0].splice(direction, 1, value);
+  //   const addInputRecord: InputRecordType = {
+  //     resultOnce: resultOnce,
+  //     deleted: false,
+  //     times: index,
+  //   };
+  //   console.log("add:" + addInputRecord.resultOnce);
+  //   inputState.splice(index, 1, addInputRecord);
+  //   const newInputState = [...inputState];
+  //   console.log(newInputState);
+  //   setInputState(newInputState);
+  // };
 
   return (
     <>

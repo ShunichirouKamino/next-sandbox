@@ -4,15 +4,19 @@ export type InputBaseProps = {
   size: string; // example "h-12 w-96"
   value?: string;
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  direction: number;
+  index: number;
 };
 
-// TODO handleChangeの分岐
+// TODO bind以外の複数データの受け渡し方法あるか？
 const InputBase: React.FC<InputBaseProps> = ({
   placeholder = "",
   type = "text",
   size = "h-12 w-96",
   value,
   handleChange,
+  direction,
+  index,
 }) => {
   return (
     <>
