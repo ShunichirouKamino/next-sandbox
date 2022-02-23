@@ -1,29 +1,61 @@
-import { useState } from "react";
-import ResultOnce from "./ResultOnce";
+import React, { useState } from "react";
+import ResultOnce, { InputRecordType } from "./ResultOnce";
 
 export type ResultInputProps = {};
 
-type InputStateType = {
-  deleted: boolean;
-};
-
 const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
-  const [inputState, setInputState] = useState([{ deleted: true }]);
-  const onClick = (
+  const initInputRecord: InputRecordType = {
+    east: 0,
+    south: 0,
+    west: 0,
+    north: 0,
+    deleted: false,
+    times: 0,
+  };
+  const [inputState, setInputState] = useState([initInputRecord]);
+  const onClickPlus = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    e.preventDefault();
+    const addTimes = Number(e.currentTarget.getAttribute("data-num")) + 1;
+    const addInputRecord: InputRecordType = {
+      east: 0,
+      south: 0,
+      west: 0,
+      north: 0,
+      deleted: false,
+      times: addTimes,
+    };
+    inputState.splice(addTimes, 0, addInputRecord);
+    const newInputState = [...inputState];
+    console.log(newInputState);
+    setInputState(newInputState);
+  };
+
+  const onClickMinus = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     // e.preventDefault();
     const addTimes = Number(e.currentTarget.getAttribute("data-num")) + 1;
-    const newResult: InputStateType = { deleted: true };
-    inputState.splice(addTimes, 0, newResult);
-    const newInputState = [...inputState];
-    setInputState(newInputState);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    console.log(value);
   };
 
   return (
     <>
       {inputState.map((i, index) => {
-        return <ResultOnce onClick={onClick} times={index}></ResultOnce>;
+        return (
+          <ResultOnce
+            onClickPlus={onClickPlus}
+            onClickMinus={onClickMinus}
+            inputRecord={initInputRecord}
+            index={index}
+            handleChange={handleChange}
+          ></ResultOnce>
+        );
       })}
     </>
   );
