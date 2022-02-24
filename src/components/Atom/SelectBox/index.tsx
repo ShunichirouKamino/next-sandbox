@@ -1,21 +1,24 @@
 export type SelectBoxProp = {
   elements: string[];
   handleChange?: React.ChangeEventHandler<HTMLSelectElement>;
+  size?: string; // example "h-12 w-96"
 };
 
 const SelectBox: React.FC<SelectBoxProp> = ({
   elements,
   handleChange,
+  size = "h-12 w-96",
 }): JSX.Element => {
   return (
     <>
-      <div className="px-4 py-2">
+      <div className="px-2 py-2">
         <select
           onChange={handleChange}
-          className="form-select 
+          className="form-select
+          h-12
+          w-full
       appearance-none 
       block 
-      w-full 
       px-3
       py-1.5
       text-base

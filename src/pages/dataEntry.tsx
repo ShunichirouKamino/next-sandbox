@@ -12,13 +12,14 @@ import MembersSelectBox from "../components/Molecules/MembersSelectBox";
  * @returns DataEntryPageの{@link JSX.Element}
  */
 const DataEntryPage = ({ data }): JSX.Element => {
+  const members: string[] = data.header;
   return (
     <>
       <div className="flex flex-col min-h-screen">
         <main className="flex-grow w-full">
           <Header></Header>
           <div className="w-full">
-            <MembersSelectBox></MembersSelectBox>
+            <MembersSelectBox members={members}></MembersSelectBox>
             <ResultInput></ResultInput>
           </div>
         </main>
