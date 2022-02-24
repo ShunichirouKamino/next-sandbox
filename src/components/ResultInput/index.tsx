@@ -7,7 +7,6 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
   const initInputRecord: InputRecordType = {
     resultOnce: [0, 0, 0, 0],
     deleted: false,
-    times: 0,
   };
   const [inputState, setInputState] = useState([initInputRecord]);
   const onClickPlus = (
@@ -18,18 +17,22 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
     const addInputRecord: InputRecordType = {
       resultOnce: [0, 0, 0, 0],
       deleted: false,
-      times: addTimes,
     };
     inputState.splice(addTimes, 0, addInputRecord);
     const newInputState = [...inputState];
+    console.log(newInputState);
     setInputState(newInputState);
   };
 
   const onClickMinus = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
-    // e.preventDefault();
-    const addTimes = Number(e.currentTarget.getAttribute("data-num")) + 1;
+    e.preventDefault();
+    const removeTimes = Number(e.currentTarget.getAttribute("data-num"));
+    console.log(removeTimes);
+    const newInputState = inputState.filter((i, index) => index != removeTimes);
+    console.log(newInputState);
+    setInputState(newInputState);
   };
 
   const handleValue = (
@@ -41,8 +44,6 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
     const newInputState = [...inputState];
     setInputState(newInputState);
   };
-
-  console.log(inputState);
 
   return (
     <>

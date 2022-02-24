@@ -13,7 +13,6 @@ export type ResultOnceProps = {
 export type InputRecordType = {
   resultOnce: number[];
   deleted: boolean;
-  times: number;
 };
 
 const ResultOnce: React.FC<ResultOnceProps> = ({
