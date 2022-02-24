@@ -1,7 +1,6 @@
 import { GetStaticProps } from "next";
 import RankResultPage from "../components/RankResultTable";
 import Header from "../components/Header";
-import SideBar from "../components/SideBar";
 import { getRankPercent, getRankTimes } from "../lib/calc";
 import { getData } from "../lib/csvData";
 import { MemberRankType } from "../types/result";

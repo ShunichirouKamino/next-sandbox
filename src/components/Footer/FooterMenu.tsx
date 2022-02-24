@@ -1,9 +1,7 @@
 import Link from "next/link";
-import AccountLink from "../Atom/icons/AccountLink";
 import DisplayLink from "../Atom/icons/DisplayLink";
 import FileLink from "../Atom/icons/FileLink";
 import HomeLink from "../Atom/icons/HomeLink";
-import SetupLink from "../Atom/icons/SetupLink";
 
 export type FooterMenuProps = {};
 
@@ -14,16 +12,22 @@ const FooterMenu: React.FC<FooterMenuProps> = () => {
     <>
       <ul className="flex w-auto items-center text-white">
         <li className={`${style}` + " space-x-2 w-1/3 p-3"}>
-          <HomeLink link="/" />
-          <Link href="/">Home</Link>
+          <div>
+            <HomeLink link="/" />
+            <Link href="/">Home</Link>
+          </div>
         </li>
         <li className={`${style}` + " space-x-2 w-1/3 p-3"}>
-          <DisplayLink link="/result" />
-          <Link href="/result">Result</Link>
+          <div>
+            <DisplayLink link="/result" />
+            <Link href="/result">Result</Link>
+          </div>
         </li>
         <li className={`${style}` + " space-x-2 w-1/3 p-3"}>
-          <FileLink link="/dataEntry" />
-          <Link href="/dataEntry">Entry</Link>
+          <div>
+            <FileLink link="/dataEntry" />
+            <Link href="/dataEntry">Entry</Link>
+          </div>
         </li>
       </ul>
     </>
