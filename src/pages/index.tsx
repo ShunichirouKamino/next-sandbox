@@ -14,7 +14,9 @@ const Home = ({ data }): JSX.Element => {
   return (
     <>
       <div className="flex">
-        <SideBar></SideBar>
+        <div className="md:flex hidden w-2/5 shrink-1">
+          <SideBar></SideBar>
+        </div>
         <main className="w-full">
           <Header></Header>
           <Body></Body>

@@ -30,7 +30,9 @@ const ResultPage = ({ data }): JSX.Element => {
   return (
     <>
       <div className="flex">
-        <SideBar></SideBar>
+        <div className="md:flex hidden w-2/5">
+          <SideBar></SideBar>
+        </div>
         <main className="w-full">
           <Header></Header>
           <RankResultPage memberRankType={membersRanks}></RankResultPage>

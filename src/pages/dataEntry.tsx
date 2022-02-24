@@ -1,8 +1,8 @@
 import { GetStaticProps } from "next";
 import Header from "../components/Header";
-import SideBar from "../components/SideBar";
 import { getData } from "../lib/csvData";
 import ResultInput from "../components/ResultInput";
+import Footer from "../components/Footer";
 
 /**
  * DataEntryPage表示用SSGファンクション
@@ -13,14 +13,14 @@ import ResultInput from "../components/ResultInput";
 const DataEntryPage = ({ data }): JSX.Element => {
   return (
     <>
-      <div className="flex">
-        <SideBar></SideBar>
-        <main className="w-full">
+      <div className="flex flex-col min-h-screen">
+        <main className="flex-grow w-full">
           <Header></Header>
           <div className="w-full">
             <ResultInput></ResultInput>
           </div>
         </main>
+        <Footer></Footer>
       </div>
     </>
   );
