@@ -1,8 +1,9 @@
 import { GetStaticProps } from "next";
-import Header from "../components/Header";
+import Header from "../components/Molecules/Header";
 import { getData } from "../lib/csvData";
-import ResultInput from "../components/ResultInput";
+import ResultInput from "../components/Molecules/ResultInput";
 import Footer from "../components/Footer";
+import MembersSelectBox from "../components/Molecules/MembersSelectBox";
 
 /**
  * DataEntryPage表示用SSGファンクション
@@ -17,6 +18,7 @@ const DataEntryPage = ({ data }): JSX.Element => {
         <main className="flex-grow w-full">
           <Header></Header>
           <div className="w-full">
+            <MembersSelectBox></MembersSelectBox>
             <ResultInput></ResultInput>
           </div>
         </main>

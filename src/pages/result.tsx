@@ -1,6 +1,6 @@
 import { GetStaticProps } from "next";
 import RankResultPage from "../components/RankResultTable";
-import Header from "../components/Header";
+import Header from "../components/Molecules/Header";
 import { getRankPercent, getRankTimes } from "../lib/calc";
 import { getData } from "../lib/csvData";
 import { MemberRankType } from "../types/result";

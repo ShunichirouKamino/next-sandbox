@@ -11,13 +11,15 @@ const RemoveButton: React.FC<RemoveButtonProps> = ({
   index,
 }): JSX.Element => {
   return (
-    <button
-      onClick={onClick}
-      data-num={index}
-      className="cursor-pointer p-1 hover:text-[#EC5252] duration-150"
-    >
-      <MinusB viewBox="0 0 24 24" className="h-6 w-6" />
-    </button>
+    <div className="text-center">
+      <button
+        onClick={onClick}
+        data-num={index}
+        className="cursor-pointer p-1 hover:text-[#EC5252] duration-150"
+      >
+        <MinusB viewBox="0 0 24 24" className="h-6 w-6" />
+      </button>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
-import PlusButton from "../Atom/icons/PlusButton";
-import RemoveButton from "../Atom/icons/RemoveButton";
-import InputBase from "../Atom/Input";
+import PlusButton from "../../Atom/icons/PlusButton";
+import RemoveButton from "../../Atom/icons/RemoveButton";
+import InputBase from "../../Atom/Input";
 
 export type ResultOnceProps = {
   onClickPlus: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -25,10 +25,10 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
   return (
     <>
       <div className="flex items-center">
-        <div className="w-1/8 shrink-0">
+        <div className="w-10 shrink-0">
           <PlusButton onClick={onClickPlus} index={index}></PlusButton>
         </div>
-        <div className="w-1/8 shrink-0">
+        <div className="w-10 shrink-0">
           <RemoveButton onClick={onClickMinus} index={index}></RemoveButton>
         </div>
         <div className="flex w-full shrink-1">

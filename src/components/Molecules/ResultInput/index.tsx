@@ -27,6 +27,9 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     e.preventDefault();
+    if (inputState.length == 1) {
+      return;
+    }
     const removeTimes = Number(e.currentTarget.getAttribute("data-num"));
     const newInputState = inputState.filter((i, index) => index != removeTimes);
     setInputState(newInputState);

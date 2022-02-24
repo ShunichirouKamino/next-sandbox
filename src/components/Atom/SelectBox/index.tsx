@@ -9,7 +9,7 @@ const SelectBox: React.FC<SelectBoxProp> = ({
 }): JSX.Element => {
   return (
     <>
-      <div className="px-4 py-2 mb-3 xl:w-96">
+      <div className="px-4 py-2">
         <select
           onChange={handleChange}
           className="form-select 

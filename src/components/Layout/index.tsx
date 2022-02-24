@@ -4,7 +4,7 @@ import TwitterLink from "../Atom/icons/TwitterLink";
 import SetupLink from "../Atom/icons/SetupLink";
 import AddressLink from "../Atom/icons/AddressLink";
 import Frame from "../Frame";
-import ImageContainer from "../ImageContainer";
+import ImageContainer from "../Atom/ImageContainer";
 import SimpleText from "../Atom/SimpleText";
 
 const name: string = "Shunichiro";

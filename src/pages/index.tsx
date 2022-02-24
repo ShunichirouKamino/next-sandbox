@@ -1,7 +1,8 @@
 import { GetStaticProps } from "next";
-import Header from "../components/Header";
+import Footer from "../components/Footer";
+import Header from "../components/Molecules/Header";
 import Body from "../components/ResultTable/Body/Body";
-import SideBar from "../components/SideBar";
+import SideBar from "../components/Molecules/SideBar";
 import { getData } from "../lib/csvData";
 
 /**
@@ -13,37 +14,14 @@ import { getData } from "../lib/csvData";
 const Home = ({ data }): JSX.Element => {
   return (
     <>
-      <div className="flex">
-        <div className="md:flex hidden w-2/5 shrink-1">
-          <SideBar></SideBar>
-        </div>
-        <main className="w-full">
+      <div className="flex flex-col min-h-screen">
+        <main className="flex-grow w-full">
           <Header></Header>
           <Body></Body>
         </main>
+        <Footer></Footer>
       </div>
     </>
-    // <Layout home>
-    //   <Head>
-    //     <title>{siteTitle}</title>
-    //   </Head>
-    //   <section>
-    //     <h2>Blog</h2>
-    //     <ul>
-    //       {allPostsData.map(({ blogId, date, title }) => (
-    //         <li key={blogId}>
-    //           <Link href={`/posts/${blogId}`}>
-    //             <a>{title}</a>
-    //           </Link>
-    //           <br />
-    //           <small>
-    //             <Date dateString={date} />
-    //           </small>
-    //         </li>
-    //       ))}
-    //     </ul>
-    //   </section>
-    // </Layout>
   );
 };
 
