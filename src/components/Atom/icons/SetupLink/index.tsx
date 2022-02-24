@@ -7,7 +7,7 @@ export type SetupLinkProps = {
 
 const SetupLink: React.FC<SetupLinkProps> = (props): JSX.Element => {
   return (
-    <div className="cursor-pointer">
+    <div className="cursor-pointer inline-block">
       <Link href={props.link}>
         <Setup viewBox="0 0 24 24" className="h-6 w-6" />
       </Link>

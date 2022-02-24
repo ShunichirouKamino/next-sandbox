@@ -8,7 +8,7 @@ export type HumanLinkProps = {
 //https://github.com/ubie-oss/ubie-icons/blob/main/assets/gender-human.svg
 const HumanLink: React.FC<HumanLinkProps> = (props): JSX.Element => {
   return (
-    <div className="cursor-pointer">
+    <div className="cursor-pointer inline-block">
       <Link href={props.link}>
         <GenderHuman viewBox="0 0 24 24" className="h-6 w-6" />
       </Link>

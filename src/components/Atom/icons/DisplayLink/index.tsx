@@ -7,7 +7,7 @@ export type DisplayLinkProps = {
 
 const DisplayLink: React.FC<DisplayLinkProps> = (props): JSX.Element => {
   return (
-    <div className="cursor-pointer">
+    <div className="cursor-pointer inline-block">
       <Link href={props.link}>
         <Display viewBox="0 0 24 24" className="h-6 w-6" />
       </Link>

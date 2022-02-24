@@ -8,7 +8,7 @@ export type AccountLinkProps = {
 //https://github.com/ubie-oss/ubie-icons/blob/main/assets/account.svg
 const AccountLink: React.FC<AccountLinkProps> = (props): JSX.Element => {
   return (
-    <div className="cursor-pointer">
+    <div className="cursor-pointer inline-block">
       <Link href={props.link}>
         <Account viewBox="0 0 24 24" className="h-6 w-6" />
       </Link>

@@ -6,6 +6,7 @@ import { getRankPercent, getRankTimes } from "../lib/calc";
 import { getData } from "../lib/csvData";
 import { MemberRankType } from "../types/result";
 import ResultTable from "../components/ResultTable";
+import Footer from "../components/Footer";
 
 /**
  * ResultPage表示用SSGファンクション
@@ -29,15 +30,13 @@ const ResultPage = ({ data }): JSX.Element => {
 
   return (
     <>
-      <div className="flex">
-        <div className="md:flex hidden w-2/5">
-          <SideBar></SideBar>
-        </div>
-        <main className="w-full">
+      <div className="flex flex-col min-h-screen">
+        <main className="flex-grow w-full">
           <Header></Header>
           <RankResultPage memberRankType={membersRanks}></RankResultPage>
           <ResultTable members={data.header} results={data.row}></ResultTable>
         </main>
+        <Footer></Footer>
       </div>
     </>
   );
