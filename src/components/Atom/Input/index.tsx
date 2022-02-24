@@ -6,7 +6,7 @@ export type InputBaseProps = {
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   direction: number;
   index: number;
-  handleValue?: (...e: any) => void;
+  handleValue?: (...e: any) => void; // handleChangeに合わせて実施したい処理
 };
 
 // TODO handleValueを別出しした上位コンポーネント作る
@@ -18,15 +18,23 @@ const InputBase: React.FC<InputBaseProps> = ({
   direction,
   index,
   handleValue,
+  handleChange,
 }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    handleValue(direction, index, Number(e.target.value));
-  };
+  let thisHandleChange;
+  if (handleChange) {
+    thisHandleChange = handleChange;
+  } else {
+    thisHandleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+      if (handleValue) {
+        handleValue(direction, index, Number(e.target.value));
+      }
+    };
+  }
   return (
     <>
       <div className="py-2 px-2">
         <input
-          onChange={handleChange}
+          onChange={thisHandleChange}
           type={type}
           value={value}
           placeholder={placeholder}
