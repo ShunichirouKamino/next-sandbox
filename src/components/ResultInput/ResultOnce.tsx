@@ -25,14 +25,14 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
   return (
     <>
       <div className="flex items-center">
-        <div className="w-1/8">
+        <div className="w-1/8 shrink-0">
           <PlusButton onClick={onClickPlus} index={index}></PlusButton>
         </div>
-        <div className="w-1/8">
+        <div className="w-1/8 shrink-0">
           <RemoveButton onClick={onClickMinus} index={index}></RemoveButton>
         </div>
-        <div className="flex w-full">
-          <div className="w-1/4">
+        <div className="flex w-full shrink-1">
+          <div className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord.resultOnce[0])}
               type={"number"}
@@ -42,7 +42,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               handleValue={handleValue}
             ></InputBase>
           </div>
-          <div className="w-1/4">
+          <div className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord.resultOnce[1])}
               type={"number"}
@@ -52,7 +52,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               handleValue={handleValue}
             ></InputBase>
           </div>
-          <div className="w-1/4">
+          <div className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord.resultOnce[2])}
               type={"number"}
@@ -62,7 +62,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               handleValue={handleValue}
             ></InputBase>
           </div>
-          <div className="w-1/4">
+          <div className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord.resultOnce[3])}
               type={"number"}

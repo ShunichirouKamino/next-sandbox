@@ -20,7 +20,6 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
     };
     inputState.splice(addTimes, 0, addInputRecord);
     const newInputState = [...inputState];
-    console.log(newInputState);
     setInputState(newInputState);
   };
 
@@ -29,9 +28,7 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
   ): void => {
     e.preventDefault();
     const removeTimes = Number(e.currentTarget.getAttribute("data-num"));
-    console.log(removeTimes);
     const newInputState = inputState.filter((i, index) => index != removeTimes);
-    console.log(newInputState);
     setInputState(newInputState);
   };
 
