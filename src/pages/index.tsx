@@ -4,6 +4,8 @@ import Header from "../components/Molecules/Header";
 import Body from "../components/ResultTable/Body/Body";
 import SideBar from "../components/Molecules/SideBar";
 import { getData } from "../lib/csvData";
+import ResultPage from "./result";
+import ResultFetch from "../graphql/ResultFetch";
 
 /**
  * Homeページ表示用SSGファンクション
@@ -17,7 +19,7 @@ const Home = ({ data }): JSX.Element => {
       <div className="flex flex-col min-h-screen">
         <main className="flex-grow w-full">
           <Header></Header>
-          <Body></Body>
+          <ResultFetch></ResultFetch>
         </main>
         <Footer></Footer>
       </div>
