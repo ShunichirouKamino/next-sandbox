@@ -1,0 +1,12 @@
+type Result {
+  id: ID!
+  date: Date!
+  label: String!
+  name: String!
+  result: Float!
+}
+
+type Query {
+  allResults: [Result!]
+  findResultsByName(name: String!): [Result!]
+}

@@ -1,0 +1,11 @@
+query FindAllResults {
+  findResultsByName(name: "shunichiro") {
+    data {
+      _id
+      date
+      label
+      name
+      result
+    }
+  }
+}
