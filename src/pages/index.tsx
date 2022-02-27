@@ -1,11 +1,12 @@
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import Footer from "../components/Footer";
 import Header from "../components/Molecules/Header";
-import Body from "../components/ResultTable/Body/Body";
-import SideBar from "../components/Molecules/SideBar";
 import { getData } from "../lib/csvData";
 import ResultPage from "./result";
-import ResultFetch from "../graphql/ResultFetch";
+import ResultList, { ResultType } from "../graphql/ResultQuery";
+import findResultsByName from "../graphql/ResultQuery";
+import ProviderClient from "../graphql/ProviderClient";
+import ResultQuery from "../graphql/ResultQuery";
 
 /**
  * Homeページ表示用SSGファンクション
@@ -13,32 +14,20 @@ import ResultFetch from "../graphql/ResultFetch";
  * @param data 未使用
  * @returns Homeページの{@link JSX.Element}
  */
-const Home = ({ data }): JSX.Element => {
+const Home = (): JSX.Element => {
   return (
     <>
-      <div className="flex flex-col min-h-screen">
-        <main className="flex-grow w-full">
-          <Header></Header>
-          <ResultFetch></ResultFetch>
-        </main>
-        <Footer></Footer>
-      </div>
+      <ProviderClient>
+        <div className="flex flex-col min-h-screen">
+          <main className="flex-grow w-full">
+            <Header></Header>
+            <ResultQuery></ResultQuery>
+          </main>
+          <Footer></Footer>
+        </div>
+      </ProviderClient>
     </>
   );
-};
-
-/**
- * {@linkcode Home}ページSSGへの値取得用のファンクション
- *
- * @returns homeに表示するブログ記事リスト
- */
-export const getStaticProps: GetStaticProps = async () => {
-  const data = getData();
-  return {
-    props: {
-      data,
-    },
-  };
 };
 
 export default Home;
