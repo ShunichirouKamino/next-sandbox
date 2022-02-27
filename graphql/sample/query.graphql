@@ -5,7 +5,7 @@ query FindAllResults {
       date
       label
       name
-      result
+      score
     }
   }
 }

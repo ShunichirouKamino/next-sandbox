@@ -1,12 +1,14 @@
 type Result {
   id: ID!
-  date: Date!
   label: String!
+  date: Date!
   name: String!
-  result: Float!
+  score: Float!
 }
 
 type Query {
   allResults: [Result!]
+  findResultsByLabel(label: String!): [Result!]
+  findResultsByDate(date: Date!): [Result!]
   findResultsByName(name: String!): [Result!]
 }
