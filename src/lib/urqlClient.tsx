@@ -5,6 +5,7 @@ import {
   fetchExchange,
   ssrExchange,
 } from "@urql/core";
+import { ClientOptions } from "urql";
 
 const isServerSide = typeof window === "undefined";
 
@@ -14,7 +15,7 @@ const ssrCache = ssrExchange({
   //initialState: !isServerSide ? window.__URQL_DATA__ : undefined,
 });
 
-const client = createClient({
+const clientOptions: ClientOptions = {
   url: "https://graphql.fauna.com/graphql",
   fetchOptions: () => {
     const token = process.env.NEXT_PUBLIC_GITHUB_PERSONAL_ACCESSTOKEN;
@@ -22,7 +23,6 @@ const client = createClient({
       ? {
           headers: {
             Authorization: `Bearer ${token}`,
-            Accept: "application/vnd.github.packages-preview+json",
           },
         }
       : {};
@@ -33,6 +33,8 @@ const client = createClient({
     ssrCache, // Add `ssr` in front of the `fetchExchange`
     fetchExchange,
   ],
-});
+};
 
-export { client, ssrCache };
+const client = createClient(clientOptions);
+
+export { client, ssrCache, clientOptions };

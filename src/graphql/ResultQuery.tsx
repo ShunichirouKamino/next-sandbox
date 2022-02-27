@@ -1,17 +1,17 @@
 import { useQuery } from "urql";
 
 export const findResultByNameQuery = `
-query FindAllResults {
-  findResultsByName(name: "shunichiro") {
-    data {
-      _id
-      date
-      label
-      name
-      result
+  query FindAllResults {
+    findResultsByName(name: "shunichiro") {
+      data {
+        _id
+        date
+        label
+        name
+        result
+      }
     }
   }
-}
 `;
 
 export type ResultType = {

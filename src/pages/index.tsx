@@ -1,27 +1,28 @@
-import React, { useState } from "react";
-import { Provider, createClient, useQuery } from "urql";
-import { client } from "../lib/urqlClient";
+import { GetServerSideProps, NextPage } from "next";
+import { initUrqlClient, withUrqlClient } from "next-urql";
+import React from "react";
+import { useQuery, ssrExchange, ClientOptions } from "urql";
+import { findResultByNameQuery } from "../graphql/ResultQuery";
+import { clientOptions } from "../lib/urqlClient";
 
-export const findResultByNameQuery = `
-  query FindAllResults {
-    findResultsByName(name: "shunichiro") {
-      data {
-        _id
-        date
-        label
-        name
-        result
-      }
-    }
-  }
-`;
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const ssrCache = ssrExchange({ isClient: false });
+  const client = initUrqlClient(clientOptions, false);
 
-function Countries() {
+  await client.query(findResultByNameQuery).toPromise;
+
+  return {
+    props: {
+      urlState: ssrCache.extractData(),
+    },
+    //revalidate: 600,
+  };
+};
+
+const Home: NextPage = (): JSX.Element => {
   const [res] = useQuery({
     query: findResultByNameQuery,
   });
-
-  const [result, setResult] = useState(null);
 
   if (res.fetching) {
     return <div>...loading</div>;
@@ -33,24 +34,14 @@ function Countries() {
 
   return (
     <div>
-      <div>
-        {res.data.findResultsByName.data.map((c) => (
-          <div key={c.code} onClick={() => setResult(c.code)}>
-            {c.name}
-          </div>
-        ))}
-      </div>
+      {res.data.findResultsByName.data.map((c) => (
+        <div key={c.code}>{c.name}</div>
+      ))}
     </div>
   );
-}
+};
 
-export default function App() {
-  return (
-    <Provider value={client}>
-      <div className="App">
-        <h1>Urql example</h1>
-        <Countries />
-      </div>
-    </Provider>
-  );
-}
+export default withUrqlClient(
+  (ssr) => clientOptions,
+  { ssr: false } // Important so we don't wrap our component in getInitialProps
+)(Home);
