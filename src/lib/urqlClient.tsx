@@ -18,7 +18,7 @@ const ssrCache = ssrExchange({
 const clientOptions: ClientOptions = {
   url: "https://graphql.fauna.com/graphql",
   fetchOptions: () => {
-    const token = process.env.NEXT_PUBLIC_GITHUB_PERSONAL_ACCESSTOKEN;
+    const token = process.env.NEXT_PUBLIC_FAUNA_ACCESSTOKEN;
     return token
       ? {
           headers: {

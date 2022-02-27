@@ -32,11 +32,17 @@ const Home: NextPage = (): JSX.Element => {
     return <div>error: {res.error.message}</div>;
   }
 
+  const results = res.data.findResultsByName.data;
+
   return (
     <div>
-      {res.data.findResultsByName.data.map((c) => (
-        <div key={c.code}>{c.name}</div>
-      ))}
+      {results ? (
+        res.data.findResultsByName.data.map((c) => (
+          <div key={c.code}>{c.name}</div>
+        ))
+      ) : (
+        <div>not found</div>
+      )}
     </div>
   );
 };
