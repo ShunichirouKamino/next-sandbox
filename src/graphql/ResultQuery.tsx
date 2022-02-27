@@ -1,6 +1,6 @@
 import { useQuery } from "urql";
 
-const getQuery = `
+export const findResultByNameQuery = `
 query FindAllResults {
   findResultsByName(name: "shunichiro") {
     data {
@@ -21,16 +21,15 @@ export type ResultType = {
   result: number;
 };
 
-const findResultsByName = ({ limit = 10 }): JSX.Element => {
-  const [results] = useQuery({
-    query: getQuery,
-    variables: { limit },
+const findResultsByName = (): JSX.Element => {
+  const [{ data, fetching, error }] = useQuery({
+    query: findResultByNameQuery,
   });
 
-  if (results.fetching) return <>...loading</>;
-  if (results.error) return <>{results.error.message}</>;
+  if (fetching) return <>...loading</>;
+  if (error) return <>{error.message}</>;
 
-  const resultsList: ResultType[] = results.data.data;
+  const resultsList: ResultType[] = data.data;
   console.log(resultsList);
 
   return (

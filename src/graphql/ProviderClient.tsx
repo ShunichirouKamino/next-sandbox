@@ -2,10 +2,16 @@ import { Provider, createClient, Client } from "urql";
 
 const client: Client = createClient({
   url: "https://graphql.fauna.com/graphql",
-  fetchOptions: {
-    headers: {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_PERSONAL_ACCESSTOKEN}`,
-    },
+  fetchOptions: () => {
+    const token = process.env.NEXT_PUBLIC_GITHUB_PERSONAL_ACCESSTOKEN;
+    return token
+      ? {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/vnd.github.packages-preview+json",
+          },
+        }
+      : {};
   },
 });
 

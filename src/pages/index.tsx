@@ -1,33 +1,56 @@
-import { GetServerSideProps, GetStaticProps } from "next";
-import Footer from "../components/Footer";
-import Header from "../components/Molecules/Header";
-import { getData } from "../lib/csvData";
-import ResultPage from "./result";
-import ResultList, { ResultType } from "../graphql/ResultQuery";
-import findResultsByName from "../graphql/ResultQuery";
-import ProviderClient from "../graphql/ProviderClient";
-import ResultQuery from "../graphql/ResultQuery";
+import React, { useState } from "react";
+import { Provider, createClient, useQuery } from "urql";
+import { client } from "../lib/urqlClient";
 
-/**
- * Homeページ表示用SSGファンクション
- *
- * @param data 未使用
- * @returns Homeページの{@link JSX.Element}
- */
-const Home = (): JSX.Element => {
+export const findResultByNameQuery = `
+  query FindAllResults {
+    findResultsByName(name: "shunichiro") {
+      data {
+        _id
+        date
+        label
+        name
+        result
+      }
+    }
+  }
+`;
+
+function Countries() {
+  const [res] = useQuery({
+    query: findResultByNameQuery,
+  });
+
+  const [result, setResult] = useState(null);
+
+  if (res.fetching) {
+    return <div>...loading</div>;
+  }
+
+  if (res.error) {
+    return <div>error: {res.error.message}</div>;
+  }
+
   return (
-    <>
-      <ProviderClient>
-        <div className="flex flex-col min-h-screen">
-          <main className="flex-grow w-full">
-            <Header></Header>
-            <ResultQuery></ResultQuery>
-          </main>
-          <Footer></Footer>
-        </div>
-      </ProviderClient>
-    </>
+    <div>
+      <div>
+        {res.data.findResultsByName.data.map((c) => (
+          <div key={c.code} onClick={() => setResult(c.code)}>
+            {c.name}
+          </div>
+        ))}
+      </div>
+    </div>
   );
-};
+}
 
-export default Home;
+export default function App() {
+  return (
+    <Provider value={client}>
+      <div className="App">
+        <h1>Urql example</h1>
+        <Countries />
+      </div>
+    </Provider>
+  );
+}
