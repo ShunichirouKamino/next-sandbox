@@ -6,7 +6,7 @@ export const findResultByNameQuery = `
         date
         label
         name
-        result
+        score
       }
     }
   }
