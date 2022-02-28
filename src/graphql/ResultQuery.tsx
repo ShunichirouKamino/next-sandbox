@@ -12,7 +12,7 @@ export const findEachResultByName = gql`
 `;
 
 export const createResultMutation = gql`
-  mutation CreateResult($date: Date, $label: String) {
+  mutation CreateResult($date: Date!, $label: String!) {
     createResult(
       data: {
         id: 1

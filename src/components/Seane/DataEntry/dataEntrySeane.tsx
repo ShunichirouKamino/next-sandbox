@@ -34,9 +34,10 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
 
   const submit = async () => {
     const valiables = {
-      date: match.date,
+      date: match.date.toISOString().split("T")[0],
       label: match.label,
     };
+    alert(valiables.date);
     await executeCreateMutation(valiables).then((res) => {
       if (res.error) {
         alert(res.error);
