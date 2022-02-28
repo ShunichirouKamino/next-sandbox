@@ -1,5 +1,11 @@
 import { useRecoilState } from "recoil";
-import { memberState } from "../../../store/atoms/matchResult";
+import { useMutation } from "urql";
+import { createResultMutation } from "../../../graphql/ResultQuery";
+import {
+  labelState,
+  memberState,
+  resultState,
+} from "../../../store/atoms/matchResult";
 import Footer from "../../Footer";
 import InputResultLabel from "../../InputResultLabel";
 import Header from "../../Molecules/Header";
@@ -21,6 +27,20 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
 }): JSX.Element => {
   const [members, setMembers] = useRecoilState(memberState);
   setMembers(data.header);
+  const [results, setResults] = useRecoilState(resultState);
+  const [labels, setLabels] = useRecoilState(labelState);
+  const [createdState, executeCreateMutation] =
+    useMutation(createResultMutation);
+
+  const submit = () => {
+    const valiables = {};
+    executeCreateMutation(valiables).then((result) => {
+      if (result.error) {
+        console.error("Oh no!", result.error);
+      }
+    });
+  };
+
   return (
     <>
       <div className="flex flex-col min-h-screen">

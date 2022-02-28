@@ -1,5 +1,6 @@
 import InputBase from "../Atom/Input";
 import MyDatePicker from "../Atom/MyDatePicker";
+import SimpleButton from "../Atom/SimpleButton";
 import SimpleText from "../Atom/SimpleText";
 
 export type InputResultLabelProps = {
@@ -24,7 +25,9 @@ const InputResultLabel: React.FC<InputResultLabelProps> = ({
   return (
     <>
       <div className="flex items-center">
-        <div className="w-20 shrink-0 invisible"></div>
+        <div className="w-20 shrink-0">
+          <SimpleButton onClick={null} text="Save"></SimpleButton>
+        </div>
         <div className="flex w-full shrink-1 justify-center">
           <SimpleText text={"Label"} align={"text-center"}></SimpleText>
         </div>
