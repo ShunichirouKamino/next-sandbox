@@ -2,6 +2,8 @@ import { GetStaticProps } from "next";
 import { getData } from "../lib/csvData";
 import { RecoilRoot } from "recoil";
 import DataEntrySeane from "../components/Seane/DataEntry/dataEntrySeane";
+import { withUrqlClient } from "next-urql";
+import { clientOptions } from "../lib/urqlClient";
 
 /**
  * DataEntryPage表示用SSGファンクション
@@ -33,4 +35,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default DataEntryPage;
+export default withUrqlClient(
+  (ssr) => clientOptions,
+  { ssr: false } // Important so we don't wrap our component in getInitialProps
+)(DataEntryPage);

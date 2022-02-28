@@ -32,13 +32,22 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
   const [createdState, executeCreateMutation] =
     useMutation(createResultMutation);
 
-  const submit = () => {
+  const submit = async () => {
     const valiables = {};
-    executeCreateMutation(valiables).then((result) => {
+    await executeCreateMutation(valiables).then((result) => {
+      alert(result.error);
       if (result.error) {
         console.error("Oh no!", result.error);
       }
     });
+  };
+
+  const onClick = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+    await submit();
+    alert("submit終わり");
   };
 
   return (
@@ -47,7 +56,7 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
         <main className="flex-grow w-full">
           <Header></Header>
           <div className="w-full">
-            <InputResultLabel></InputResultLabel>
+            <InputResultLabel onClick={onClick}></InputResultLabel>
           </div>
           <div className="w-full">
             <MembersSelectBox members={members}></MembersSelectBox>

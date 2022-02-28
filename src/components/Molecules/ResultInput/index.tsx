@@ -9,9 +9,7 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
     deleted: false,
   };
   const [inputState, setInputState] = useState([initInputRecord]);
-  const onClickPlus = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): void => {
+  const onClickPlus = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const addTimes = Number(e.currentTarget.getAttribute("data-num")) + 1;
     const addInputRecord: InputRecordType = {
@@ -23,9 +21,7 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
     setInputState(newInputState);
   };
 
-  const onClickMinus = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): void => {
+  const onClickMinus = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (inputState.length == 1) {
       return;
