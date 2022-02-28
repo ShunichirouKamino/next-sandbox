@@ -12,21 +12,9 @@ export const findEachResultByName = gql`
 `;
 
 export const createResultMutation = gql`
-  mutation CreateResult($date: Date!, $label: String!) {
+  mutation CreateResult($date: Date!, $label: String!, $each: [EachInput!]!) {
     createResult(
-      data: {
-        id: 1
-        date: $date
-        label: $label
-        each: {
-          create: [
-            { name: "shunichiro", score: 12.1 }
-            { name: "A", score: 51.2 }
-            { name: "B", score: -9.9 }
-            { name: "C", score: -53.4 }
-          ]
-        }
-      }
+      data: { id: 1, date: $date, label: $label, each: { create: $each } }
     ) {
       date
       label
@@ -34,7 +22,7 @@ export const createResultMutation = gql`
   }
 `;
 
-export type EachResultType = {
+export type EachResult = {
   name: string;
   result: number;
 };

@@ -36,8 +36,13 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
     const valiables = {
       date: match.date.toISOString().split("T")[0],
       label: match.label,
+      each: [
+        { name: "D", score: 13.0 },
+        { name: "A", score: 51.0 },
+        { name: "B", score: -9.7 },
+        { name: "C", score: -54.3 },
+      ],
     };
-    alert(valiables.date);
     await executeCreateMutation(valiables).then((res) => {
       if (res.error) {
         alert(res.error);

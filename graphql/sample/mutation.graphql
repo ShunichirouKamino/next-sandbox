@@ -6,7 +6,7 @@ mutation CreateResult {
       label: "first"
       each: {
         create: [
-          { name: "shunichiro", score: 12.0 }
+          { name: "D", score: 12.0 }
           { name: "A", score: 51.1 }
           { name: "B", score: -9.8 }
           { name: "C", score: -53.3 }
@@ -20,7 +20,7 @@ mutation CreateResult {
 }
 
 mutation CreateEach {
-  createEach(data: { name: "shunichiro", score: 12.0 }) {
+  createEach(data: { name: "D", score: 12.0 }) {
     name
     score
   }
