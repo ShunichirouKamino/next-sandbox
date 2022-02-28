@@ -23,8 +23,7 @@ const DataEntryPage = ({ data }): JSX.Element => {
           <Header></Header>
           <div className="w-full">
             <div className="flex items-center">
-              <div className="w-10 shrink-0 invisible"></div>
-              <div className="w-10 shrink-0 invisible"></div>
+              <div className="w-20 shrink-0 invisible"></div>
               <div className="flex w-full shrink-1 justify-center">
                 <SimpleText text={"Label"} align={"text-center"}></SimpleText>
               </div>
@@ -35,8 +34,7 @@ const DataEntryPage = ({ data }): JSX.Element => {
           </div>
           <div className="w-full">
             <div className="flex items-center">
-              <div className="w-10 shrink-0 invisible"></div>
-              <div className="w-10 shrink-0 invisible"></div>
+              <div className="w-20 shrink-0 invisible"></div>
               <div className="flex w-full shrink-1 justify-center">
                 <SimpleText text={"Date"} align={"text-center"}></SimpleText>
               </div>

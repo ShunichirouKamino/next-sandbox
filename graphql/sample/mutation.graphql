@@ -1,15 +1,27 @@
-# Write your query or mutation here
-mutation CreateAResult {
+mutation CreateResult {
   createResult(
     data: {
       id: 1
       date: "2022-02-25"
       label: "first"
-      name: "shunichiro"
-      score: 12.0
+      each: {
+        create: [
+          { name: "shunichiro", score: 12.0 }
+          { name: "A", score: 51.1 }
+          { name: "B", score: -9.8 }
+          { name: "C", score: -53.3 }
+        ]
+      }
     }
   ) {
     date
     label
+  }
+}
+
+mutation CreateEach {
+  createEach(data: { name: "shunichiro", score: 12.0 }) {
+    name
+    score
   }
 }
