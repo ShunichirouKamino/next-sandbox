@@ -1,8 +1,8 @@
-export const findEachResultByName = `
+import { gql } from "graphql-request";
+
+export const findEachResultByName = gql`
   query FindEachResultByName($name: String!) {
-    findEachResultByName(
-      name: $name
-    ) {
+    findEachResultByName(name: $name) {
       data {
         name
         score
@@ -11,7 +11,7 @@ export const findEachResultByName = `
   }
 `;
 
-export const createResultMutation = `
+export const createResultMutation = gql`
   mutation CreateResult {
     createResult(
       data: {
