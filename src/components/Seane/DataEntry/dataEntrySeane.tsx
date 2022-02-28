@@ -25,8 +25,9 @@ export type DataEntrySeaneProps = {
 const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
   data,
 }): JSX.Element => {
-  const [members, setMembers] = useRecoilState(memberState);
-  setMembers(data.header);
+  // 外から渡す
+  const selectMembers = ["A", "B", "C", "D", "E", "F"];
+  const members = useRecoilValue(memberState);
   const [results, setResults] = useRecoilState(resultState);
   const match = useRecoilValue(matchState);
   const [createdState, executeCreateMutation] =
@@ -37,10 +38,10 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
       date: match.date.toISOString().split("T")[0],
       label: match.label,
       each: [
-        { name: "D", score: 13.0 },
-        { name: "A", score: 51.0 },
-        { name: "B", score: -9.7 },
-        { name: "C", score: -54.3 },
+        { name: members[0], score: 13.0 },
+        { name: members[1], score: 51.0 },
+        { name: members[2], score: -9.7 },
+        { name: members[3], score: -54.3 },
       ],
     };
     await executeCreateMutation(valiables).then((res) => {
@@ -67,7 +68,7 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
             <InputResultLabel onClick={onClick}></InputResultLabel>
           </div>
           <div className="w-full">
-            <MembersSelectBox members={members}></MembersSelectBox>
+            <MembersSelectBox members={selectMembers}></MembersSelectBox>
             <ResultInput></ResultInput>
           </div>
         </main>

@@ -15,21 +15,13 @@ const SelectBox: React.FC<SelectBoxProp> = ({
         <select
           onChange={handleChange}
           className="form-select
-          h-12
-          w-full
-      appearance-none 
-      block 
-      px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding bg-no-repeat
+          h-12 w-full 
+      appearance-none block 
+      px-3 py-1.5 m-0 
+      text-base font-normal text-gray-700
+      bg-white bg-clip-padding bg-no-repeat 
       border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
+      rounded-lg transition ease-in-out
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         >
           {elements.map((e) => {
