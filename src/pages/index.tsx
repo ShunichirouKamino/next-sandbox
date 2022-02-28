@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextPage } from "next";
 import { initUrqlClient, withUrqlClient } from "next-urql";
 import React from "react";
-import { useQuery, ssrExchange, ClientOptions } from "urql";
+import { useQuery, ssrExchange } from "urql";
 import { findEachResultByName } from "../graphql/ResultQuery";
 import { clientOptions } from "../lib/urqlClient";
 
@@ -40,7 +40,11 @@ const Home: NextPage = (): JSX.Element => {
   return (
     <div>
       {results ? (
-        results.map((c) => <div key={c.code}>{c.name}</div>)
+        results.map((c) => (
+          <div key={c.code}>
+            {c.name} {c.score}
+          </div>
+        ))
       ) : (
         <div>not found</div>
       )}
