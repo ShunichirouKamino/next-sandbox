@@ -7,11 +7,11 @@ export const resultState = atom({
 });
 
 // Match Label
-export const labelState = atom({
+export const matchState = atom({
   key: "label",
   default: {
-    date: "2000-01-01",
     label: "example match",
+    date: new Date(),
   },
 });
 

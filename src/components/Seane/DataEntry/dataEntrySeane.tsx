@@ -1,8 +1,8 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { useMutation } from "urql";
 import { createResultMutation } from "../../../graphql/ResultQuery";
 import {
-  labelState,
+  matchState,
   memberState,
   resultState,
 } from "../../../store/atoms/matchResult";
@@ -28,16 +28,19 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
   const [members, setMembers] = useRecoilState(memberState);
   setMembers(data.header);
   const [results, setResults] = useRecoilState(resultState);
-  const [labels, setLabels] = useRecoilState(labelState);
+  const match = useRecoilValue(matchState);
   const [createdState, executeCreateMutation] =
     useMutation(createResultMutation);
 
   const submit = async () => {
-    const valiables = {};
-    await executeCreateMutation(valiables).then((result) => {
-      alert(result.error);
-      if (result.error) {
-        console.error("Oh no!", result.error);
+    const valiables = {
+      date: match.date,
+      label: match.label,
+    };
+    await executeCreateMutation(valiables).then((res) => {
+      if (res.error) {
+        alert(res.error);
+        return <div>error: {res.error.message}</div>;
       }
     });
   };
@@ -47,7 +50,6 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
   ) => {
     e.preventDefault();
     await submit();
-    alert("submit終わり");
   };
 
   return (

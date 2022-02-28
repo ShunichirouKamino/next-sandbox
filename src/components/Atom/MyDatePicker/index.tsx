@@ -1,16 +1,15 @@
-import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export type MyDatePickerProps = {};
+export type MyDatePickerProps = {
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  date?: Date;
+};
 
-const MyDatePicker: React.FC<MyDatePickerProps> = ({}): JSX.Element => {
-  const initialDate = new Date();
-  const [startDate, setStartDate] = useState(initialDate);
-  const handleChange = (date) => {
-    setStartDate(date);
-  };
-
+const MyDatePicker: React.FC<MyDatePickerProps> = ({
+  handleChange,
+  date,
+}): JSX.Element => {
   return (
     <>
       <div className="py-2 px-2">
@@ -21,7 +20,7 @@ const MyDatePicker: React.FC<MyDatePickerProps> = ({}): JSX.Element => {
           py-2 px-2 h-12 w-full 
           border border-solid border-gray-300 
           bg-white bg-clip-padding bg-no-repeat"
-          selected={startDate}
+          selected={date}
           onChange={handleChange}
         />
       </div>
