@@ -1,23 +1,19 @@
 import React, { useState } from "react";
-import ResultOnce, { InputRecordType } from "./ResultOnce";
+import { useRecoilState } from "recoil";
+import { resultState } from "../../../store/atoms/matchResult";
+import ResultOnce from "./ResultOnce";
 
 export type ResultInputProps = {};
 
 const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
-  const initInputRecord: InputRecordType = {
-    resultOnce: [0, 0, 0, 0],
-    deleted: false,
-  };
-  const [inputState, setInputState] = useState([initInputRecord]);
+  const [inputState, setInputState] = useRecoilState(resultState);
+
   const onClickPlus = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const addTimes = Number(e.currentTarget.getAttribute("data-num")) + 1;
-    const addInputRecord: InputRecordType = {
-      resultOnce: [0, 0, 0, 0],
-      deleted: false,
-    };
-    inputState.splice(addTimes, 0, addInputRecord);
+    const addInputRecord = [0, 0, 0, 0];
     const newInputState = [...inputState];
+    newInputState.splice(addTimes, 0, addInputRecord);
     setInputState(newInputState);
   };
 
@@ -36,8 +32,11 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
     index: number,
     value: number
   ): void => {
-    inputState[index].resultOnce[direction] = value;
     const newInputState = [...inputState];
+    const row = [...newInputState[index]];
+    row.splice(direction, 1, value);
+    newInputState.splice(index, 1, row);
+    console.log(newInputState);
     setInputState(newInputState);
   };
 

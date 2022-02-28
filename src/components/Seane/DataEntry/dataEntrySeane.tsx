@@ -28,27 +28,29 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
   // 外から渡す
   const selectMembers = ["A", "B", "C", "D", "E", "F"];
   const members = useRecoilValue(memberState);
-  const [results, setResults] = useRecoilState(resultState);
+  const results = useRecoilValue(resultState);
   const match = useRecoilValue(matchState);
   const [createdState, executeCreateMutation] =
     useMutation(createResultMutation);
 
   const submit = async () => {
-    const valiables = {
-      date: match.date.toISOString().split("T")[0],
-      label: match.label,
-      each: [
-        { name: members[0], score: 13.0 },
-        { name: members[1], score: 51.0 },
-        { name: members[2], score: -9.7 },
-        { name: members[3], score: -54.3 },
-      ],
-    };
-    await executeCreateMutation(valiables).then((res) => {
-      if (res.error) {
-        alert(res.error);
-        return <div>error: {res.error.message}</div>;
-      }
+    results.map(async (result) => {
+      const valiables = {
+        date: match.date.toISOString().split("T")[0],
+        label: match.label,
+        each: [
+          { name: members[0], score: result[0] },
+          { name: members[1], score: result[1] },
+          { name: members[2], score: result[2] },
+          { name: members[3], score: result[3] },
+        ],
+      };
+      await executeCreateMutation(valiables).then((res) => {
+        if (res.error) {
+          alert(res.error);
+          return <div>error: {res.error.message}</div>;
+        }
+      });
     });
   };
 

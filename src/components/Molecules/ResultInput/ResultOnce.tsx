@@ -5,14 +5,9 @@ import InputBase from "../../Atom/Input";
 export type ResultOnceProps = {
   onClickPlus: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   onClickMinus: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  inputRecord: InputRecordType;
+  inputRecord: number[];
   index: number;
   handleValue?: (...e: any) => void;
-};
-
-export type InputRecordType = {
-  resultOnce: number[];
-  deleted: boolean;
 };
 
 const ResultOnce: React.FC<ResultOnceProps> = ({
@@ -34,7 +29,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
         <div className="flex w-full shrink-1">
           <div className="w-1/4 shrink-1">
             <InputBase
-              value={String(inputRecord.resultOnce[0])}
+              value={String(inputRecord[0])}
               type={"number"}
               size={"h-12 w-full"}
               direction={0}
@@ -44,7 +39,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
           </div>
           <div className="w-1/4 shrink-1">
             <InputBase
-              value={String(inputRecord.resultOnce[1])}
+              value={String(inputRecord[1])}
               type={"number"}
               size={"h-12 w-full"}
               direction={1}
@@ -54,7 +49,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
           </div>
           <div className="w-1/4 shrink-1">
             <InputBase
-              value={String(inputRecord.resultOnce[2])}
+              value={String(inputRecord[2])}
               type={"number"}
               size={"h-12 w-full"}
               direction={2}
@@ -64,7 +59,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
           </div>
           <div className="w-1/4 shrink-1">
             <InputBase
-              value={String(inputRecord.resultOnce[3])}
+              value={String(inputRecord[3])}
               type={"number"}
               size={"h-12 w-full"}
               direction={3}
