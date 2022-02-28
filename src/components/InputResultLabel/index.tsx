@@ -18,7 +18,11 @@ const InputResultLabel: React.FC<InputResultLabelProps> = ({ onClick }) => {
           <SimpleText text={"Label"} align={"text-center"}></SimpleText>
         </div>
         <div className="flex w-full shrink-1 justify-center">
-          <InputBase size="h-12 w-full" type="text"></InputBase>
+          <InputBase
+            size="h-12 w-full"
+            type="text"
+            style="bg-white border border-solid border-gray-300 item-center rounded-lg px-2 py-2"
+          ></InputBase>
         </div>
       </div>
       <div className="flex items-center">

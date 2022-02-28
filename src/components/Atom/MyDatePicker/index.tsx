@@ -18,7 +18,6 @@ const MyDatePicker: React.FC<MyDatePickerProps> = ({}): JSX.Element => {
           className="
           item-center 
           rounded-lg 
-          outline-none 
           py-2 px-2 h-12 w-full 
           border border-solid border-gray-300 
           bg-white bg-clip-padding bg-no-repeat"

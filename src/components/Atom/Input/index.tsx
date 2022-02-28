@@ -19,7 +19,7 @@ const InputBase: React.FC<InputBaseProps> = ({
   value,
   direction,
   index,
-  style = "bg-gray-100 item-center rounded-lg outline-none px-2 py-2",
+  style = "bg-gray-100 item-center rounded-lg px-2 py-2",
   handleValue,
   handleChange,
 }) => {
