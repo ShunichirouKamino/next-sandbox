@@ -7,6 +7,7 @@ export type InputBaseProps = {
   direction?: number;
   index?: number;
   style?: string;
+  pettern?: string;
   handleValue?: (...e: any) => void; // handleChangeに合わせて実施したい処理
 };
 
@@ -22,6 +23,7 @@ const InputBase: React.FC<InputBaseProps> = ({
   style = "bg-gray-100 item-center rounded-lg px-2 py-2",
   handleValue,
   handleChange,
+  pettern,
 }) => {
   let thisHandleChange;
   if (handleChange) {
@@ -29,7 +31,7 @@ const InputBase: React.FC<InputBaseProps> = ({
   } else {
     thisHandleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
       if (handleValue) {
-        handleValue(direction, index, Number(e.target.value));
+        handleValue(direction, index, e.target.value);
       }
     };
   }
@@ -42,6 +44,7 @@ const InputBase: React.FC<InputBaseProps> = ({
           value={value}
           placeholder={placeholder}
           className={`${style}` + " " + `${size}`}
+          pattern={pettern}
         />
       </div>
     </>

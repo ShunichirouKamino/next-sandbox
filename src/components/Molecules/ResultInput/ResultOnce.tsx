@@ -5,7 +5,7 @@ import InputBase from "../../Atom/Input";
 export type ResultOnceProps = {
   onClickPlus: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   onClickMinus: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  inputRecord: number[];
+  inputRecord: string[];
   index: number;
   handleValue?: (...e: any) => void;
 };
@@ -17,6 +17,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
   index,
   handleValue,
 }): JSX.Element => {
+  const pettern = "^([1-9]d*|0)(.d+)?$";
   return (
     <>
       <div className="flex items-center">
@@ -30,41 +31,45 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
           <div className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord[0])}
-              type={"number"}
+              type={"text"}
               size={"h-12 w-full"}
               direction={0}
               index={index}
               handleValue={handleValue}
+              pettern={pettern}
             ></InputBase>
           </div>
           <div className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord[1])}
-              type={"number"}
+              type={"text"}
               size={"h-12 w-full"}
               direction={1}
               index={index}
               handleValue={handleValue}
+              pettern={pettern}
             ></InputBase>
           </div>
           <div className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord[2])}
-              type={"number"}
+              type={"text"}
               size={"h-12 w-full"}
               direction={2}
               index={index}
               handleValue={handleValue}
+              pettern={pettern}
             ></InputBase>
           </div>
           <div className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord[3])}
-              type={"number"}
+              type={"text"}
               size={"h-12 w-full"}
               direction={3}
               index={index}
               handleValue={handleValue}
+              pettern={pettern}
             ></InputBase>
           </div>
         </div>

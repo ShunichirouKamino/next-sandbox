@@ -11,7 +11,7 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
   const onClickPlus = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const addTimes = Number(e.currentTarget.getAttribute("data-num")) + 1;
-    const addInputRecord = [0, 0, 0, 0];
+    const addInputRecord: string[] = ["", "", "", ""];
     const newInputState = [...inputState];
     newInputState.splice(addTimes, 0, addInputRecord);
     setInputState(newInputState);
@@ -30,13 +30,12 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
   const handleValue = (
     direction: number,
     index: number,
-    value: number
+    value: string
   ): void => {
     const newInputState = [...inputState];
     const row = [...newInputState[index]];
     row.splice(direction, 1, value);
     newInputState.splice(index, 1, row);
-    console.log(newInputState);
     setInputState(newInputState);
   };
 

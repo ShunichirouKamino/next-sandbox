@@ -3,7 +3,7 @@ import { atom } from "recoil";
 // Match Result
 export const resultState = atom({
   key: "mutchResult",
-  default: [[0, 0, 0, 0]],
+  default: [["", "", "", ""]] as string[][],
 });
 
 // Match Label
