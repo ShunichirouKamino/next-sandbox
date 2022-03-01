@@ -17,7 +17,10 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
   index,
   handleValue,
 }): JSX.Element => {
-  const pettern = "^([1-9]d*|0)(.d+)?$";
+  const pettern = "^[+-]?\\d{1,3}$";
+  const validator = (text: string): boolean => {
+    return new RegExp(pettern).test(text);
+  };
   return (
     <>
       <div className="flex items-center">
@@ -36,7 +39,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               direction={0}
               index={index}
               handleValue={handleValue}
-              pettern={pettern}
+              validator={validator}
             ></InputBase>
           </div>
           <div className="w-1/4 shrink-1">
@@ -47,7 +50,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               direction={1}
               index={index}
               handleValue={handleValue}
-              pettern={pettern}
+              validator={validator}
             ></InputBase>
           </div>
           <div className="w-1/4 shrink-1">
@@ -58,7 +61,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               direction={2}
               index={index}
               handleValue={handleValue}
-              pettern={pettern}
+              validator={validator}
             ></InputBase>
           </div>
           <div className="w-1/4 shrink-1">
@@ -69,7 +72,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               direction={3}
               index={index}
               handleValue={handleValue}
-              pettern={pettern}
+              validator={validator}
             ></InputBase>
           </div>
         </div>
