@@ -1,5 +1,3 @@
-import { useRecoilState } from "recoil";
-import { memberState } from "../../../store/atoms/matchResult";
 import MemberSelectBox from "./MemberSelectBox";
 
 /**

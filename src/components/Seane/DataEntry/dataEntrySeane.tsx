@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { useMutation } from "urql";
 import { createResultMutation } from "../../../graphql/ResultQuery";
 import {
