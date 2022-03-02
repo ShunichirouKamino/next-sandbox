@@ -18,9 +18,10 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
   handleValue,
 }): JSX.Element => {
   const pettern = "^[+-]?\\d{1,3}$";
-  const validator = (text: string): boolean => {
+  const cellValidator = (text: string): boolean => {
     return new RegExp(pettern).test(text);
   };
+
   return (
     <>
       <p className="flex items-center">
@@ -39,7 +40,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               direction={0}
               index={index}
               handleValue={handleValue}
-              validator={validator}
+              validator={cellValidator}
             ></InputBase>
           </span>
           <span className="w-1/4 shrink-1">
@@ -50,7 +51,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               direction={1}
               index={index}
               handleValue={handleValue}
-              validator={validator}
+              validator={cellValidator}
             ></InputBase>
           </span>
           <span className="w-1/4 shrink-1">
@@ -61,7 +62,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               direction={2}
               index={index}
               handleValue={handleValue}
-              validator={validator}
+              validator={cellValidator}
             ></InputBase>
           </span>
           <span className="w-1/4 shrink-1">
@@ -72,7 +73,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               direction={3}
               index={index}
               handleValue={handleValue}
-              validator={validator}
+              validator={cellValidator}
             ></InputBase>
           </span>
         </span>

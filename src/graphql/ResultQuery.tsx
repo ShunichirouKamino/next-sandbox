@@ -1,4 +1,5 @@
 import { gql } from "graphql-request";
+import { EachResultType } from "../types/result";
 
 export const findEachResultByName = gql`
   query FindEachResultByName($name: String!) {
@@ -21,8 +22,3 @@ export const createResultMutation = gql`
     }
   }
 `;
-
-export type EachResult = {
-  name: string;
-  result: number;
-};

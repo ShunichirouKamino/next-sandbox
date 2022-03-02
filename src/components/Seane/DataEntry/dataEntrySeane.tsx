@@ -6,6 +6,7 @@ import {
   memberState,
   resultState,
 } from "../../../store/atoms/matchResult";
+import { ResultType } from "../../../types/result";
 import Footer from "../../Footer";
 import InputResultLabel from "../../InputResultLabel";
 import Header from "../../Molecules/Header";
@@ -35,14 +36,14 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
 
   const submit = async () => {
     results.map(async (result) => {
-      const valiables = {
+      const valiables: ResultType = {
         date: match.date.toISOString().split("T")[0],
         label: match.label,
         each: [
-          { name: members[0], score: result[0] },
-          { name: members[1], score: result[1] },
-          { name: members[2], score: result[2] },
-          { name: members[3], score: result[3] },
+          { name: members[0], score: Number(result[0]) },
+          { name: members[1], score: Number(result[1]) },
+          { name: members[2], score: Number(result[2]) },
+          { name: members[3], score: Number(result[3]) },
         ],
       };
       await executeCreateMutation(valiables).then((res) => {
@@ -53,6 +54,8 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
       });
     });
   };
+
+  const validator = async () => {};
 
   const onClick = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>

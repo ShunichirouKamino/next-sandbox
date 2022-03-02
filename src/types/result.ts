@@ -1,10 +1,20 @@
 /**
+ * 対局一回に対する個人の結果です.
+ */
+export type EachResultType = {
+    name: string;
+    score: number;
+};
+
+/**
  * 対局一回に対する結果です.
  */
 export type ResultType = {
-    member: string;
-    result: number;
+    date: string;
+    label: string;
+    each: EachResultType[];
 };
+
 
 /**
  * 対局複数回に対する個人の各順位取得回数です.

@@ -1,19 +1,19 @@
-import { RankPercentSet, RankSet, ResultType } from "../types/result";
+import { RankPercentSet, RankSet, EachResultType } from "../types/result";
 
 /**
  * 複数局におけるそれぞれの順位の割合を返却します.
  *
- * @param member 対象参加者
+ * @param name 対象参加者
  * @param members 参加者の一覧
  * @param results 複数対戦の結果
  * @returns {@link RankPersentSet}
  */
 export const getRankPercent = (
-  member: string,
+  name: string,
   members: string[],
   results: number[][]
 ): RankPercentSet => {
-  const rankTimes = getRankTimes(member, members, results);
+  const rankTimes = getRankTimes(name, members, results);
   const resultLength =
     rankTimes.first + rankTimes.second + rankTimes.third + rankTimes.fourth;
   return {
@@ -27,19 +27,19 @@ export const getRankPercent = (
 /**
  * 複数局におけるそれぞれの順位の回数を返却します.
  *
- * @param member 対象参加者
+ * @param name 対象参加者
  * @param members 参加者の一覧
  * @param results 複数対戦の結果
  * @returns {@link RankSet}
  */
 export const getRankTimes = (
-  member: string,
+  name: string,
   members: string[],
   results: number[][]
 ): RankSet => {
   const sortedResults = sortResult(results, members);
   const rankList = sortedResults.map((sortedResult) => {
-    return sortedResult.findIndex((result) => result.member === member);
+    return sortedResult.findIndex((result) => result.name === name);
   });
   return {
     first: rankList.filter((r) => r === 0).length,
@@ -52,18 +52,18 @@ export const getRankTimes = (
 /**
  * 一局における1人の順位を返却します.
  *
- * @param member 対象参加者
+ * @param name 対象参加者
  * @param members 参加者の一覧
  * @param results 一局の結果
  * @returns 順位もしくは4を超える場合はundefined
  */
 export const getRank = (
-  member: string,
+  name: string,
   members: string[],
   results: number[]
 ): number | undefined => {
   const sorted = sortResult([results], members);
-  const rank = sorted[0].findIndex((l) => l.member === member);
+  const rank = sorted[0].findIndex((l) => l.name === name);
   return rank <= 4 ? rank : undefined;
 };
 
@@ -73,10 +73,10 @@ export const getRank = (
 export const sortResult = (
   results: number[][],
   members: string[]
-): ResultType[][] => {
+): EachResultType[][] => {
   const resultGrantedMembers = results.map((row) => {
     return members.map((m, index) => {
-      return { member: m, result: row[index] } as ResultType;
+      return { name: m, score: row[index] } as EachResultType;
     });
   });
 
@@ -85,6 +85,6 @@ export const sortResult = (
   });
 };
 
-const sortByResult = (a: ResultType, b: ResultType) => {
-  return a.result < b.result ? 1 : -1;
+const sortByResult = (a: EachResultType, b: EachResultType) => {
+  return a.score < b.score ? 1 : -1;
 };

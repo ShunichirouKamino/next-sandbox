@@ -35,8 +35,6 @@ const InputBase: React.FC<InputBaseProps> = ({
   } else {
     thisHandleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
       if (validator) {
-        console.log(e.target.value);
-        console.log(validator(e.target.value));
         setValidate(validator(e.target.value));
       }
       if (handleValue) {
