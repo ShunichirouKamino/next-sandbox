@@ -23,15 +23,15 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
   };
   return (
     <>
-      <div className="flex items-center">
-        <div className="w-10 shrink-0">
+      <p className="flex items-center">
+        <span className="w-10 shrink-0">
           <PlusButton onClick={onClickPlus} index={index}></PlusButton>
-        </div>
-        <div className="w-10 shrink-0">
+        </span>
+        <span className="w-10 shrink-0">
           <RemoveButton onClick={onClickMinus} index={index}></RemoveButton>
-        </div>
-        <div className="flex w-full shrink-1">
-          <div className="w-1/4 shrink-1">
+        </span>
+        <span className="flex w-full shrink-1">
+          <span className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord[0])}
               type={"text"}
@@ -41,8 +41,8 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               handleValue={handleValue}
               validator={validator}
             ></InputBase>
-          </div>
-          <div className="w-1/4 shrink-1">
+          </span>
+          <span className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord[1])}
               type={"text"}
@@ -52,8 +52,8 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               handleValue={handleValue}
               validator={validator}
             ></InputBase>
-          </div>
-          <div className="w-1/4 shrink-1">
+          </span>
+          <span className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord[2])}
               type={"text"}
@@ -63,8 +63,8 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               handleValue={handleValue}
               validator={validator}
             ></InputBase>
-          </div>
-          <div className="w-1/4 shrink-1">
+          </span>
+          <span className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord[3])}
               type={"text"}
@@ -74,9 +74,9 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               handleValue={handleValue}
               validator={validator}
             ></InputBase>
-          </div>
-        </div>
-      </div>
+          </span>
+        </span>
+      </p>
     </>
   );
 };

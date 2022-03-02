@@ -10,24 +10,24 @@ export type MembersSelectBoxProps = {
 const MembersSelectBox: React.FC<MembersSelectBoxProps> = ({ members }) => {
   return (
     <>
-      <div className="flex items-center">
-        <div className="w-10 shrink-0 invisible"></div>
-        <div className="w-10 shrink-0 invisible"></div>
+      <p className="flex items-center">
+        <span className="w-10 shrink-0 invisible"></span>
+        <span className="w-10 shrink-0 invisible"></span>
         <div className="flex w-full shrink-1">
-          <div className="w-1/4 shrink-0">
+          <span className="w-1/4 shrink-0">
             <MemberSelectBox elements={members} index={0}></MemberSelectBox>
-          </div>
-          <div className="w-1/4 shrink-0">
+          </span>
+          <span className="w-1/4 shrink-0">
             <MemberSelectBox elements={members} index={1}></MemberSelectBox>
-          </div>
-          <div className="w-1/4 shrink-0">
+          </span>
+          <span className="w-1/4 shrink-0">
             <MemberSelectBox elements={members} index={2}></MemberSelectBox>
-          </div>
-          <div className="w-1/4 shrink-0">
+          </span>
+          <span className="w-1/4 shrink-0">
             <MemberSelectBox elements={members} index={3}></MemberSelectBox>
-          </div>
+          </span>
         </div>
-      </div>
+      </p>
     </>
   );
 };
