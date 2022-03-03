@@ -11,7 +11,6 @@ import {
 } from "../../../store/atoms/matchResult";
 import { ResultType } from "../../../types/result";
 import SimpleButton from "../../Atom/SimpleButton";
-import SnackBar from "../../Atom/ToastProvider";
 import Footer from "../../Footer";
 import InputResultLabel from "../../InputResultLabel";
 import Header from "../../Molecules/Header";
@@ -107,11 +106,6 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
    */
   const isDuplicatedMembers = async (): Promise<boolean> => {
     const membersSet = new Set(members);
-    membersSet.forEach((m) => {
-      console.log(m);
-    });
-    const a = membersSet.size;
-    console.log(a);
     return membersSet.size !== members.length;
   };
 
