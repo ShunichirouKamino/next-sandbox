@@ -4,6 +4,7 @@ import { RecoilRoot } from "recoil";
 import DataEntrySeane from "../components/Seane/DataEntry/dataEntrySeane";
 import { withUrqlClient } from "next-urql";
 import { clientOptions } from "../lib/urqlClient";
+import { ToastProvider } from "react-toast-notifications";
 
 /**
  * DataEntryPage表示用SSGファンクション
@@ -12,10 +13,17 @@ import { clientOptions } from "../lib/urqlClient";
  * @returns DataEntryPageの{@link JSX.Element}
  */
 const DataEntryPage = ({ data }): JSX.Element => {
+  const toastAutoDismiss: boolean = true;
+  const toastDisMissTimeout: number = 3_000;
   return (
     <>
       <RecoilRoot>
-        <DataEntrySeane data={data}></DataEntrySeane>
+        <ToastProvider
+          autoDismiss={toastAutoDismiss}
+          autoDismissTimeout={toastDisMissTimeout}
+        >
+          <DataEntrySeane data={data}></DataEntrySeane>
+        </ToastProvider>
       </RecoilRoot>
     </>
   );

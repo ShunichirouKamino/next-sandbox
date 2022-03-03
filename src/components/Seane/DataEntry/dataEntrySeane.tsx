@@ -1,12 +1,16 @@
+import { isValid } from "date-fns";
+import { ToastProvider, useToasts } from "react-toast-notifications";
 import { useRecoilValue } from "recoil";
 import { useMutation } from "urql";
 import { createResultMutation } from "../../../graphql/ResultQuery";
+import { isNumberValidator } from "../../../lib/validator";
 import {
   matchState,
   memberState,
   resultState,
 } from "../../../store/atoms/matchResult";
 import { ResultType } from "../../../types/result";
+import SnackBar from "../../Atom/ToastProvider";
 import Footer from "../../Footer";
 import InputResultLabel from "../../InputResultLabel";
 import Header from "../../Molecules/Header";
@@ -31,6 +35,7 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
   const members = useRecoilValue(memberState);
   const results = useRecoilValue(resultState);
   const match = useRecoilValue(matchState);
+  const { addToast } = useToasts();
   const [createdState, executeCreateMutation] =
     useMutation(createResultMutation);
 
@@ -38,6 +43,34 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
    * 入力データの永続化を行います.
    */
   const submit = async () => {
+    const isTotalZeroList = await isTotalZero();
+    const isDuplicated = await isDuplicatedMembers();
+    const isValidScore = await isValid();
+    if (isDuplicated) {
+      addToast("Duplicated members.", { appearance: "error" });
+    }
+
+    isTotalZeroList.map((t, index) => {
+      const row = index + 1;
+      if (!t) {
+        addToast(`The total of the ${row} line is not zero.`, {
+          appearance: "error",
+        });
+      }
+    });
+
+    if (!isValidScore) {
+      addToast("Incorrect input.", { appearance: "error" });
+    }
+
+    if (
+      !isTotalZeroList.every((t) => t === true) ||
+      isDuplicatedMembers ||
+      !isValidScore
+    ) {
+      return;
+    }
+
     results.map(async (result) => {
       const valiables: ResultType = {
         date: match.date.toISOString().split("T")[0],
@@ -58,29 +91,6 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
     });
   };
 
-  /**
-   * メンバーの重複チェックです.
-   *
-   * @returns 重複している場合はtrue
-   */
-  const isDuplicatedMembers = async (): Promise<boolean> => {
-    const membersSet = new Set(members);
-    return membersSet.size !== members.length;
-  };
-
-  /**
-   * スコアの合計値が0であるかのチェックです.
-   *
-   * @returns 合計値が0でない要素のindex
-   */
-  const isTotalZero = async (): Promise<boolean[]> => {
-    const totals = results.map((result) => {
-      return result.reduce((sum, element) => sum + Number(element), 0);
-    });
-
-    return totals.map((t) => t === 0);
-  };
-
   const onClick = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -88,19 +98,45 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
     await submit();
   };
 
-  if (!isTotalZero) {
-    return (
-      <>
-        <div
-          className="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4"
-          role="alert"
-        >
-          <p className="font-bold">Be Warned</p>
-          <p>Something not ideal might be happening.</p>
-        </div>
-      </>
-    );
-  }
+  /**
+   * メンバーの重複チェックです.
+   *
+   * @returns 重複している場合はtrue
+   */
+  const isDuplicatedMembers = async (): Promise<boolean> => {
+    const membersSet = new Set(members);
+    const a = membersSet.size;
+    return membersSet.size !== members.length;
+  };
+
+  /**
+   * スコアの合計値が0であるかのチェックです.
+   *
+   * @returns 合計値が0の要素はtrue
+   */
+  const isTotalZero = async (): Promise<boolean[]> => {
+    const totals = results.map((result) => {
+      return result.reduce((sum, element) => sum + Number(element), 0);
+    });
+    return totals.map((t) => t === 0);
+  };
+
+  /**
+   * 以下のバリデーションエラーの判定を行います.
+   *
+   * スコアに4桁以上の数値が入力されている。
+   * スコアに数値以外が入力されている。
+   *
+   * @returns バリデーション結果
+   */
+  const isValid = async (): Promise<boolean> => {
+    const totals = results.map((result) => {
+      return result.map((r) => {
+        return isNumberValidator(r);
+      });
+    });
+    return totals.every((total) => total.every((t) => t === true));
+  };
 
   return (
     <>
