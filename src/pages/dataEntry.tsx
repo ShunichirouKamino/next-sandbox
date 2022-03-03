@@ -21,6 +21,7 @@ const DataEntryPage = ({ data }): JSX.Element => {
         <ToastProvider
           autoDismiss={toastAutoDismiss}
           autoDismissTimeout={toastDisMissTimeout}
+          placement={"top-center"}
         >
           <DataEntrySeane data={data}></DataEntrySeane>
         </ToastProvider>

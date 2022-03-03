@@ -21,10 +21,10 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
   return (
     <>
       <div className="flex items-center">
-        <div className="w-10 shrink-0">
+        <div className="w-7 shrink-0">
           <PlusButton onClick={onClickPlus} index={index}></PlusButton>
         </div>
-        <div className="w-10 shrink-0">
+        <div className="w-7 shrink-0">
           <RemoveButton onClick={onClickMinus} index={index}></RemoveButton>
         </div>
         <div className="flex w-full shrink-1">
