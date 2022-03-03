@@ -9,7 +9,7 @@ const SimpleButton: React.FC<SimpleButtonProps> = ({
   text,
 }): JSX.Element => {
   return (
-    <div className="text-center">
+    <div className="text-center w-full px-10 py-10">
       <button
         onClick={onClick}
         className="
@@ -18,10 +18,12 @@ const SimpleButton: React.FC<SimpleButtonProps> = ({
         text-white 
         font-bold 
         py-2 px-4 
+        w-full 
+        h-24 
         rounded-lg 
         inline-flex 
         duration-150 
-        items-center"
+        items-center justify-center"
       >
         {text}
       </button>

@@ -10,6 +10,7 @@ import {
   resultState,
 } from "../../../store/atoms/matchResult";
 import { ResultType } from "../../../types/result";
+import SimpleButton from "../../Atom/SimpleButton";
 import SnackBar from "../../Atom/ToastProvider";
 import Footer from "../../Footer";
 import InputResultLabel from "../../InputResultLabel";
@@ -106,7 +107,11 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
    */
   const isDuplicatedMembers = async (): Promise<boolean> => {
     const membersSet = new Set(members);
+    membersSet.forEach((m) => {
+      console.log(m);
+    });
     const a = membersSet.size;
+    console.log(a);
     return membersSet.size !== members.length;
   };
 
@@ -150,6 +155,9 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
           <div className="w-full">
             <MembersSelectBox members={selectMembers}></MembersSelectBox>
             <ResultInput></ResultInput>
+          </div>
+          <div className="flex w-full justify-center">
+            <SimpleButton onClick={onClick} text="Save"></SimpleButton>
           </div>
         </main>
         <Footer></Footer>

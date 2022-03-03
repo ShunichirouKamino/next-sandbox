@@ -16,7 +16,8 @@ export const matchState = atom({
 });
 
 // Participant
+// 初期設定値は必ずdeplicateとなるようにする
 export const memberState = atom({
   key: "member",
-  default: ["A", "B", "C", "D"],
+  default: ["A", "A", "A", "A"],
 });

@@ -26,9 +26,6 @@ const InputResultLabel: React.FC<InputResultLabelProps> = ({ onClick }) => {
   return (
     <>
       <div className="flex items-center">
-        <div className="w-20 shrink-0">
-          <SimpleButton onClick={onClick} text="Save"></SimpleButton>
-        </div>
         <div className="flex w-full shrink-1 justify-center">
           <SimpleText text={"Label"} align={"text-center"}></SimpleText>
         </div>
@@ -43,7 +40,6 @@ const InputResultLabel: React.FC<InputResultLabelProps> = ({ onClick }) => {
         </div>
       </div>
       <div className="flex items-center">
-        <div className="w-20 shrink-0 invisible"></div>
         <div className="flex w-full shrink-1 justify-center">
           <SimpleText text={"Date"} align={"text-center"}></SimpleText>
         </div>
