@@ -34,6 +34,9 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
   const [createdState, executeCreateMutation] =
     useMutation(createResultMutation);
 
+  /**
+   * 入力データの永続化を行います.
+   */
   const submit = async () => {
     results.map(async (result) => {
       const valiables: ResultType = {
@@ -55,7 +58,28 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
     });
   };
 
-  const validator = async () => {};
+  /**
+   * メンバーの重複チェックです.
+   *
+   * @returns 重複している場合はtrue
+   */
+  const isDuplicatedMembers = async (): Promise<boolean> => {
+    const membersSet = new Set(members);
+    return membersSet.size !== members.length;
+  };
+
+  /**
+   * スコアの合計値が0であるかのチェックです.
+   *
+   * @returns 合計値が0でない要素のindex
+   */
+  const isTotalZero = async (): Promise<boolean[]> => {
+    const totals = results.map((result) => {
+      return result.reduce((sum, element) => sum + Number(element), 0);
+    });
+
+    return totals.map((t) => t === 0);
+  };
 
   const onClick = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -63,6 +87,20 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
     e.preventDefault();
     await submit();
   };
+
+  if (!isTotalZero) {
+    return (
+      <>
+        <div
+          className="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4"
+          role="alert"
+        >
+          <p className="font-bold">Be Warned</p>
+          <p>Something not ideal might be happening.</p>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>

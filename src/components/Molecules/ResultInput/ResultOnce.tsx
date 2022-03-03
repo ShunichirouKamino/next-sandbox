@@ -18,21 +18,20 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
   handleValue,
 }): JSX.Element => {
   const pettern = "^[+-]?\\d{1,3}$";
-  const cellValidator = (text: string): boolean => {
+  const validator = (text: string): boolean => {
     return new RegExp(pettern).test(text);
   };
-
   return (
     <>
-      <p className="flex items-center">
-        <span className="w-10 shrink-0">
+      <div className="flex items-center">
+        <div className="w-10 shrink-0">
           <PlusButton onClick={onClickPlus} index={index}></PlusButton>
-        </span>
-        <span className="w-10 shrink-0">
+        </div>
+        <div className="w-10 shrink-0">
           <RemoveButton onClick={onClickMinus} index={index}></RemoveButton>
-        </span>
-        <span className="flex w-full shrink-1">
-          <span className="w-1/4 shrink-1">
+        </div>
+        <div className="flex w-full shrink-1">
+          <div className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord[0])}
               type={"text"}
@@ -40,10 +39,10 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               direction={0}
               index={index}
               handleValue={handleValue}
-              validator={cellValidator}
+              validator={validator}
             ></InputBase>
-          </span>
-          <span className="w-1/4 shrink-1">
+          </div>
+          <div className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord[1])}
               type={"text"}
@@ -51,10 +50,10 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               direction={1}
               index={index}
               handleValue={handleValue}
-              validator={cellValidator}
+              validator={validator}
             ></InputBase>
-          </span>
-          <span className="w-1/4 shrink-1">
+          </div>
+          <div className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord[2])}
               type={"text"}
@@ -62,10 +61,10 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               direction={2}
               index={index}
               handleValue={handleValue}
-              validator={cellValidator}
+              validator={validator}
             ></InputBase>
-          </span>
-          <span className="w-1/4 shrink-1">
+          </div>
+          <div className="w-1/4 shrink-1">
             <InputBase
               value={String(inputRecord[3])}
               type={"text"}
@@ -73,11 +72,11 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               direction={3}
               index={index}
               handleValue={handleValue}
-              validator={cellValidator}
+              validator={validator}
             ></InputBase>
-          </span>
-        </span>
-      </p>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
