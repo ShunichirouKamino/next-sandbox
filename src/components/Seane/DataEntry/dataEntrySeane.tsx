@@ -65,7 +65,7 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
 
     if (
       !isTotalZeroList.every((t) => t === true) ||
-      isDuplicatedMembers ||
+      isDuplicated ||
       !isValidScore
     ) {
       return;
@@ -84,11 +84,12 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
       };
       await executeCreateMutation(valiables).then((res) => {
         if (res.error) {
-          alert(res.error);
-          return <div>error: {res.error.message}</div>;
+          addToast("System Error.", { appearance: "error" });
         }
       });
     });
+
+    addToast("Success.", { appearance: "success" });
   };
 
   const onClick = async (
