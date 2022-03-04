@@ -1,3 +1,4 @@
+import { getRank } from "../../../lib/calc";
 import { useToasts } from "react-toast-notifications";
 import { useRecoilValue } from "recoil";
 import { useMutation } from "urql";
@@ -70,18 +71,51 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
       return;
     }
 
-    results.map(async (result) => {
-      console.log(result);
+    // 順位計算
+    const ranks = results.map((result) => {
+      const scoreNumbers = result.map((score) => {
+        return score === "" ? undefined : Number(score);
+      });
+      return result.map(async (score, index) => {
+        return await getRank(members[index], members, scoreNumbers);
+      });
+    });
+
+    results.map(async (result, index) => {
       const valiables: ResultType = {
         date: match.date.toISOString().split("T")[0],
         label: match.label,
         each: [
-          { name: members[0], score: Number(result[0]) },
-          { name: members[1], score: Number(result[1]) },
-          { name: members[2], score: Number(result[2]) },
-          { name: members[3], score: Number(result[3]) },
-          { name: members[4], score: Number(result[4]) },
-          { name: members[5], score: Number(result[5]) },
+          {
+            name: members[0],
+            score: Number(result[0]),
+            rank: await ranks[index][0],
+          },
+          {
+            name: members[1],
+            score: Number(result[1]),
+            rank: await ranks[index][1],
+          },
+          {
+            name: members[2],
+            score: Number(result[2]),
+            rank: await ranks[index][2],
+          },
+          {
+            name: members[3],
+            score: Number(result[3]),
+            rank: await ranks[index][3],
+          },
+          {
+            name: members[4],
+            score: Number(result[4]),
+            rank: await ranks[index][4],
+          },
+          {
+            name: members[5],
+            score: Number(result[5]),
+            rank: await ranks[index][5],
+          },
         ],
       };
       await executeCreateMutation(valiables).then((res) => {
@@ -90,7 +124,6 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
         }
       });
     });
-
     addToast("Success.", { appearance: "success" });
   };
 
@@ -112,7 +145,6 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
       return true;
     }
     const membersSet = new Set(members);
-    console.log(members);
     return membersSet.size !== members.length;
   };
 
@@ -142,7 +174,6 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
       result.map((r) => {
         if (numberValidator(r)) {
           memberCount++;
-          console.log(memberCount);
         }
       });
       return memberCount === 4;

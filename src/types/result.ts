@@ -4,6 +4,7 @@
 export type EachResultType = {
     name: string;
     score: number;
+    rank: number;
 };
 
 /**
