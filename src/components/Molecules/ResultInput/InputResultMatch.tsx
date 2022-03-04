@@ -1,7 +1,6 @@
 import { isNumberValidator } from "../../../lib/validator";
 import PlusButton from "../../Atom/icons/PlusButton";
 import RemoveButton from "../../Atom/icons/RemoveButton";
-import InputBase from "../../Atom/Input";
 import InputResultEach from "./InputResultEach";
 
 export type InputResultMatchProps = {

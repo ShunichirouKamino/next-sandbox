@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 export type InputBaseProps = {
   placeholder?: string;
   type: "text" | "number" | "date" | "datetime-local" | "email" | "password";
