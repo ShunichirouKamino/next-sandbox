@@ -3,7 +3,7 @@
  * @param text 任意の文字列
  * @returns 判定結果
  */
-export const isNumberValidator = (text: string): boolean => {
+export const numberValidator = (text: string): boolean => {
   return new RegExp("^[+-]?\\d{1,3}$").test(text);
 };
 
@@ -12,6 +12,6 @@ export const isNumberValidator = (text: string): boolean => {
  * @param text 任意の文字列
  * @returns 判定結果
  */
-export const isNumberOrNullValidator = (text: string): boolean => {
+export const numberOrNullValidator = (text: string): boolean => {
   return new RegExp("^([+-]?\\d{1,3}|)$").test(text);
 };

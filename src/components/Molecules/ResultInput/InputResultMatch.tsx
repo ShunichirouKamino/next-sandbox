@@ -1,7 +1,4 @@
-import {
-  isNumberOrNullValidator,
-  isNumberValidator,
-} from "../../../lib/validator";
+import { numberOrNullValidator } from "../../../lib/validator";
 import PlusButton from "../../Atom/icons/PlusButton";
 import RemoveButton from "../../Atom/icons/RemoveButton";
 import InputResultEach from "./InputResultEach";
@@ -41,7 +38,7 @@ const InputResultMatch: React.FC<InputResultMatchProps> = ({
                   direction={i}
                   index={index}
                   handleValue={handleValue}
-                  validator={isNumberOrNullValidator}
+                  validator={numberOrNullValidator}
                 ></InputResultEach>
               </div>
             );

@@ -2,10 +2,7 @@ import { useToasts } from "react-toast-notifications";
 import { useRecoilValue } from "recoil";
 import { useMutation } from "urql";
 import { createResultMutation } from "../../../graphql/ResultQuery";
-import {
-  isNumberOrNullValidator,
-  isNumberValidator,
-} from "../../../lib/validator";
+import { numberValidator } from "../../../lib/validator";
 import {
   matchState,
   memberState,
@@ -135,17 +132,22 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
    * 以下のバリデーションエラーの判定を行います.
    *
    * スコアに4桁以上の数値が入力されている。
-   * スコアに数値以外が入力されている。
+   * 数値が入力されている項目が一戦につき4項目のみ。
    *
    * @returns バリデーション結果
    */
   const isValid = async (): Promise<boolean> => {
-    const totals = results.map((result) => {
-      return result.map((r) => {
-        return isNumberOrNullValidator(r);
+    const rows = results.map((result) => {
+      let memberCount = 0;
+      result.map((r) => {
+        if (numberValidator(r)) {
+          memberCount++;
+          console.log(memberCount);
+        }
       });
+      return memberCount === 4;
     });
-    return totals.every((total) => total.every((t) => t === true));
+    return rows.every((row) => row === true);
   };
 
   return (
