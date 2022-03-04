@@ -20,6 +20,7 @@ const MemberSelectBox: React.FC<MemberSelectBoxProp> = ({
     const member = c.target.value;
     const newMembers = [...members];
     newMembers[index] = member;
+    console.log(newMembers);
     setMembers(newMembers);
   };
   return (

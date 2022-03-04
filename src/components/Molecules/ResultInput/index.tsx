@@ -11,7 +11,7 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
   const onClickPlus = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const addTimes = Number(e.currentTarget.getAttribute("data-num")) + 1;
-    const addInputRecord: string[] = ["", "", "", ""];
+    const addInputRecord: string[] = ["", "", "", "", "", ""];
     const newInputState = [...inputState];
     newInputState.splice(addTimes, 0, addInputRecord);
     setInputState(newInputState);

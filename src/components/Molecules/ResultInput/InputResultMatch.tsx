@@ -1,4 +1,7 @@
-import { isNumberValidator } from "../../../lib/validator";
+import {
+  isNumberOrNullValidator,
+  isNumberValidator,
+} from "../../../lib/validator";
 import PlusButton from "../../Atom/icons/PlusButton";
 import RemoveButton from "../../Atom/icons/RemoveButton";
 import InputResultEach from "./InputResultEach";
@@ -28,50 +31,21 @@ const InputResultMatch: React.FC<InputResultMatchProps> = ({
           <RemoveButton onClick={onClickMinus} index={index}></RemoveButton>
         </div>
         <div className="flex w-full shrink-1">
-          <div className="w-1/4 shrink-1">
-            <InputResultEach
-              value={String(inputRecord[0])}
-              type={"text"}
-              size={"h-12 w-full"}
-              direction={0}
-              index={index}
-              handleValue={handleValue}
-              validator={isNumberValidator}
-            ></InputResultEach>
-          </div>
-          <div className="w-1/4 shrink-1">
-            <InputResultEach
-              value={String(inputRecord[1])}
-              type={"text"}
-              size={"h-12 w-full"}
-              direction={1}
-              index={index}
-              handleValue={handleValue}
-              validator={isNumberValidator}
-            ></InputResultEach>
-          </div>
-          <div className="w-1/4 shrink-1">
-            <InputResultEach
-              value={String(inputRecord[2])}
-              type={"text"}
-              size={"h-12 w-full"}
-              direction={2}
-              index={index}
-              handleValue={handleValue}
-              validator={isNumberValidator}
-            ></InputResultEach>
-          </div>
-          <div className="w-1/4 shrink-1">
-            <InputResultEach
-              value={String(inputRecord[3])}
-              type={"text"}
-              size={"h-12 w-full"}
-              direction={3}
-              index={index}
-              handleValue={handleValue}
-              validator={isNumberValidator}
-            ></InputResultEach>
-          </div>
+          {inputRecord.map((col, i) => {
+            return (
+              <div className="w-1/6 shrink-1">
+                <InputResultEach
+                  value={String(col)}
+                  type={"text"}
+                  size={"h-12 w-full"}
+                  direction={i}
+                  index={index}
+                  handleValue={handleValue}
+                  validator={isNumberOrNullValidator}
+                ></InputResultEach>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

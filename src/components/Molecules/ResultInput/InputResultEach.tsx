@@ -22,7 +22,7 @@ const InputResultEach: React.FC<InputResultEachProps> = ({
   value,
   direction,
   index,
-  style = "bg-gray-100 item-center rounded-lg px-2 py-2",
+  style = "bg-gray-100 item-center rounded-lg px-1 py-1",
   handleValue,
   handleChange,
   validator,

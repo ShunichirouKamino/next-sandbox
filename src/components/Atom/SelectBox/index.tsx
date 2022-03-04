@@ -11,13 +11,13 @@ const SelectBox: React.FC<SelectBoxProp> = ({
 }): JSX.Element => {
   return (
     <>
-      <div className="px-2 py-2">
+      <div className="px-1 py-1">
         <select
           onChange={handleChange}
           className="form-select
           h-12 w-full 
       appearance-none block 
-      px-3 py-1.5 m-0 
+      px-1 py-1 m-0 
       text-base font-normal text-gray-700
       bg-white bg-clip-padding bg-no-repeat 
       border border-solid border-gray-300

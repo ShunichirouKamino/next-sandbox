@@ -18,7 +18,7 @@ const InputBase: React.FC<InputBaseProps> = ({
 }) => {
   return (
     <>
-      <div className="py-2 px-2">
+      <div className="py-1 px-1">
         <input
           onChange={handleChange}
           type={type}

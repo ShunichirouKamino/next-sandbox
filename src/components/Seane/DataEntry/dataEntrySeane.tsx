@@ -2,7 +2,10 @@ import { useToasts } from "react-toast-notifications";
 import { useRecoilValue } from "recoil";
 import { useMutation } from "urql";
 import { createResultMutation } from "../../../graphql/ResultQuery";
-import { isNumberValidator } from "../../../lib/validator";
+import {
+  isNumberOrNullValidator,
+  isNumberValidator,
+} from "../../../lib/validator";
 import {
   matchState,
   memberState,
@@ -30,7 +33,7 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
   data,
 }): JSX.Element => {
   // 外から渡す
-  const selectMembers = ["A", "B", "C", "D", "E", "F"];
+  const selectMembers = ["", "SK", "AU", "KT", "TK", "SY", "TO"];
   const members = useRecoilValue(memberState);
   const results = useRecoilValue(resultState);
   const match = useRecoilValue(matchState);
@@ -43,7 +46,7 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
    */
   const submit = async () => {
     const isTotalZeroList = await isTotalZero();
-    const isDuplicated = await isDuplicatedMembers();
+    const isDuplicated = await isInvalidMembers();
     const isValidScore = await isValid();
     if (isDuplicated) {
       addToast("Duplicated members.", { appearance: "error" });
@@ -71,6 +74,7 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
     }
 
     results.map(async (result) => {
+      console.log(result);
       const valiables: ResultType = {
         date: match.date.toISOString().split("T")[0],
         label: match.label,
@@ -79,6 +83,8 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
           { name: members[1], score: Number(result[1]) },
           { name: members[2], score: Number(result[2]) },
           { name: members[3], score: Number(result[3]) },
+          { name: members[4], score: Number(result[4]) },
+          { name: members[5], score: Number(result[5]) },
         ],
       };
       await executeCreateMutation(valiables).then((res) => {
@@ -100,11 +106,16 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
 
   /**
    * メンバーの重複チェックです.
+   * 合わせて空文字チェックも行います.
    *
-   * @returns 重複している場合はtrue
+   * @returns 重複している場合もしくは空のmemberが存在する場合はtrue
    */
-  const isDuplicatedMembers = async (): Promise<boolean> => {
+  const isInvalidMembers = async (): Promise<boolean> => {
+    if (members.every((m) => !m)) {
+      return true;
+    }
     const membersSet = new Set(members);
+    console.log(members);
     return membersSet.size !== members.length;
   };
 
@@ -131,7 +142,7 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
   const isValid = async (): Promise<boolean> => {
     const totals = results.map((result) => {
       return result.map((r) => {
-        return isNumberValidator(r);
+        return isNumberOrNullValidator(r);
       });
     });
     return totals.every((total) => total.every((t) => t === true));
@@ -146,7 +157,10 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
             <InputResultLabel onClick={onClick}></InputResultLabel>
           </div>
           <div className="w-full">
-            <MembersSelectBox members={selectMembers}></MembersSelectBox>
+            <MembersSelectBox
+              members={members}
+              selectMembers={selectMembers}
+            ></MembersSelectBox>
             <ResultInput></ResultInput>
           </div>
           <div className="flex w-full justify-center">
