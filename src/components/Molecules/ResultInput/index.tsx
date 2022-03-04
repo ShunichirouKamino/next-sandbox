@@ -1,7 +1,7 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { resultState } from "../../../store/atoms/matchResult";
-import ResultOnce from "./ResultOnce";
+import InputResultMatch from "./InputResultMatch";
 
 export type ResultInputProps = {};
 
@@ -43,13 +43,13 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
     <>
       {inputState.map((i, index) => {
         return (
-          <ResultOnce
+          <InputResultMatch
             onClickPlus={onClickPlus}
             onClickMinus={onClickMinus}
             inputRecord={inputState[index]}
             index={index}
             handleValue={handleValue}
-          ></ResultOnce>
+          ></InputResultMatch>
         );
       })}
     </>

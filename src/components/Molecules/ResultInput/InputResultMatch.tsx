@@ -2,8 +2,9 @@ import { isNumberValidator } from "../../../lib/validator";
 import PlusButton from "../../Atom/icons/PlusButton";
 import RemoveButton from "../../Atom/icons/RemoveButton";
 import InputBase from "../../Atom/Input";
+import InputResultEach from "./InputResultEach";
 
-export type ResultOnceProps = {
+export type InputResultMatchProps = {
   onClickPlus: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   onClickMinus: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   inputRecord: string[];
@@ -11,7 +12,7 @@ export type ResultOnceProps = {
   handleValue?: (...e: any) => void;
 };
 
-const ResultOnce: React.FC<ResultOnceProps> = ({
+const InputResultMatch: React.FC<InputResultMatchProps> = ({
   onClickPlus,
   onClickMinus,
   inputRecord,
@@ -29,7 +30,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
         </div>
         <div className="flex w-full shrink-1">
           <div className="w-1/4 shrink-1">
-            <InputBase
+            <InputResultEach
               value={String(inputRecord[0])}
               type={"text"}
               size={"h-12 w-full"}
@@ -37,10 +38,10 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               index={index}
               handleValue={handleValue}
               validator={isNumberValidator}
-            ></InputBase>
+            ></InputResultEach>
           </div>
           <div className="w-1/4 shrink-1">
-            <InputBase
+            <InputResultEach
               value={String(inputRecord[1])}
               type={"text"}
               size={"h-12 w-full"}
@@ -48,10 +49,10 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               index={index}
               handleValue={handleValue}
               validator={isNumberValidator}
-            ></InputBase>
+            ></InputResultEach>
           </div>
           <div className="w-1/4 shrink-1">
-            <InputBase
+            <InputResultEach
               value={String(inputRecord[2])}
               type={"text"}
               size={"h-12 w-full"}
@@ -59,10 +60,10 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               index={index}
               handleValue={handleValue}
               validator={isNumberValidator}
-            ></InputBase>
+            ></InputResultEach>
           </div>
           <div className="w-1/4 shrink-1">
-            <InputBase
+            <InputResultEach
               value={String(inputRecord[3])}
               type={"text"}
               size={"h-12 w-full"}
@@ -70,7 +71,7 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
               index={index}
               handleValue={handleValue}
               validator={isNumberValidator}
-            ></InputBase>
+            ></InputResultEach>
           </div>
         </div>
       </div>
@@ -78,4 +79,4 @@ const ResultOnce: React.FC<ResultOnceProps> = ({
   );
 };
 
-export default ResultOnce;
+export default InputResultMatch;
