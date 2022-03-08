@@ -2,8 +2,11 @@ mutation CreateResult {
   createResult(
     data: {
       id: 1
-      date: "2022-02-25"
+      date: "2000-01-01"
       label: "first"
+      userGroup: {
+        create: { groupName: "合宿", member: ["A", "B", "C", "D", "E", "F"] }
+      }
       each: {
         create: [
           { name: "D", score: 12.0 }

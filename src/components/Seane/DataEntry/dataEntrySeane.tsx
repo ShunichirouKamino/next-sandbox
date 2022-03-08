@@ -32,6 +32,7 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
 }): JSX.Element => {
   // 外から渡す
   const selectMembers = ["", "SK", "AU", "KT", "TK", "SY", "TO"];
+  const userGroup = ["", "合宿"];
   const members = useRecoilValue(memberState);
   const results = useRecoilValue(resultState);
   const match = useRecoilValue(matchState);

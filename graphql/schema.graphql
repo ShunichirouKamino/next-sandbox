@@ -2,6 +2,7 @@ type Result {
   id: ID!
   label: String!
   date: Date!
+  userGroup: UserGroup!
   each: [Each!] @relation
 }
 
@@ -9,6 +10,12 @@ type Each {
   name: String!
   score: Float
   rank: Int
+  result: Result
+}
+
+type UserGroup {
+  groupName: String!
+  member: [String]
   result: Result
 }
 
