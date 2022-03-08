@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import RankResultPage from "../components/RankResultTable";
 import Header from "../components/Molecules/Header";
 import { getRankPercent, getRankTimes } from "../lib/calc";
@@ -6,6 +6,11 @@ import { getData } from "../lib/csvData";
 import { MemberRankType } from "../types/result";
 import ResultTable from "../components/ResultTable";
 import Footer from "../components/Footer";
+import { RecoilRoot } from "recoil";
+import { ToastProvider } from "react-toast-notifications";
+import ResultSeane from "../components/Seane/ResultSeane";
+import { clientOptions } from "../lib/urqlClient";
+import { withUrqlClient } from "next-urql";
 
 /**
  * ResultPage表示用SSGファンクション
@@ -14,6 +19,8 @@ import Footer from "../components/Footer";
  * @returns ResultPageの{@link JSX.Element}
  */
 const ResultPage = ({ data }): JSX.Element => {
+  const toastAutoDismiss: boolean = true;
+  const toastDisMissTimeout: number = 3_000;
   const members: string[] = data.header;
   const results: number[][] = data.row;
 
@@ -29,14 +36,15 @@ const ResultPage = ({ data }): JSX.Element => {
 
   return (
     <>
-      <div className="flex flex-col min-h-screen">
-        <main className="flex-grow w-full">
-          <Header></Header>
-          <RankResultPage memberRankType={membersRanks}></RankResultPage>
-          <ResultTable members={data.header} results={data.row}></ResultTable>
-        </main>
-        <Footer></Footer>
-      </div>
+      <RecoilRoot>
+        <ToastProvider
+          autoDismiss={toastAutoDismiss}
+          autoDismissTimeout={toastDisMissTimeout}
+          placement={"top-center"}
+        >
+          <ResultSeane data={undefined}></ResultSeane>
+        </ToastProvider>
+      </RecoilRoot>
     </>
   );
 };
@@ -46,7 +54,7 @@ const ResultPage = ({ data }): JSX.Element => {
  *
  * @returns 対局結果
  */
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetServerSideProps = async () => {
   const data = getData();
   return {
     props: {
@@ -55,4 +63,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default ResultPage;
+export default withUrqlClient(
+  (ssr) => clientOptions,
+  { ssr: false } // Important so we don't wrap our component in getInitialProps
+)(ResultPage);
