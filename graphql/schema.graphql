@@ -23,5 +23,6 @@ type Query {
   allResults: [Result!]
   findResultsByLabel(label: String!): [Result]!
   findResultsByDate(date: Date!): [Result]!
+  findResults(date: Date, label: String): [Result]!
   findEachResultByName(name: String!): [Each]!
 }

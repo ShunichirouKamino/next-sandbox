@@ -9,3 +9,23 @@ query FindAllResults {
     }
   }
 }
+
+query FindResults {
+  findResults(date: "2021-04-29", label: "箱根合宿") {
+    data {
+      label
+      date
+      each {
+        data {
+          name
+          rank
+          score
+        }
+      }
+      userGroup {
+        member
+        groupName
+      }
+    }
+  }
+}

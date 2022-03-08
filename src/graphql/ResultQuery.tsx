@@ -12,6 +12,28 @@ export const findEachResultByName = gql`
   }
 `;
 
+export const findResults = gql`
+  query FindResults($date: Date!, $label: String!) {
+    findResults(date: $date, label: $label) {
+      data {
+        label
+        date
+        each {
+          data {
+            name
+            rank
+            score
+          }
+        }
+        userGroup {
+          member
+          groupName
+        }
+      }
+    }
+  }
+`;
+
 export const createResultMutation = gql`
   mutation CreateResult(
     $date: Date!
