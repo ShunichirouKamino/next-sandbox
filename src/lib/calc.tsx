@@ -70,9 +70,6 @@ export const getRank = async (
   }
   const sorted = (await sortResult([results], members))[0];
   const rank = sorted.findIndex((l) => l.name === name) + 1;
-
-  console.log("rank" + rank + "name" + name);
-
   return rank <= 4 ? rank : undefined;
 };
 

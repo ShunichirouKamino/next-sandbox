@@ -33,7 +33,8 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
 }): JSX.Element => {
   // 外から渡す
   const selectMembers = ["", "SK", "AU", "KT", "TK", "SY", "TO"];
-  const [userGroup, setUserGroup] = useRecoilState(userGroupState);
+  const sendMembers = selectMembers.filter((m) => m !== "");
+  const userGroup = useRecoilValue(userGroupState);
   const members = useRecoilValue(memberState);
   const results = useRecoilValue(resultState);
   const match = useRecoilValue(matchState);
@@ -48,8 +49,14 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
     const isTotalZeroList = await isTotalZero();
     const isDuplicated = await isInvalidMembers();
     const isValidScore = await isValid();
+    const isInvalidUserGroup = await isInvalidGroup();
+
     if (isDuplicated) {
       addToast("Duplicated members.", { appearance: "error" });
+    }
+
+    if (isInvalidUserGroup) {
+      addToast("Invalid user group.", { appearance: "error" });
     }
 
     isTotalZeroList.map((t, index) => {
@@ -68,7 +75,8 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
     if (
       !isTotalZeroList.every((t) => t === true) ||
       isDuplicated ||
-      !isValidScore
+      !isValidScore ||
+      isInvalidUserGroup
     ) {
       return;
     }
@@ -87,6 +95,10 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
       const valiables: ResultType = {
         date: match.date.toISOString().split("T")[0],
         label: match.label,
+        userGroup: {
+          groupName: userGroup,
+          member: sendMembers,
+        },
         each: [
           {
             name: members[0],
@@ -122,6 +134,7 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
       };
       await executeCreateMutation(valiables).then((res) => {
         if (res.error) {
+          console.log(res.error);
           addToast("System Error.", { appearance: "error" });
         }
       });
@@ -134,6 +147,19 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
   ) => {
     e.preventDefault();
     await submit();
+  };
+
+  /**
+   * userGroupの値が空文字でないことを確認します.
+   *
+   * @returns 空文字の場合はfalse, 正しい場合はtrue
+   */
+  const isInvalidGroup = async (): Promise<boolean> => {
+    if (userGroup !== "") {
+      return false;
+    } else {
+      return true;
+    }
   };
 
   /**

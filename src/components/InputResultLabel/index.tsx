@@ -10,6 +10,7 @@ export type InputResultLabelProps = {
 };
 
 const InputResultLabel: React.FC<InputResultLabelProps> = ({ onClick }) => {
+  // userGroup可変にする
   const initUserGroup = ["", "合宿"];
   const [match, setMatchState] = useRecoilState(matchState);
   const [userGroup, setUserGroup] = useRecoilState(userGroupState);

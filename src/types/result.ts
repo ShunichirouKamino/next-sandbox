@@ -7,12 +7,18 @@ export type EachResultType = {
     rank: number;
 };
 
+export type UserGroup = {
+    groupName: string;
+    member: string[];
+}
+
 /**
  * 対局一回に対する結果です.
  */
 export type ResultType = {
     date: string;
     label: string;
+    userGroup: UserGroup;
     each: EachResultType[];
 };
 

@@ -13,9 +13,20 @@ export const findEachResultByName = gql`
 `;
 
 export const createResultMutation = gql`
-  mutation CreateResult($date: Date!, $label: String!, $each: [EachInput!]!) {
+  mutation CreateResult(
+    $date: Date!
+    $label: String!
+    $each: [EachInput!]!
+    $userGroup: UserGroupInput!
+  ) {
     createResult(
-      data: { id: 1, date: $date, label: $label, each: { create: $each } }
+      data: {
+        id: 1
+        date: $date
+        label: $label
+        userGroup: { create: $userGroup }
+        each: { create: $each }
+      }
     ) {
       date
       label
