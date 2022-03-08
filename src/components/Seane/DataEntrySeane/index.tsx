@@ -1,6 +1,6 @@
 import { getRank } from "../../../lib/calc";
 import { useToasts } from "react-toast-notifications";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { useMutation } from "urql";
 import { createResultMutation } from "../../../graphql/ResultQuery";
 import { numberValidator } from "../../../lib/validator";
@@ -8,6 +8,7 @@ import {
   matchState,
   memberState,
   resultState,
+  userGroupState,
 } from "../../../store/atoms/matchResult";
 import { ResultType } from "../../../types/result";
 import SimpleButton from "../../Atom/SimpleButton";
@@ -32,7 +33,7 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
 }): JSX.Element => {
   // 外から渡す
   const selectMembers = ["", "SK", "AU", "KT", "TK", "SY", "TO"];
-  const userGroup = ["", "合宿"];
+  const [userGroup, setUserGroup] = useRecoilState(userGroupState);
   const members = useRecoilValue(memberState);
   const results = useRecoilValue(resultState);
   const match = useRecoilValue(matchState);

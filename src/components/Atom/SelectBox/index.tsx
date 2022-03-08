@@ -11,7 +11,7 @@ const SelectBox: React.FC<SelectBoxProp> = ({
 }): JSX.Element => {
   return (
     <>
-      <div className="px-1 py-1">
+      <div className="px-1 py-1 w-full">
         <select
           onChange={handleChange}
           className="form-select

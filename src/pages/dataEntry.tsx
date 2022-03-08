@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import { getData } from "../lib/csvData";
 import { RecoilRoot } from "recoil";
-import DataEntrySeane from "../components/Seane/DataEntry/dataEntrySeane";
+import DataEntrySeane from "../components/Seane/DataEntrySeane";
 import { withUrqlClient } from "next-urql";
 import { clientOptions } from "../lib/urqlClient";
 import { ToastProvider } from "react-toast-notifications";

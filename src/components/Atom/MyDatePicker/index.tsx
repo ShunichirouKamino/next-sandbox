@@ -12,7 +12,7 @@ const MyDatePicker: React.FC<MyDatePickerProps> = ({
 }): JSX.Element => {
   return (
     <>
-      <div className="py-2 px-2">
+      <div className="py-1 px-1 w-full">
         <DatePicker
           className="
           item-center 

@@ -21,3 +21,8 @@ export const memberState = atom({
   key: "member",
   default: ["A", "A", "A", "A", "A", "A"],
 });
+
+export const userGroupState = atom({
+  key: "userGroup",
+  default: "合宿",
+});
