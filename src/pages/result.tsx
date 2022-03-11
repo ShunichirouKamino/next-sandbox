@@ -1,7 +1,5 @@
-import { GetServerSideProps, GetStaticProps } from "next";
-import { getRankPercent, getRankTimes } from "../lib/calc";
+import { GetServerSideProps } from "next";
 import { getData } from "../lib/csvData";
-import { MemberRankType } from "../types/result";
 import { RecoilRoot } from "recoil";
 import { ToastProvider } from "react-toast-notifications";
 import ResultSeane from "../components/Seane/ResultSeane";
@@ -17,18 +15,6 @@ import { withUrqlClient } from "next-urql";
 const ResultPage = ({ data }): JSX.Element => {
   const toastAutoDismiss: boolean = true;
   const toastDisMissTimeout: number = 3_000;
-  const members: string[] = data.header;
-  const results: number[][] = data.row;
-
-  const membersRanks: MemberRankType[] = members.map((m) => {
-    const rankTimes = getRankTimes(m, members, results);
-    const rankPersent = getRankPercent(m, members, results);
-    return {
-      member: m,
-      rankSet: rankTimes,
-      rankPercentSet: rankPersent,
-    };
-  });
 
   return (
     <>

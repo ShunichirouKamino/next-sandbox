@@ -1,26 +1,15 @@
-import { getRank } from "../../../lib/calc";
-import { useToasts } from "react-toast-notifications";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { useMutation, useQuery } from "urql";
+import { useQuery } from "urql";
+import { findResults } from "../../../graphql/ResultQuery";
 import {
-  createResultMutation,
-  findResults,
-} from "../../../graphql/ResultQuery";
-import { numberValidator } from "../../../lib/validator";
-import {
-  matchState,
-  memberState,
-  resultState,
-  userGroupState,
-} from "../../../store/atoms/matchResult";
-import { ResultType } from "../../../types/result";
-import SimpleButton from "../../Atom/SimpleButton";
+  EachResultType,
+  MemberRankType,
+  RankPercentSet,
+  RankSet,
+  UserGroup,
+} from "../../../types/result";
 import Footer from "../../Footer";
-import InputResultLabel from "../../InputResultLabel";
 import Header from "../../Molecules/Header";
 import RankResultPage from "../../RankResultTable";
-import MembersSelectBox from "../../Molecules/MembersSelectBox";
-import ResultInput from "../../Molecules/ResultInput";
 import ResultTable from "../../ResultTable";
 
 export type ResultSeaneProps = {
@@ -38,16 +27,8 @@ const ResultSeane: React.FC<ResultSeaneProps> = ({ data }): JSX.Element => {
     query: findResults,
     variables: { date: "2021-04-29", label: "箱根合宿" },
   });
-  const members: string[] = [
-    "",
-    "上野",
-    "宇野",
-    "對馬",
-    "岡見",
-    "河野",
-    "山上",
-  ];
-  const results: number[][] = null;
+  const members: string[] = ["SK", "AU", "KT", "TK", "SY", "TO"];
+  const membersSelectBox: string[] = ["", ...members];
 
   if (res.fetching) {
     return <div>...loading</div>;
@@ -57,26 +38,64 @@ const ResultSeane: React.FC<ResultSeaneProps> = ({ data }): JSX.Element => {
     return <div>error: {res.error.message}</div>;
   }
 
-  const resResults = res.data.findResults.data;
+  const resResults /*: ResultType[] TODO mutation時と型が違うので調査*/ =
+    res.data.findResults.data;
+
+  const eachResults: EachResultType[][] = resResults.map((r) => r.each.data);
+  const eachResultsOnly: number[][] = eachResults.map((er) => {
+    return er.map((e) => {
+      return e.score;
+    });
+  });
+  const userGroup: UserGroup[] = resResults.map((r) => r.userGroup);
+
+  const rankSet: RankSet[] = members.map((m, index) => {
+    const memberResults: EachResultType[] = eachResults.map(
+      (er: EachResultType[]) => {
+        const a: EachResultType = er.find((e) => e.name === m);
+        return a;
+      }
+    );
+    return {
+      first: memberResults.filter((m) => m.rank === 1).length,
+      second: memberResults.filter((m) => m.rank === 2).length,
+      third: memberResults.filter((m) => m.rank === 3).length,
+      fourth: memberResults.filter((m) => m.rank === 4).length,
+    };
+  });
+
+  const rankPersentSet: RankPercentSet[] = members.map((m, index) => {
+    const numberOfTimes =
+      rankSet[index].first +
+      rankSet[index].second +
+      rankSet[index].third +
+      rankSet[index].fourth;
+    return {
+      first: Math.round((rankSet[index].first / numberOfTimes) * 1000) / 10,
+      second: Math.round((rankSet[index].second / numberOfTimes) * 1000) / 10,
+      third: Math.round((rankSet[index].third / numberOfTimes) * 1000) / 10,
+      fourth: Math.round((rankSet[index].fourth / numberOfTimes) * 1000) / 10,
+    };
+  });
+
+  const membersRanks: MemberRankType[] = members.map((m, index) => {
+    return {
+      member: m,
+      rankSet: rankSet[index],
+      rankPercentSet: rankPersentSet[index],
+    };
+  });
 
   return (
     <>
       <div className="flex flex-col min-h-screen">
         <main className="flex-grow w-full">
           <Header></Header>
-          <div>
-            {resResults ? (
-              resResults.map((r) => (
-                <div>
-                  {r.label} {r.date}
-                </div>
-              ))
-            ) : (
-              <div>not found</div>
-            )}
-          </div>
-          {/* <RankResultPage memberRankType={[]}></RankResultPage>
-          <ResultTable members={members} results={results}></ResultTable> */}
+          <RankResultPage memberRankType={membersRanks}></RankResultPage>
+          <ResultTable
+            members={members}
+            results={eachResultsOnly}
+          ></ResultTable>
         </main>
         <Footer></Footer>
       </div>

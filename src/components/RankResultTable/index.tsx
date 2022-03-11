@@ -20,6 +20,12 @@ const getWinPer = (rankPersentSet: RankPercentSet): number => {
   );
 };
 
+/**
+ * 個人の戦績を表示するコンポーネントです.
+ *
+ * @param param0
+ * @returns
+ */
 const RankResultTable: React.FC<RankResultTableProps> = ({
   memberRankType,
 }) => {
