@@ -1,11 +1,7 @@
 import { GetServerSideProps, GetStaticProps } from "next";
-import RankResultPage from "../components/RankResultTable";
-import Header from "../components/Molecules/Header";
 import { getRankPercent, getRankTimes } from "../lib/calc";
 import { getData } from "../lib/csvData";
 import { MemberRankType } from "../types/result";
-import ResultTable from "../components/ResultTable";
-import Footer from "../components/Footer";
 import { RecoilRoot } from "recoil";
 import { ToastProvider } from "react-toast-notifications";
 import ResultSeane from "../components/Seane/ResultSeane";

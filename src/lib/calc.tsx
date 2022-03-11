@@ -1,4 +1,3 @@
-import { Filter } from "@ubie/ubie-icons";
 import { RankPercentSet, RankSet, EachResultType } from "../types/result";
 
 /**

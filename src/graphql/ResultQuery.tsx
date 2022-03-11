@@ -1,5 +1,4 @@
 import { gql } from "graphql-request";
-import { EachResultType } from "../types/result";
 
 export const findEachResultByName = gql`
   query FindEachResultByName($name: String!) {
