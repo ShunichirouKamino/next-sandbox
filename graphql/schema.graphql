@@ -1,4 +1,5 @@
 type Result {
+  index: Int!
   id: ID!
   label: String!
   date: Date!

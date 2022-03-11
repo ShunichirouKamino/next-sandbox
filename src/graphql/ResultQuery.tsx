@@ -17,6 +17,7 @@ export const findResults = gql`
       data {
         label
         date
+        index
         each {
           data {
             name
@@ -37,6 +38,7 @@ export const createResultMutation = gql`
   mutation CreateResult(
     $date: Date!
     $label: String!
+    $index: Int!
     $each: [EachInput!]!
     $userGroup: UserGroupInput!
   ) {
@@ -45,6 +47,7 @@ export const createResultMutation = gql`
         id: 1
         date: $date
         label: $label
+        index: $index
         userGroup: { create: $userGroup }
         each: { create: $each }
       }

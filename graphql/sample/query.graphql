@@ -6,13 +6,15 @@ query FindAllResults {
       label
       name
       score
+      index
     }
   }
 }
 
 query FindResults {
-  findResults(date: "2021-04-29", label: "箱根合宿") {
+  findResults(date: "2099-01-01", label: "first") {
     data {
+      index
       label
       date
       each {

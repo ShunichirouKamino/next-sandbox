@@ -18,6 +18,7 @@ export type UserGroup = {
 export type ResultType = {
     date: string;
     label: string;
+    index: number;
     userGroup: UserGroup;
     each: EachResultType[];
 };

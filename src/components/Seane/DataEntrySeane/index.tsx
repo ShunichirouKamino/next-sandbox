@@ -95,6 +95,7 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
       const valiables: ResultType = {
         date: match.date.toISOString().split("T")[0],
         label: match.label,
+        index: index,
         userGroup: {
           groupName: userGroup,
           member: sendMembers,

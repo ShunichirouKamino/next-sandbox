@@ -81,7 +81,7 @@ const RankResultTable: React.FC<RankResultTableProps> = ({
 
   return (
     <>
-      <div className="w-1/2">
+      <div className="w-1/2 p-4">
         <SelectBox elements={members} handleChange={handleChange}></SelectBox>
       </div>
       <div className="flex flex-wrap w-auto">

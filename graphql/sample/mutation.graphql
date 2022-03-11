@@ -2,7 +2,8 @@ mutation CreateResult {
   createResult(
     data: {
       id: 1
-      date: "2000-01-01"
+      index: 1
+      date: "2099-01-01"
       label: "first"
       userGroup: {
         create: { groupName: "合宿", member: ["A", "B", "C", "D", "E", "F"] }

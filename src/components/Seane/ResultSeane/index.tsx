@@ -25,9 +25,9 @@ export type ResultSeaneProps = {
 const ResultSeane: React.FC<ResultSeaneProps> = ({ data }): JSX.Element => {
   const [res, executeQuery] = useQuery({
     query: findResults,
-    variables: { date: "2021-04-29", label: "箱根合宿" },
+    variables: { date: "2022-03-11", label: "testmatch" },
   });
-  const members: string[] = ["SK", "AU", "KT", "TK", "SY", "TO"];
+  const members: string[] = ["上野", "宇野", "對馬", "岡見", "河野", "山上"];
   const membersSelectBox: string[] = ["", ...members];
 
   if (res.fetching) {
@@ -39,7 +39,7 @@ const ResultSeane: React.FC<ResultSeaneProps> = ({ data }): JSX.Element => {
   }
 
   const resResults /*: ResultType[] TODO mutation時と型が違うので調査*/ =
-    res.data.findResults.data;
+    res.data.findResults.data.sort((a, b) => (a.index > b.index ? 1 : -1));
 
   const eachResults: EachResultType[][] = resResults.map((r) => r.each.data);
   const eachResultsOnly: number[][] = eachResults.map((er) => {
