@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import { getData } from "../lib/csvData";
 import { RecoilRoot } from "recoil";
 import DataEntrySeane from "../components/Seane/DataEntrySeane";
@@ -6,13 +6,15 @@ import { withUrqlClient } from "next-urql";
 import { clientOptions } from "../lib/urqlClient";
 import { ToastProvider } from "react-toast-notifications";
 
+type DataEntryPageProps = InferGetStaticPropsType<typeof getStaticProps>;
+
 /**
  * DataEntryPage表示用SSGファンクション
  *
  * @param data 対局データ
  * @returns DataEntryPageの{@link JSX.Element}
  */
-const DataEntryPage = ({ data }): JSX.Element => {
+const DataEntryPage: NextPage<DataEntryPageProps> = ({ data }): JSX.Element => {
   const toastAutoDismiss: boolean = true;
   const toastDisMissTimeout: number = 3_000;
   return (
