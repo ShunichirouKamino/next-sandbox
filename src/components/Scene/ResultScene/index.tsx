@@ -12,17 +12,17 @@ import Header from "../../Molecules/Header";
 import RankResultPage from "../../RankResultTable";
 import ResultTable from "../../ResultTable";
 
-export type ResultSeaneProps = {
+export type ResultSceneProps = {
   data;
 };
 
 /**
- * ResultSeaneページのルートコンポーネント
+ * ResultSceneページのルートコンポーネント
  *
  * @param param
  * @returns
  */
-const ResultSeane: React.FC<ResultSeaneProps> = ({ data }): JSX.Element => {
+const ResultScene: React.FC<ResultSceneProps> = ({ data }): JSX.Element => {
   const [res, executeQuery] = useQuery({
     query: findResults,
     variables: { date: "2022-03-11", label: "testmatch" },
@@ -103,4 +103,4 @@ const ResultSeane: React.FC<ResultSeaneProps> = ({ data }): JSX.Element => {
   );
 };
 
-export default ResultSeane;
+export default ResultScene;

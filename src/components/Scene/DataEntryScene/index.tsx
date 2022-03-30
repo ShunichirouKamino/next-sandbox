@@ -18,7 +18,7 @@ import Header from "../../Molecules/Header";
 import MembersSelectBox from "../../Molecules/MembersSelectBox";
 import ResultInput from "../../Molecules/ResultInput";
 
-export type DataEntrySeaneProps = {
+export type DataEntrySceneProps = {
   data;
 };
 
@@ -28,7 +28,7 @@ export type DataEntrySeaneProps = {
  * @param param0
  * @returns
  */
-const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
+const DataEntryScene: React.FC<DataEntrySceneProps> = ({
   data,
 }): JSX.Element => {
   // 外から渡す
@@ -235,4 +235,4 @@ const DataEntrySeane: React.FC<DataEntrySeaneProps> = ({
   );
 };
 
-export default DataEntrySeane;
+export default DataEntryScene;

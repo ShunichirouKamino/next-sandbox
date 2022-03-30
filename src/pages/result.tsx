@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { getData } from "../lib/csvData";
 import { RecoilRoot } from "recoil";
 import { ToastProvider } from "react-toast-notifications";
-import ResultSeane from "../components/Seane/ResultSeane";
+import ResultScene from "../components/Scene/ResultScene";
 import { clientOptions } from "../lib/urqlClient";
 import { withUrqlClient } from "next-urql";
 
@@ -24,7 +24,7 @@ const ResultPage = ({ data }): JSX.Element => {
           autoDismissTimeout={toastDisMissTimeout}
           placement={"top-center"}
         >
-          <ResultSeane data={undefined}></ResultSeane>
+          <ResultScene data={undefined}></ResultScene>
         </ToastProvider>
       </RecoilRoot>
     </>

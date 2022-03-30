@@ -1,7 +1,7 @@
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import { getData } from "../lib/csvData";
 import { RecoilRoot } from "recoil";
-import DataEntrySeane from "../components/Seane/DataEntrySeane";
+import DataEntryScene from "../components/Scene/DataEntryScene";
 import { withUrqlClient } from "next-urql";
 import { clientOptions } from "../lib/urqlClient";
 import { ToastProvider } from "react-toast-notifications";
@@ -25,7 +25,7 @@ const DataEntryPage: NextPage<DataEntryPageProps> = ({ data }): JSX.Element => {
           autoDismissTimeout={toastDisMissTimeout}
           placement={"top-center"}
         >
-          <DataEntrySeane data={data}></DataEntrySeane>
+          <DataEntryScene data={data}></DataEntryScene>
         </ToastProvider>
       </RecoilRoot>
     </>
