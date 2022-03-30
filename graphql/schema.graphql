@@ -20,6 +20,11 @@ type UserGroup {
   result: Result
 }
 
+type Community {
+  label: String!
+  member: [String]
+}
+
 type Query {
   allResults: [Result!]
   findResultsByLabel(label: String!): [Result]!
