@@ -1,5 +1,5 @@
 import { useState } from "react";
-import InputBase from "../../Atom/Input";
+import InputBase from "../../Atom/InputBase";
 
 export type InputResultEachProps = {
   placeholder?: string;

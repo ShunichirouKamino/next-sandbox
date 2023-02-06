@@ -25,7 +25,11 @@ const SelectBox: React.FC<SelectBoxProp> = ({
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         >
           {elements.map((e) => {
-            return <option value={e}>{e}</option>;
+            return (
+              <option key={e.toString()} value={e}>
+                {e}
+              </option>
+            );
           })}
         </select>
       </div>

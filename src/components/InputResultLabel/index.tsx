@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { matchState, userGroupState } from "../../store/atoms/matchResult";
-import InputBase from "../Atom/Input";
+import InputBase from "../Atom/InputBase";
 import MyDatePicker from "../Atom/MyDatePicker";
 import SelectBox from "../Atom/SelectBox";
 import SimpleText from "../Atom/SimpleText";

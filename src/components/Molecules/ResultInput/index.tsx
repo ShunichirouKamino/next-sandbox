@@ -43,13 +43,15 @@ const ResultInput: React.FC<ResultInputProps> = ({}): JSX.Element => {
     <>
       {inputState.map((i, index) => {
         return (
-          <InputResultMatch
-            onClickPlus={onClickPlus}
-            onClickMinus={onClickMinus}
-            inputRecord={inputState[index]}
-            index={index}
-            handleValue={handleValue}
-          ></InputResultMatch>
+          <div key={index}>
+            <InputResultMatch
+              onClickPlus={onClickPlus}
+              onClickMinus={onClickMinus}
+              inputRecord={inputState[index]}
+              index={index}
+              handleValue={handleValue}
+            ></InputResultMatch>
+          </div>
         );
       })}
     </>

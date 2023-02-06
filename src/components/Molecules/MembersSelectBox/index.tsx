@@ -20,7 +20,7 @@ const MembersSelectBox: React.FC<MembersSelectBoxProps> = ({
         <div className="flex w-full shrink-1">
           {members.map((m, index) => {
             return (
-              <div className="w-1/6 shrink-0">
+              <div key={m} className="w-1/6 shrink-0">
                 <MemberSelectBox
                   elements={selectMembers}
                   index={index}

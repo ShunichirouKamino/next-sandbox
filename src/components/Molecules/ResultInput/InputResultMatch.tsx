@@ -30,7 +30,7 @@ const InputResultMatch: React.FC<InputResultMatchProps> = ({
         <div className="flex w-full shrink-1">
           {inputRecord.map((col, i) => {
             return (
-              <div className="w-1/6 shrink-1">
+              <div key={col} className="w-1/6 shrink-1">
                 <InputResultEach
                   value={String(col)}
                   type={"text"}
