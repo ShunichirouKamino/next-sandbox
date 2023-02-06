@@ -1,4 +1,4 @@
-import { globalCss, theme } from './'
+import { globalCss, theme } from '@/foundations'
 
 const globalStyles = globalCss({
     '*,*::before,*::after': {
