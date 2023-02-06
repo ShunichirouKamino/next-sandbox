@@ -1,4 +1,4 @@
-import { MinusB } from "@ubie/ubie-icons";
+import { MinusBIcon } from "@ubie/ubie-icons";
 
 export type RemoveButtonProps = {
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -17,7 +17,7 @@ const RemoveButton: React.FC<RemoveButtonProps> = ({
         data-num={index}
         className="cursor-pointer p-1 hover:text-[#EC5252] duration-150"
       >
-        <MinusB viewBox="0 0 24 24" className="h-6 w-6" />
+        <MinusBIcon viewBox="0 0 24 24" className="h-6 w-6" />
       </button>
     </div>
   );

@@ -1,4 +1,4 @@
-import { Account } from "@ubie/ubie-icons";
+import { AccountIcon } from "@ubie/ubie-icons";
 import Link from "next/link";
 
 export type AccountLinkProps = {
@@ -10,7 +10,7 @@ const AccountLink: React.FC<AccountLinkProps> = (props): JSX.Element => {
   return (
     <div className="cursor-pointer inline-block">
       <Link href={props.link}>
-        <Account viewBox="0 0 24 24" className="h-6 w-6" />
+        <AccountIcon viewBox="0 0 24 24" className="h-6 w-6" />
       </Link>
     </div>
   );

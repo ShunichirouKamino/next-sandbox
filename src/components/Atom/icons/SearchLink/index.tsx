@@ -1,4 +1,4 @@
-import { Search } from "@ubie/ubie-icons";
+import { SearchIcon } from "@ubie/ubie-icons";
 import Link from "next/link";
 
 export type SearchLinkProps = {
@@ -10,7 +10,7 @@ const SearchLink: React.FC<SearchLinkProps> = (props): JSX.Element => {
   return (
     <div className="cursor-pointer inline-block">
       <Link href={props.link}>
-        <Search viewBox="0 0 24 24" className="h-6 w-6" />
+        <SearchIcon viewBox="0 0 24 24" className="h-6 w-6" />
       </Link>
     </div>
   );

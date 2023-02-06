@@ -1,4 +1,4 @@
-import { HomeOutline } from "@ubie/ubie-icons";
+import { HomeOutlineIcon } from "@ubie/ubie-icons";
 import Link from "next/link";
 
 export type HomeLinkProps = {
@@ -10,7 +10,7 @@ const HomeLink: React.FC<HomeLinkProps> = (props): JSX.Element => {
   return (
     <div className="cursor-pointer inline-block">
       <Link href={props.link}>
-        <HomeOutline viewBox="0 0 24 24" className="h-6 w-6" />
+        <HomeOutlineIcon viewBox="0 0 24 24" className="h-6 w-6" />
       </Link>
     </div>
   );

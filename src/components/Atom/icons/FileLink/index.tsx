@@ -1,4 +1,4 @@
-import { File } from "@ubie/ubie-icons";
+import { FileIcon } from "@ubie/ubie-icons";
 import Link from "next/link";
 
 export type FileLinkProps = {
@@ -9,7 +9,7 @@ const FileLink: React.FC<FileLinkProps> = (props): JSX.Element => {
   return (
     <div className="cursor-pointer inline-block">
       <Link href={props.link}>
-        <File viewBox="0 0 24 24" className="h-6 w-6" />
+        <FileIcon viewBox="0 0 24 24" className="h-6 w-6" />
       </Link>
     </div>
   );

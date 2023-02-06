@@ -1,4 +1,4 @@
-import { PlusB } from "@ubie/ubie-icons";
+import { PlusBIcon } from "@ubie/ubie-icons";
 
 export type PlusButtonProps = {
   onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -17,7 +17,7 @@ const PlusButton: React.FC<PlusButtonProps> = ({
         data-num={index}
         className="cursor-pointer p-1 hover:text-[#EC5252] duration-150 inline-block"
       >
-        <PlusB viewBox="0 0 24 24" className="h-6 w-6" />
+        <PlusBIcon viewBox="0 0 24 24" className="h-6 w-6" />
       </button>
     </div>
   );
